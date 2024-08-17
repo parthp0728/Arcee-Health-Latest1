@@ -13,7 +13,7 @@ import { Observable } from 'rxjs';
 import { startWith, switchMap } from 'rxjs/operators';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { AddressService } from '../services/address.service'; // Adjust the import path as needed
-import { HttpClientModule } from '@angular/common/http'; // Import HttpClientModule
+
 //import { Router } from '@angular/router';  // Import Router
 
 @Component({
@@ -32,8 +32,7 @@ import { HttpClientModule } from '@angular/common/http'; // Import HttpClientMod
     MatSelectModule,
     MatNativeDateModule,
     MatAutocompleteModule,
-    CommonModule,
-    HttpClientModule
+    CommonModule
   ]
 })
 export class RegistrationComponent implements OnInit {
