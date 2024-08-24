@@ -1,0 +1,49 @@
+<mat-card class="screening-section">
+    <mat-card-title class="home-title">Screenings We Offer</mat-card-title>
+    <mat-card-content class="screening-container">
+      <a class="screening-box" routerLink="/breastcancer" (click)="goToBreastCancer()">
+        <img class="screening-icon" alt="Breast Cancer Screening" src="assets/img/breast-cancer.png"/>
+        <div class="screening-text">Breast Cancer</div>
+      </a>
+      <a class="screening-box" routerLink="/colon-cancer" (click)="goToColonCancer()">
+        <img class="screening-icon" alt="Colon Cancer Screening" src="assets/img/colon-cancer.png"/>
+        <div class="screening-text">Colon Cancer</div>
+      </a>
+      <a class="screening-box" routerLink="/cervical-cancer" (click)="goToCervicalCancer()">
+        <img class="screening-icon" alt="Cervical Cancer Screening" src="assets/img/cervical-cancer.png"/>
+        <div class="screening-text">Cervical Cancer</div>
+      </a>
+      <a class="screening-box" routerLink="/chlamydia" (click)="goToChlamydia()">
+        <img class="screening-icon" alt="Chlamydia Screening" src="assets/img/chlamydia.png"/>
+        <div class="screening-text">Chlamydia</div>
+      </a>
+      <a class="screening-box" routerLink="/vaccination" (click)="goToVaccination()">
+        <img class="screening-icon" alt="Vaccination Screening" src="assets/img/vaccination.png"/>
+        <div class="screening-text">Vaccination</div>
+      </a>
+      <a class="screening-box" routerLink="/care-for-older-adults" (click)="goToOldCare()">
+        <img class="screening-icon" alt="Care for Older Adults" src="assets/img/Elderly_Care.png"/>
+        <div class="screening-text">Care for Older Adults</div>
+      </a>
+    </mat-card-content>
+</mat-card>
+  
+  <mat-card class="wellness">
+    <mat-card-header>
+      <mat-card-title>Your Health in Your Hands!</mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="wellness-body">
+      <p>You may improve it by getting enough sleep, maintaining healthy relationships, and doing some exercise.</p>
+      <p>What people often forget is being proactive in their preventive care.</p>
+      <p>We built Arcee to celebrate and emphasize the importance of prevention, so you could further optimize your wellbeing.</p>
+      <p>Our basic screenings and recommendations are completely free.</p>
+    </mat-card-content>
+    <mat-card-footer class="wellness-footer">
+      Remember, an ounce of prevention is worth a pound of cure.
+    </mat-card-footer>
+  </mat-card>
+  
+  <mat-toolbar class="home-footer" color="primary">
+    &copy; All rights reserved 2020
+  </mat-toolbar>
+  
