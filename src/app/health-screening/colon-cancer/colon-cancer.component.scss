@@ -1,0 +1,35 @@
+.colon-cancer-card {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+  
+.full-width {
+    width: 100%;
+}
+  
+.actions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+  
+mat-form-field {
+    display: block;
+    margin-bottom: 20px; /* Increased margin for better spacing */
+}
+  
+mat-radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Increased gap for better spacing */
+    margin-bottom: 20px; /* Increased margin for better spacing */
+}
+  
+mat-radio-button {
+    margin-right: 10px;
+}
+  
+mat-checkbox {
+    margin-bottom: 15px; /* Added margin for better spacing */
+}

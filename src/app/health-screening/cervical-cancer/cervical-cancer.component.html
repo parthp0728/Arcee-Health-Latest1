@@ -1,1 +1,67 @@
-<p>cervical-cancer works!</p>
+<mat-card class="cervical-cancer-card">
+    <mat-card-content>
+      <p>
+        You will be asked to respond to questions which will ask you for personal information and information related to your health history. The responses on the questionnaire will be used to provide general recommendations on chlamydia preventive measures you should consider getting in consultation with your primary care physician.
+      </p>
+      <p>
+        The questionnaire is NOT a substitute for professional medical care.
+      </p>
+      <p>
+        This questionnaire primarily targets healthy individuals with no known underlying health conditions. Start by answering the following questions:
+      </p>
+  
+      <form [formGroup]="cervicalCancerForm" (ngSubmit)="onSubmit()">
+        <!-- Your Details Section -->
+        <mat-card-title>Your Details</mat-card-title>
+  
+        <!-- Gender Field -->
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Gender</mat-label>
+          <mat-select formControlName="gender" required>
+            <mat-option value="female">Female</mat-option>
+            <mat-option value="male">Male</mat-option>
+            <mat-option value="other">Other</mat-option>
+            <mat-option value="prefer_not_to_say">Prefer not to say</mat-option>
+          </mat-select>
+        </mat-form-field>
+  
+        <!-- Age Field -->
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Age</mat-label>
+          <input matInput type="number" formControlName="age" min="0" max="100" required>
+        </mat-form-field>
+  
+        <!-- Actions -->
+        <div class="actions">
+          <button mat-raised-button color="primary" type="submit" [disabled]="cervicalCancerForm.invalid">Submit</button>
+          <button mat-stroked-button color="warn" type="button" (click)="resetForm()">Clear</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+  
+  <mat-dialog-content *ngIf="displayRecommendation">
+    <h2 mat-dialog-title>{{ title }}</h2>
+    <div *ngIf="test">
+      <p>Primary HPV test<sup>1</sup> every 5 years or cotest HPV + Pap every 5 years or Pap alone every 3 years.</p>
+      <p>
+        1. A primary HPV test is an HPV test that is done by itself for screening. The US Food and Drug Administration has approved certain tests to be primary HPV tests. <a href="https://www.fda.gov/media/122799/download" target="_blank">More Info</a>
+      </p>
+      <p>
+        2. If regular screening last 10 years that are normal and no history of CIN2 or more serious diagnosis within the past 25 years should stop cervical cancer screening. Once stopped, it should not be started again.
+      </p>
+      <p>
+        <span class="red">*</span>People who have had a total hysterectomy (removal of the uterus and cervix) should stop screening (such as Pap tests and HPV tests), unless the hysterectomy was done as a treatment for cervical cancer or serious pre-cancer. People who have had a hysterectomy without removal of the cervix (called a supra-cervical hysterectomy) should continue cervical cancer screening according to the guidelines above.
+      </p>
+    </div>
+    <div *ngIf="no_test">
+      <p>Hooray, no testing needed at the moment. Always reach out to your primary care provider for any further questions. Check back with us in the future!</p>
+    </div>
+    <div *ngIf="unknown">
+      <p>At this time, there is no recommendation. Please read <a href="https://www.cancer.org/health-care-professionals/american-cancer-society-prevention-early-detection-guidelines/cervical-cancer-screening-guidelines.html" target="_blank">here</a> for more information.</p>
+    </div>
+    <mat-dialog-actions>
+      <button mat-button mat-dialog-close>Close</button>
+    </mat-dialog-actions>
+  </mat-dialog-content>
+  

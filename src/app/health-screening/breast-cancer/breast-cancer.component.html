@@ -1,57 +1,48 @@
 <mat-card class="breast-cancer-card">
-    <mat-card-content>
-      <p>
-        You will be asked to respond to questions which will ask you for personal information and information related to your health history. The responses on the questionnaire will be used to provide general recommendations on breast cancer preventive measures you should consider getting in consultation with your primary care physician.
-      </p>
-      <p>
-        The questionnaire is NOT a substitute for professional medical care.
-      </p>
-      <p>
-        This questionnaire primarily targets healthy individuals with no known underlying health conditions. Start by answering the following questions:
-      </p>
+  <mat-card-content>
+    <p>
+      You will be asked to respond to questions which will ask you for personal information and information related to your health history. The responses on the questionnaire will be used to provide general recommendations on breast cancer preventive measures you should consider getting in consultation with your primary care physician.
+    </p>
+    <p>
+      The questionnaire is NOT a substitute for professional medical care.
+    </p>
+    <p>
+      This questionnaire primarily targets healthy individuals with no known underlying health conditions. Start by answering the following questions:
+    </p>
+    
+    <form [formGroup]="breastCancerForm" (ngSubmit)="onSubmit()">
       
-      <form [formGroup]="breastCancerForm" (ngSubmit)="onSubmit()">
-        
-        <!-- Your Details Section -->
-        <mat-card-title>Your Details</mat-card-title>
-        
-        <!-- Gender Field -->
-        <mat-form-field appearance="fill" class="full-width">
-          <mat-label>Gender</mat-label>
-          <mat-select formControlName="gender" required>
-            <mat-option value="female">Female</mat-option>
-            <mat-option value="male">Male</mat-option>
-            <mat-option value="other">Other</mat-option>
-            <mat-option value="prefer_not_to_say">Prefer not to say</mat-option>
-          </mat-select>
-        </mat-form-field>
+      <!-- Gender Field -->
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Gender</mat-label>
+        <mat-select formControlName="gender" required>
+          <mat-option value="female">Female</mat-option>
+          <mat-option value="male">Male</mat-option>
+          <mat-option value="other">Other</mat-option>
+          <mat-option value="prefer_not_to_say">Prefer not to say</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- Age Field -->
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Age</mat-label>
+        <input matInput type="number" formControlName="age" min="30" max="100" required>
+      </mat-form-field>
   
-        <!-- Age Field -->
-        <mat-card-subtitle>Age: {{ breastCancerForm.get('age')?.value }}</mat-card-subtitle>
-        <mat-slider
-          formControlName="age"
-          min="10"
-          max="100"
-          step="1"
-          thumbLabel
-          tickInterval="10"
-        ></mat-slider>
-  
-        <!-- Medical History Section -->
-        <mat-card-title>Your Medical History</mat-card-title>
-        <mat-checkbox-group formControlName="medicalHistory">
-          <div *ngFor="let condition of medicalConditions">
-            <mat-checkbox [value]="condition">{{ condition }}</mat-checkbox>
-          </div>
-        </mat-checkbox-group>
-  
-        <!-- Actions -->
-        <div class="actions">
-          <button mat-raised-button color="primary" type="submit" [disabled]="breastCancerForm.invalid">Submit</button>
-          <button mat-stroked-button color="warn" type="button" (click)="onClear()">Clear</button>
+      <!-- Medical History Section -->
+      <mat-card-title>Your Medical History</mat-card-title>
+      <div formArrayName="medicalHistory">
+        <div *ngFor="let condition of medicalConditions; let i = index">
+          <mat-checkbox [formControlName]="i">{{ condition }}</mat-checkbox>
         </div>
-  
-      </form>
-    </mat-card-content>
-  </mat-card>
-  
+      </div>
+
+      <!-- Actions -->
+      <div class="actions">
+        <button mat-raised-button color="primary" type="submit" [disabled]="breastCancerForm.invalid">Submit</button>
+        <button mat-stroked-button color="warn" type="button" (click)="onClear()">Clear</button>
+      </div>
+
+    </form>
+  </mat-card-content>
+</mat-card>

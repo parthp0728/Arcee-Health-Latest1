@@ -1,15 +1,12 @@
-
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormArray } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormArray, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { MatSliderModule } from '@angular/material/slider';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
   selector: 'app-breast-cancer',
@@ -19,18 +16,16 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
     ReactiveFormsModule,
     MatInputModule,
     MatSelectModule,
-    MatSliderModule,
     MatCheckboxModule,
     MatButtonModule,
     MatCardModule,
     MatIconModule
   ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './breast-cancer.component.html',
   styleUrls: ['./breast-cancer.component.scss']
 })
 export class BreastCancerComponent implements OnInit {
-  breastCancerForm!: FormGroup;  // Initialize with an empty group
+  breastCancerForm!: FormGroup;
   medicalConditions: string[] = [
     'BRCA1/2 mutation',
     'Radiation therapy to chest between ages 10-30',
@@ -45,8 +40,8 @@ export class BreastCancerComponent implements OnInit {
   ngOnInit(): void {
     this.breastCancerForm = this.fb.group({
       gender: ['', Validators.required],
-      age: [30, [Validators.required, Validators.min(10), Validators.max(100)]],
-      medicalHistory: [[]] // Initializes as an empty array for multiple selections
+      age: [30, [Validators.required, Validators.min(30), Validators.max(100)]],
+      medicalHistory: this.fb.array(this.medicalConditions.map(() => this.fb.control(false)))
     });
   }
 
@@ -54,10 +49,13 @@ export class BreastCancerComponent implements OnInit {
     if (this.breastCancerForm.valid) {
       const formData = this.breastCancerForm.value;
       console.log('Form Submitted', formData);
-      // Implement decision logic based on formData
+      const selectedConditions = this.breastCancerForm.value.medicalHistory
+        .map((checked: boolean, i: number) => checked ? this.medicalConditions[i] : null)
+        .filter((v: any) => v !== null);
+
+      formData.medicalHistory = selectedConditions;
       const recommendation = this.getRecommendation(formData);
       console.log('Recommendation:', recommendation);
-      // You can display this recommendation in the UI as needed
     }
   }
 
@@ -65,7 +63,7 @@ export class BreastCancerComponent implements OnInit {
     this.breastCancerForm.reset({
       gender: '',
       age: 30,
-      medicalHistory: []
+      medicalHistory: this.fb.array(this.medicalConditions.map(() => this.fb.control(false)))
     });
   }
 

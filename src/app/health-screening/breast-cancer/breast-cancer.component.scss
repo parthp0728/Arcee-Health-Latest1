@@ -1,29 +1,27 @@
 .breast-cancer-card {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-  
-  .full-width {
-    width: 100%;
-  }
-  
-  .actions {
-    margin-top: 20px;
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  
-  mat-form-field {
-    display: block;
-    margin-bottom: 15px;
-  }
-  
-  mat-radio-group {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-bottom: 15px;
-  }
-  
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.actions {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+mat-form-field {
+  display: block;
+  margin-bottom: 15px;
+}
+
+mat-radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 15px;
+}

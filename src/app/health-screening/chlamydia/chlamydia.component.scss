@@ -1,0 +1,36 @@
+.chlamydia-card {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .full-width {
+    width: 100%;
+    margin-left: 15px;
+  }
+  
+  .actions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  mat-card-title{
+    margin: 15px;
+  }
+  
+  mat-form-field {
+    display: block;
+    margin-bottom: 15px;
+  }
+  
+  mat-radio-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+  
+  mat-radio-button {
+    margin-right: 10px;
+  }
+  
