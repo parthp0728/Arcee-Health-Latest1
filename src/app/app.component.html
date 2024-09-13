@@ -1,1 +1,11 @@
-<router-outlet></router-outlet>
+<div class="theme-toggle-container">
+    <mat-icon>{{ currentIcon }}</mat-icon> <!-- Dynamically display the icon based on theme -->
+    <mat-slide-toggle
+      [checked]="themeService.currentTheme === 'dark'"
+      (change)="toggleTheme()"
+    >
+    </mat-slide-toggle>
+  </div>
+  
+  <router-outlet></router-outlet>
+  

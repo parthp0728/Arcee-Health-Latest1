@@ -26,6 +26,23 @@ $Arcee-Health-Latest-theme: mat.define-theme((
 // that you are using.
 :root {
   @include mat.all-component-themes($Arcee-Health-Latest-theme);
+  & {/* Light Theme Variables */
+    --primary-color: #1a73e8;
+  --background-color: #ffffff;
+  --container-background-color: #ffffff;
+  --container-inside-background-color: #ffffff;
+  --text-color: #000000;
+  --input-background-color: #ffffff;
+  --input-border-color: #cccccc;
+  --input-text-color: #000000;
+  --input-placeholder-color: #999999;  /* Placeholder color in light mode */
+  --label-color: #666666;
+  --input-hover-border-color: #1a73e8;
+  --button-background-color: #1a73e8;
+  --button-background-hover-color: #1765c5;
+  --button-background-disabled-color: #6d6e6e;
+  --button-text-color: #ffffff;
+  }
 }
 
 // Comment out the line below if you want to use the pre-defined typography utility classes.
@@ -36,5 +53,26 @@ $Arcee-Health-Latest-theme: mat.define-theme((
 // @include mat.color-variants-backwards-compatibility($Arcee-Health-Latest-theme);
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body { height: 100%; margin: 0; padding: 0;}
+
+/* Dark Theme */
+body.dark-theme {
+  --primary-color: #1a73e8;
+  --background-color: #131920;
+  --container-background-color: #1b232d;
+  --container-inside-background-color: #2e3b4c;
+  --text-color: #ffffff;
+  --input-background-color: #1b232d;
+  --input-border-color: #ffffff;
+  --input-text-color: #ffffff;
+  --input-placeholder-color: #888888;  /* Placeholder color in grey for dark mode */
+  --label-color: #cccccc;
+  --input-hover-border-color: #ffffff;
+  --button-background-color: #1a73e8;
+  --button-background-hover-color: #1a73e8;
+  --button-background-disabled-color: #6d6e6e;
+  --button-text-color: #ffffff;
+}
+
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-color: var(--background-color);
+  color: var(--text-color);}

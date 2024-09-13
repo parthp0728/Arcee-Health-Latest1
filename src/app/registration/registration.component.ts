@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
@@ -8,13 +9,11 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { MatNativeDateModule } from '@angular/material/core';
-import { CommonModule } from '@angular/common';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { Observable } from 'rxjs';
 import { startWith, switchMap } from 'rxjs/operators';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { AddressService } from '../services/address.service'; // Adjust the import path as needed
-
-//import { Router } from '@angular/router';  // Import Router
+import { AddressService } from '../services/address.service';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-registration',
@@ -23,6 +22,7 @@ import { AddressService } from '../services/address.service'; // Adjust the impo
   standalone: true,
   imports: [
     ReactiveFormsModule,
+    CommonModule,
     MatInputModule,
     MatButtonModule,
     MatCardModule,
@@ -32,7 +32,7 @@ import { AddressService } from '../services/address.service'; // Adjust the impo
     MatSelectModule,
     MatNativeDateModule,
     MatAutocompleteModule,
-    CommonModule
+    RouterModule
   ]
 })
 export class RegistrationComponent implements OnInit {
@@ -70,13 +70,13 @@ export class RegistrationComponent implements OnInit {
       securityQuestion3: ['', [Validators.required]],
       securityAnswer3: ['', [Validators.required]]
     });
-  }
+  }  
 
   ngOnInit(): void {
     // Set up the address autocomplete
     this.addressOptions = this.registrationForm.get('address')!.valueChanges.pipe(
       startWith(''),
-      switchMap(value => this._filterAddress(value)) // Use switchMap instead of map
+      switchMap(value => this._filterAddress(value))
     );
   }
 

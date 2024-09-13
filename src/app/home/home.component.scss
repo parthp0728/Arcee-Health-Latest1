@@ -1,60 +1,85 @@
+/* Light Theme (default) */
+:root {
+  --primary-color: #1a73e8;
+  --background-color: #ffffff;
+  --card-background-color: #ffffff; /* Default card background */
+  --text-color: #000000;
+  --box-background-color: #f0f0f0;
+  --footer-background-color: #1a73e8;
+}
+
+/* Dark Theme */
+body.dark-theme {
+  --primary-color: #bb86fc;
+  --background-color: #121212;
+  --card-background-color: #1b1b1b; /* Dark card background */
+  --text-color: #ffffff;
+  --box-background-color: #333333;
+  --footer-background-color: #6200ee;
+}
+
+/* Apply the theme variables to the component */
 .screening-section {
-    margin-bottom: 20px;
-  }
-  
-  .screening-container {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-  
-  .screening-box {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 150px;
-    height: 150px;
-    margin: 10px;
-    text-decoration: none;
-    background-color: #f0f0f0;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    transition: background-color 0.3s, transform 0.3s;
-  }
-  
-  .screening-box:hover {
-    background-color: #c5e1a5; /* Change this color as needed */
-    transform: scale(1.05); /* Slightly increase the size on hover */
-  }
-  
-  .screening-icon {
-    width: 60px; /* Adjust the size of the icon */
-    height: 60px;
-    margin-bottom: 10px;
-  }
-  
-  .screening-text {
-    color: #333;
-    font-weight: 500;
-    text-align: center;
-  }
-  
-  .wellness {
-    text-align: center;
-    margin-top: 20px;
-  }
-  
-  .wellness-body {
-    margin: 0 auto;
-    max-width: 600px;
-  }
-  
-  .home-footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    text-align: center;
-  }
-  
+  margin-bottom: 20px;
+  background-color: var(--container-background-color); /* Use theme variable */
+}
+
+.screening-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.screening-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 150px;
+  margin: 10px;
+  text-decoration: none;
+  background-color: var(--box-background-color); /* Use theme variable */
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.screening-box:hover {
+  background-color: #c5e1a5; /* Adjust this as needed */
+  transform: scale(1.05);
+}
+
+.screening-icon {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 10px;
+}
+
+.screening-text {
+  color: var(--text-color); /* Use theme variable */
+  font-weight: 500;
+  text-align: center;
+}
+
+.wellness {
+  text-align: center;
+  margin-top: 20px;
+  background-color: var(--container-background-color); /* Use theme variable */
+}
+
+.wellness-body {
+  margin: 0 auto;
+  max-width: 600px;
+  color: var(--text-color); /* Use theme variable */
+}
+
+.home-footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  background-color: var(--footer-background-color); /* Use theme variable */
+  color: var(--text-color); /* Use theme variable */
+}

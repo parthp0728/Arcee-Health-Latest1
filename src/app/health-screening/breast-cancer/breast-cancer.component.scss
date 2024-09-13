@@ -1,7 +1,47 @@
+/* Light Theme (default) */
+:root {
+  --background-color: #ffffff;
+  --card-background-color: #f5f5f5;
+  --text-color: #333333;
+  --button-background-color: #1a73e8;
+  --button-text-color: #ffffff;
+  --button-hover-color: #1765c5; /* Predefined darker color for hover */
+  --checkbox-color: #333333;
+}
+
+/* Dark Theme */
+body.dark-theme {
+  --background-color: #131920;
+  --card-background-color: #1b232d;
+  --text-color: #ffffff;
+  --button-background-color: #bb86fc;
+  --button-text-color: #000000;
+  --button-hover-color: #9f6ecb; /* Predefined darker color for hover in dark mode */
+  --checkbox-color: #ffffff;
+}
+
 .breast-cancer-card {
+  background-color: var(--container-background-color);
+  color: var(--text-color);
   max-width: 600px;
   margin: 0 auto;
   padding: 20px;
+}
+
+::ng-deep .mat-mdc-checkbox .mat-internal-form-field {
+  color: inherit !important;
+}
+
+::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled){
+  background-color: var(--container-inside-background-color) !important;
+}
+
+::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-floating-label{
+  color: inherit !important;
+}
+
+::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-text-field__input{
+  color: inherit !important;
 }
 
 .full-width {
@@ -17,11 +57,44 @@
 mat-form-field {
   display: block;
   margin-bottom: 15px;
+  background-color: var(--container-background-color);
+  color: var(--text-color);
 }
 
-mat-radio-group {
+mat-card-title {
+  color: var(--text-color);
+}
+
+mat-checkbox {
+  color: var(--checkbox-color);
+  margin-bottom: 10px;
+}
+
+mat-checkbox .mat-checkbox-label {
+  color: var(--text-color);
+}
+
+.actions {
+  margin-top: 20px;
   display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-bottom: 15px;
+  justify-content: space-between;
+  gap: 10px; /* Adds spacing between the buttons */
+  
+  button {
+    flex: 1; /* Makes both buttons take equal width */
+    padding: 10px 20px; /* Adjust the padding to make the buttons look good */
+    font-size: 16px;
+    font-weight: normal;
+    background-color: var(--button-background-color); /* Dynamic button background */
+    color: var(--button-text-color); /* Dynamic button text color */
+  
+    &:hover {
+      background-color: var(--button-background-hover-color);
+    }
+
+    &:disabled {
+      background-color: #6d6e6e;
+      color: #ffffff;
+    }
+  }
 }

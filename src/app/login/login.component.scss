@@ -1,72 +1,129 @@
-.login-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #d1ecf2; /* Very light blue background */
+/* login.component.scss */
+.sign-in-area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: var(--background-color); /* Dynamic background color */
+}
+
+.sign-in-form-container {
+  width: 600px;
+  padding: 40px;
 }
 
 mat-card {
-    width: 400px;
-    padding: 20px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-    border-radius: 10px; /* Rounded corners */
-    background-color: #ffffff; /* Pure white background for the card */
+  padding: 40px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  background-color: var(--container-background-color); /* Dynamic card background */
 }
 
-mat-card-header {
-    justify-content: center;
-    margin-bottom: 10px;
+::ng-deep .mat-mdc-checkbox .mat-internal-form-field {
+  color: inherit !important;  /* Ensures that the color is inherited */
 }
 
-mat-card-title {
-    font-size: 1.5rem;
-    font-weight: 500;
-    color: #343a40; /* Dark grey color for the title */
+::ng-deep .mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-floating-label {
+  color: inherit !important; /* This removes the custom color */
 }
 
-mat-form-field {
+.title {
+  text-align: center;
+  margin-bottom: 20px;
+
+  h3 {
+    font-size: 24px;
+    color: var(--text-color); /* Dynamic text color */
+    margin-bottom: 8px;
+  }
+
+  p {
+    color: var(--text-color);
+    font-size: 14px;
+
+    .sign-up-link {
+      color: var(--primary-color); /* Dynamic link color */
+      text-decoration: none;
+      cursor: pointer;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.form-group {
+  margin-bottom: 20px;
+
+  .input-label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: var(--text-color); /* Dynamic text color */
+  }
+
+  mat-form-field {
     width: 100%;
-    margin-bottom: 15px; /* Space between form fields */
+
+    input {
+      background-color: var(--input-background-color); /* Dynamic input background */
+      color: var(--input-text-color); /* Dynamic input text color */
+    }
+
+    mat-label {
+      background-color: var(--input-background-color);
+      color: var(--input-text-color); /* Dynamic label color */
+    }
+
+    mat-icon {
+      color: var(--text-color); /* Dynamic icon color */
+    }
+  }
 }
 
-.mat-form-field-appearance-fill .mat-form-field-flex {
-    background-color: #97daf5; /* Light blue background for input fields */
-    border-radius: 5px;
+.login-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+
+  .forgot-password-link {
+    color: var(--primary-color);
+    font-size: 14px;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }
 
-.mat-form-field-appearance-fill .mat-form-field-ripple {
-    background-color: #60a3bc; /* Medium blue color for the ripple */
+.submit-btn {
+  width: 100%;
+  height: auto;
+  padding: 17px 30px;
+  font-size: 16px;
+  font-weight: normal;
+  background-color: var(--button-background-color); /* Dynamic button background */
+  color: var(--button-text-color); /* Dynamic button text color */
+
+  &:hover {
+    background-color: var(--button-background-hover-color);
+  }
+
+  &:disabled {
+    background-color: #6d6e6e;
+    color: #ffffff;
+  }
 }
 
-mat-error {
-    color: #f28b82; /* Soft red color for error messages */
-    font-size: 0.875rem;
-}
+:host {
+  --mdc-protected-button-label-text-color: #ffffff;
+  --mdc-protected-button-container-color: #1a73e8; // Orange background for buttons
 
-.login-actions {
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px; /* Space between the Login and Register buttons */
-    margin-top: 20px;
-}
-
-button {
-    color: #ffffff; /* White text on the button */
-}
-
-button.mat-raised-button[color="primary"] {
-    background-color: #60a3bc; /* Medium blue for the Login button */
-}
-
-button.mat-raised-button[color="accent"] {
-    background-color: #4caf50; /* Soft green for the Register button */
-}
-
-button:hover {
-    background-color: #97daf5; /* Slightly darker blue for hover effect on Login */
-}
-
-button.mat-raised-button[color="accent"]:hover {
-    background-color: #388e3c; /* Slightly darker green for hover effect on Register */
+  .mat-mdc-raised-button:not(:disabled) {
+    color: var(--mdc-protected-button-label-text-color);
+    background-color: var(--mdc-protected-button-container-color);
+  }
 }

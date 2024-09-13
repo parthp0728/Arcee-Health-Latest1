@@ -1,36 +1,121 @@
+/* Light Theme (default) */
+:root {
+  --background-color: #ffffff;
+  --card-background-color: #f5f5f5;
+  --text-color: #333333;
+  --button-background-color: #1a73e8;
+  --button-text-color: #ffffff;
+  --button-hover-color: #1765c5;
+  --input-border-color: #ccc;
+  --input-text-color: #333333;
+  --input-placeholder-color: #666;
+}
+
+/* Dark Theme */
+body.dark-theme {
+  --background-color: #131920;
+  --card-background-color: #1b232d;
+  --text-color: #ffffff;
+  --button-background-color: #bb86fc;
+  --button-text-color: #000000;
+  --button-hover-color: #9f6ecb;
+  --input-border-color: #555;
+  --input-text-color: #ffffff;
+  --input-placeholder-color: #aaaaaa;
+}
+
+/* Main card styling */
 .chlamydia-card {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-  }
+  background-color: var(--container-background-color);
+  color: var(--text-color);
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Full-width form fields */
+.full-width {
+  width: 100%;
+  margin-left: 15px;
+}
+
+/* Action buttons styling */
+.actions {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px; /* Adds spacing between the buttons */
   
-  .full-width {
-    width: 100%;
-    margin-left: 15px;
-  }
+  button {
+    flex: 1; /* Makes both buttons take equal width */
+    padding: 10px 20px; /* Adjust the padding to make the buttons look good */
+    font-size: 16px;
+    font-weight: normal;
+    background-color: var(--button-background-color); /* Dynamic button background */
+    color: var(--button-text-color); /* Dynamic button text color */
   
-  .actions {
-    margin-top: 20px;
-    display: flex;
-    justify-content: space-between;
+    &:hover {
+      background-color: var(--button-background-hover-color);
+    }
+
+    &:disabled {
+      background-color: #6d6e6e;
+      color: #ffffff;
+    }
+  }
+}
+
+/* Card title styling */
+mat-card-title {
+  margin: 15px;
+  color: var(--input-text-color); /* Adapt the card title text color */
+}
+
+mat-card{
+  background-color: var(--container-inside-background-color);
+}
+
+/* Form field styling */
+mat-form-field {
+  display: block;
+  margin-bottom: 15px;
+  background-color: var(--container-background-color);
+  color: var(--text-color);
+
+  input {
+    color: var(--input-text-color);  /* Ensure input text color is adapted */
+    border-color: var(--input-border-color);  /* Adapt border color */
   }
 
-  mat-card-title{
-    margin: 15px;
+  input::placeholder {
+    color: var(--input-placeholder-color);  /* Adapt placeholder color */
   }
-  
-  mat-form-field {
-    display: block;
-    margin-bottom: 15px;
-  }
-  
-  mat-radio-group {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 15px;
-  }
-  
-  mat-radio-button {
-    margin-right: 10px;
-  }
-  
+}
+
+::ng-deep .mat-mdc-radio-button .mat-internal-form-field {
+  color: inherit !important;
+}
+
+::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled){
+  background-color: var(--container-inside-background-color) !important;
+}
+
+::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-floating-label{
+  color: inherit !important;
+}
+
+::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-text-field__input{
+  color: inherit !important;
+}
+
+/* Radio group and buttons */
+mat-radio-group {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+mat-radio-button {
+  margin-right: 10px;
+  color: var(--text-color); /* Ensure radio button text is visible */
+}

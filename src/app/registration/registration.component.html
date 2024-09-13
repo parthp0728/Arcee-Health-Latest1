@@ -1,12 +1,15 @@
-<div class="registration-container">
+<div class="signup-container">
   <mat-card>
-    <mat-card-header>
-      <mat-card-title>Register</mat-card-title>
-    </mat-card-header>
+    <div class="title">
+      <h3>Sign Up</h3>
+      <p>Already have an account? <a routerLink="/login" class="signin-link">Sign In</a></p>
+    </div>
     <mat-card-content>
       <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+        
         <!-- First Name -->
-        <mat-form-field appearance="fill">
+        <label for="firstName" class="input-label">First Name</label>
+        <mat-form-field appearance="outline" class="full-width">
           <mat-label>First Name</mat-label>
           <input matInput placeholder="Enter your first name" formControlName="firstName" />
           <mat-error *ngIf="registrationForm.get('firstName')?.touched && registrationForm.get('firstName')?.invalid">
@@ -15,7 +18,8 @@
         </mat-form-field>
 
         <!-- Last Name -->
-        <mat-form-field appearance="fill">
+        <label for="lastName" class="input-label">Last Name</label>
+        <mat-form-field appearance="outline" class="full-width">
           <mat-label>Last Name</mat-label>
           <input matInput placeholder="Enter your last name" formControlName="lastName" />
           <mat-error *ngIf="registrationForm.get('lastName')?.touched && registrationForm.get('lastName')?.invalid">
@@ -24,7 +28,8 @@
         </mat-form-field>
 
         <!-- Email Address -->
-        <mat-form-field appearance="fill">
+        <label for="email" class="input-label">Email Address</label>
+        <mat-form-field appearance="outline" class="full-width">
           <mat-label>Email Address</mat-label>
           <input matInput placeholder="Enter your email" formControlName="email" />
           <mat-error *ngIf="registrationForm.get('email')?.touched && registrationForm.get('email')?.invalid">
@@ -33,7 +38,8 @@
         </mat-form-field>
 
         <!-- Password -->
-        <mat-form-field appearance="fill">
+        <label for="password" class="input-label">Password</label>
+        <mat-form-field appearance="outline" class="full-width">
           <mat-label>Password</mat-label>
           <input matInput [type]="hidePassword ? 'password' : 'text'" placeholder="Enter your password" formControlName="password" />
           <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" type="button">
@@ -45,7 +51,8 @@
         </mat-form-field>
 
         <!-- Confirm Password -->
-        <mat-form-field appearance="fill">
+        <label for="confirmPassword" class="input-label">Confirm Password</label>
+        <mat-form-field appearance="outline" class="full-width">
           <mat-label>Confirm Password</mat-label>
           <input matInput [type]="hideConfirmPassword ? 'password' : 'text'" placeholder="Confirm your password" formControlName="confirmPassword" />
           <button mat-icon-button matSuffix (click)="hideConfirmPassword = !hideConfirmPassword" type="button">
@@ -57,7 +64,8 @@
         </mat-form-field>
 
         <!-- Date of Birth -->
-        <mat-form-field appearance="fill">
+        <label for="dateOfBirth" class="input-label">Date of Birth</label>
+        <mat-form-field appearance="outline" class="full-width">
           <mat-label>Date of Birth</mat-label>
           <input matInput [matDatepicker]="picker" placeholder="Enter your date of birth" formControlName="dateOfBirth" />
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -68,14 +76,16 @@
         </mat-form-field>
 
         <!-- Gender -->
+        <label for="gender" class="input-label">Gender</label>
         <mat-radio-group formControlName="gender" class="gender-group">
           <mat-radio-button value="male">Male</mat-radio-button>
           <mat-radio-button value="female">Female</mat-radio-button>
           <mat-radio-button value="other">Other</mat-radio-button>
         </mat-radio-group>
 
-        <!-- Address with Autocomplete -->
-        <mat-form-field appearance="fill">
+        <!-- Address -->
+        <label for="address" class="input-label">Address</label>
+        <mat-form-field appearance="outline" class="full-width">
           <mat-label>Address</mat-label>
           <input type="text" matInput placeholder="Enter your address" formControlName="address" [matAutocomplete]="auto" />
           <mat-autocomplete #auto="matAutocomplete">
@@ -89,7 +99,8 @@
         </mat-form-field>
 
         <!-- Security Questions and Answers -->
-        <mat-form-field appearance="fill">
+        <label for="securityQuestion1" class="input-label">Security Question 1</label>
+        <mat-form-field appearance="outline" class="full-width">
           <mat-label>Security Question 1</mat-label>
           <mat-select formControlName="securityQuestion1">
             <mat-option *ngFor="let question of securityQuestions" [value]="question">{{ question }}</mat-option>
@@ -98,8 +109,9 @@
             Security question is required
           </mat-error>
         </mat-form-field>
-
-        <mat-form-field appearance="fill">
+        
+        <label for="SecurityAnswer1" class="input-label">Security Answer 1</label>
+        <mat-form-field appearance="outline" class="full-width">
           <mat-label>Answer 1</mat-label>
           <input matInput placeholder="Enter your answer" formControlName="securityAnswer1" />
           <mat-error *ngIf="registrationForm.get('securityAnswer1')?.touched && registrationForm.get('securityAnswer1')?.invalid">
@@ -107,7 +119,8 @@
           </mat-error>
         </mat-form-field>
 
-        <mat-form-field appearance="fill">
+        <label for="securityQuestion2" class="input-label">Security Question 2</label>
+        <mat-form-field appearance="outline" class="full-width">
           <mat-label>Security Question 2</mat-label>
           <mat-select formControlName="securityQuestion2">
             <mat-option *ngFor="let question of securityQuestions" [value]="question">{{ question }}</mat-option>
@@ -117,7 +130,8 @@
           </mat-error>
         </mat-form-field>
 
-        <mat-form-field appearance="fill">
+        <label for="SecurityAnswer2" class="input-label">Security Answer 2</label>
+        <mat-form-field appearance="outline" class="full-width">
           <mat-label>Answer 2</mat-label>
           <input matInput placeholder="Enter your answer" formControlName="securityAnswer2" />
           <mat-error *ngIf="registrationForm.get('securityAnswer2')?.touched && registrationForm.get('securityAnswer2')?.invalid">
@@ -125,7 +139,8 @@
           </mat-error>
         </mat-form-field>
 
-        <mat-form-field appearance="fill">
+        <label for="securityQuestion3" class="input-label">Security Question 3</label>
+        <mat-form-field appearance="outline" class="full-width">
           <mat-label>Security Question 3</mat-label>
           <mat-select formControlName="securityQuestion3">
             <mat-option *ngFor="let question of securityQuestions" [value]="question">{{ question }}</mat-option>
@@ -135,7 +150,8 @@
           </mat-error>
         </mat-form-field>
 
-        <mat-form-field appearance="fill">
+        <label for="SecurityAnswer3" class="input-label">Security Answer 3</label>
+        <mat-form-field appearance="outline" class="full-width">
           <mat-label>Answer 3</mat-label>
           <input matInput placeholder="Enter your answer" formControlName="securityAnswer3" />
           <mat-error *ngIf="registrationForm.get('securityAnswer3')?.touched && registrationForm.get('securityAnswer3')?.invalid">
@@ -144,12 +160,8 @@
         </mat-form-field>
 
         <!-- Register Button -->
-        <div class="registration-actions">
-          <button mat-raised-button color="primary" type="submit" [disabled]="registrationForm.invalid">Register</button>
-        </div>
+        <button mat-raised-button color="primary" class="signup-btn" type="submit" [disabled]="registrationForm.invalid">Register</button>
       </form>
-
-      
     </mat-card-content>
   </mat-card>
 </div>
