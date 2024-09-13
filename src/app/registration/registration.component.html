@@ -1,166 +1,258 @@
 <div class="signup-container">
   <mat-card>
     <div class="title">
-      <h3>Sign Up</h3>
-      <p>Already have an account? <a routerLink="/login" class="signin-link">Sign In</a></p>
+      <h3 *ngIf="currentLanguage === 'en'">Sign Up</h3>
+      <h3 *ngIf="currentLanguage === 'es'">Registrarse</h3>
+      <p>
+        <span *ngIf="currentLanguage === 'en'">Already have an account?</span>
+        <span *ngIf="currentLanguage === 'es'">¿Ya tienes una cuenta?</span>
+        <a routerLink="/login" class="signin-link">
+          <span *ngIf="currentLanguage === 'en'">Sign In</span>
+          <span *ngIf="currentLanguage === 'es'">Iniciar sesión</span>
+        </a>
+      </p>
     </div>
     <mat-card-content>
       <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
-        
+
         <!-- First Name -->
-        <label for="firstName" class="input-label">First Name</label>
+        <label for="firstName" class="input-label">
+          <span *ngIf="currentLanguage === 'en'">First Name</span>
+          <span *ngIf="currentLanguage === 'es'">Nombre</span>
+        </label>
         <mat-form-field appearance="outline" class="full-width">
-          <mat-label>First Name</mat-label>
+          <mat-label *ngIf="currentLanguage === 'en'">First Name</mat-label>
+          <mat-label *ngIf="currentLanguage === 'es'">Nombre</mat-label>
           <input matInput placeholder="Enter your first name" formControlName="firstName" />
           <mat-error *ngIf="registrationForm.get('firstName')?.touched && registrationForm.get('firstName')?.invalid">
-            First name is required
+            <span *ngIf="currentLanguage === 'en'">First name is required</span>
+            <span *ngIf="currentLanguage === 'es'">El nombre es obligatorio</span>
           </mat-error>
         </mat-form-field>
 
         <!-- Last Name -->
-        <label for="lastName" class="input-label">Last Name</label>
+        <label for="lastName" class="input-label">
+          <span *ngIf="currentLanguage === 'en'">Last Name</span>
+          <span *ngIf="currentLanguage === 'es'">Apellido</span>
+        </label>
         <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Last Name</mat-label>
+          <mat-label *ngIf="currentLanguage === 'en'">Last Name</mat-label>
+          <mat-label *ngIf="currentLanguage === 'es'">Apellido</mat-label>
           <input matInput placeholder="Enter your last name" formControlName="lastName" />
           <mat-error *ngIf="registrationForm.get('lastName')?.touched && registrationForm.get('lastName')?.invalid">
-            Last name is required
+            <span *ngIf="currentLanguage === 'en'">Last name is required</span>
+            <span *ngIf="currentLanguage === 'es'">El apellido es obligatorio</span>
           </mat-error>
         </mat-form-field>
 
         <!-- Email Address -->
-        <label for="email" class="input-label">Email Address</label>
+        <label for="email" class="input-label">
+          <span *ngIf="currentLanguage === 'en'">Email Address</span>
+          <span *ngIf="currentLanguage === 'es'">Correo electrónico</span>
+        </label>
         <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Email Address</mat-label>
+          <mat-label *ngIf="currentLanguage === 'en'">Email Address</mat-label>
+          <mat-label *ngIf="currentLanguage === 'es'">Correo electrónico</mat-label>
           <input matInput placeholder="Enter your email" formControlName="email" />
           <mat-error *ngIf="registrationForm.get('email')?.touched && registrationForm.get('email')?.invalid">
-            Please enter a valid email address
+            <span *ngIf="currentLanguage === 'en'">Please enter a valid email address</span>
+            <span *ngIf="currentLanguage === 'es'">Por favor, introduce una dirección de correo válida</span>
           </mat-error>
         </mat-form-field>
 
         <!-- Password -->
-        <label for="password" class="input-label">Password</label>
+        <label for="password" class="input-label">
+          <span *ngIf="currentLanguage === 'en'">Password</span>
+          <span *ngIf="currentLanguage === 'es'">Contraseña</span>
+        </label>
         <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Password</mat-label>
+          <mat-label *ngIf="currentLanguage === 'en'">Password</mat-label>
+          <mat-label *ngIf="currentLanguage === 'es'">Contraseña</mat-label>
           <input matInput [type]="hidePassword ? 'password' : 'text'" placeholder="Enter your password" formControlName="password" />
           <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" type="button">
             <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
           </button>
           <mat-error *ngIf="registrationForm.get('password')?.touched && registrationForm.get('password')?.invalid">
-            Password is required
+            <span *ngIf="currentLanguage === 'en'">Password is required</span>
+            <span *ngIf="currentLanguage === 'es'">La contraseña es obligatoria</span>
           </mat-error>
         </mat-form-field>
 
         <!-- Confirm Password -->
-        <label for="confirmPassword" class="input-label">Confirm Password</label>
+        <label for="confirmPassword" class="input-label">
+          <span *ngIf="currentLanguage === 'en'">Confirm Password</span>
+          <span *ngIf="currentLanguage === 'es'">Confirmar contraseña</span>
+        </label>
         <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Confirm Password</mat-label>
+          <mat-label *ngIf="currentLanguage === 'en'">Confirm Password</mat-label>
+          <mat-label *ngIf="currentLanguage === 'es'">Confirmar contraseña</mat-label>
           <input matInput [type]="hideConfirmPassword ? 'password' : 'text'" placeholder="Confirm your password" formControlName="confirmPassword" />
           <button mat-icon-button matSuffix (click)="hideConfirmPassword = !hideConfirmPassword" type="button">
             <mat-icon>{{ hideConfirmPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
           </button>
           <mat-error *ngIf="registrationForm.get('confirmPassword')?.touched && registrationForm.get('confirmPassword')?.invalid">
-            Please confirm your password
+            <span *ngIf="currentLanguage === 'en'">Please confirm your password</span>
+            <span *ngIf="currentLanguage === 'es'">Por favor confirma tu contraseña</span>
           </mat-error>
         </mat-form-field>
 
         <!-- Date of Birth -->
-        <label for="dateOfBirth" class="input-label">Date of Birth</label>
+        <label for="dateOfBirth" class="input-label">
+          <span *ngIf="currentLanguage === 'en'">Date of Birth</span>
+          <span *ngIf="currentLanguage === 'es'">Fecha de nacimiento</span>
+        </label>
         <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Date of Birth</mat-label>
+          <mat-label *ngIf="currentLanguage === 'en'">Date of Birth</mat-label>
+          <mat-label *ngIf="currentLanguage === 'es'">Fecha de nacimiento</mat-label>
           <input matInput [matDatepicker]="picker" placeholder="Enter your date of birth" formControlName="dateOfBirth" />
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
           <mat-error *ngIf="registrationForm.get('dateOfBirth')?.touched && registrationForm.get('dateOfBirth')?.invalid">
-            Date of birth is required
+            <span *ngIf="currentLanguage === 'en'">Date of birth is required</span>
+            <span *ngIf="currentLanguage === 'es'">La fecha de nacimiento es obligatoria</span>
           </mat-error>
         </mat-form-field>
 
         <!-- Gender -->
-        <label for="gender" class="input-label">Gender</label>
+        <label for="gender" class="input-label">
+          <span *ngIf="currentLanguage === 'en'">Gender</span>
+          <span *ngIf="currentLanguage === 'es'">Género</span>
+        </label>
         <mat-radio-group formControlName="gender" class="gender-group">
-          <mat-radio-button value="male">Male</mat-radio-button>
-          <mat-radio-button value="female">Female</mat-radio-button>
-          <mat-radio-button value="other">Other</mat-radio-button>
+          <mat-radio-button value="male">
+            <span *ngIf="currentLanguage === 'en'">Male</span>
+            <span *ngIf="currentLanguage === 'es'">Hombre</span>
+          </mat-radio-button>
+          <mat-radio-button value="female">
+            <span *ngIf="currentLanguage === 'en'">Female</span>
+            <span *ngIf="currentLanguage === 'es'">Mujer</span>
+          </mat-radio-button>
+          <mat-radio-button value="other">
+            <span *ngIf="currentLanguage === 'en'">Other</span>
+            <span *ngIf="currentLanguage === 'es'">Otro</span>
+          </mat-radio-button>
         </mat-radio-group>
 
         <!-- Address -->
-        <label for="address" class="input-label">Address</label>
+        <label for="address" class="input-label">
+          <span *ngIf="currentLanguage === 'en'">Address</span>
+          <span *ngIf="currentLanguage === 'es'">Dirección</span>
+        </label>
         <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Address</mat-label>
+          <mat-label *ngIf="currentLanguage === 'en'">Address</mat-label>
+          <mat-label *ngIf="currentLanguage === 'es'">Dirección</mat-label>
           <input type="text" matInput placeholder="Enter your address" formControlName="address" [matAutocomplete]="auto" />
           <mat-autocomplete #auto="matAutocomplete">
-            <mat-option *ngFor="let option of addressOptions | async" [value]="option">
-              {{ option }}
-            </mat-option>
+            <mat-option *ngFor="let option of addressOptions | async" [value]="option">{{ option }}</mat-option>
           </mat-autocomplete>
           <mat-error *ngIf="registrationForm.get('address')?.touched && registrationForm.get('address')?.invalid">
-            Address is required
+            <span *ngIf="currentLanguage === 'en'">Address is required</span>
+            <span *ngIf="currentLanguage === 'es'">La dirección es obligatoria</span>
           </mat-error>
         </mat-form-field>
 
-        <!-- Security Questions and Answers -->
-        <label for="securityQuestion1" class="input-label">Security Question 1</label>
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Security Question 1</mat-label>
-          <mat-select formControlName="securityQuestion1">
-            <mat-option *ngFor="let question of securityQuestions" [value]="question">{{ question }}</mat-option>
-          </mat-select>
-          <mat-error *ngIf="registrationForm.get('securityQuestion1')?.touched && registrationForm.get('securityQuestion1')?.invalid">
-            Security question is required
-          </mat-error>
-        </mat-form-field>
-        
-        <label for="SecurityAnswer1" class="input-label">Security Answer 1</label>
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Answer 1</mat-label>
-          <input matInput placeholder="Enter your answer" formControlName="securityAnswer1" />
-          <mat-error *ngIf="registrationForm.get('securityAnswer1')?.touched && registrationForm.get('securityAnswer1')?.invalid">
-            Answer is required
-          </mat-error>
-        </mat-form-field>
+        <!-- Security Question 1 -->
+<label for="securityQuestion1" class="input-label">
+  <span *ngIf="currentLanguage === 'en'">Security Question 1</span>
+  <span *ngIf="currentLanguage === 'es'">Pregunta de seguridad 1</span>
+</label>
+<mat-form-field appearance="outline" class="full-width">
+  <mat-label *ngIf="currentLanguage === 'en'">Security Question 1</mat-label>
+  <mat-label *ngIf="currentLanguage === 'es'">Pregunta de seguridad 1</mat-label>
+  <mat-select formControlName="securityQuestion1">
+    <mat-option *ngFor="let question of getSecurityQuestions()" [value]="question">{{ question }}</mat-option>
+  </mat-select>
+  <mat-error *ngIf="registrationForm.get('securityQuestion1')?.touched && registrationForm.get('securityQuestion1')?.invalid">
+    <span *ngIf="currentLanguage === 'en'">Security question is required</span>
+    <span *ngIf="currentLanguage === 'es'">La pregunta de seguridad es obligatoria</span>
+  </mat-error>
+</mat-form-field>
 
-        <label for="securityQuestion2" class="input-label">Security Question 2</label>
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Security Question 2</mat-label>
-          <mat-select formControlName="securityQuestion2">
-            <mat-option *ngFor="let question of securityQuestions" [value]="question">{{ question }}</mat-option>
-          </mat-select>
-          <mat-error *ngIf="registrationForm.get('securityQuestion2')?.touched && registrationForm.get('securityQuestion2')?.invalid">
-            Security question is required
-          </mat-error>
-        </mat-form-field>
+<!-- Security Answer 1 -->
+<label for="securityAnswer1" class="input-label">
+  <span *ngIf="currentLanguage === 'en'">Security Answer 1</span>
+  <span *ngIf="currentLanguage === 'es'">Respuesta de seguridad 1</span>
+</label>
+<mat-form-field appearance="outline" class="full-width">
+  <mat-label *ngIf="currentLanguage === 'en'">Answer 1</mat-label>
+  <mat-label *ngIf="currentLanguage === 'es'">Respuesta 1</mat-label>
+  <input matInput placeholder="Enter your answer" formControlName="securityAnswer1" />
+  <mat-error *ngIf="registrationForm.get('securityAnswer1')?.touched && registrationForm.get('securityAnswer1')?.invalid">
+    <span *ngIf="currentLanguage === 'en'">Answer is required</span>
+    <span *ngIf="currentLanguage === 'es'">La respuesta es obligatoria</span>
+  </mat-error>
+</mat-form-field>
 
-        <label for="SecurityAnswer2" class="input-label">Security Answer 2</label>
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Answer 2</mat-label>
-          <input matInput placeholder="Enter your answer" formControlName="securityAnswer2" />
-          <mat-error *ngIf="registrationForm.get('securityAnswer2')?.touched && registrationForm.get('securityAnswer2')?.invalid">
-            Answer is required
-          </mat-error>
-        </mat-form-field>
+<!-- Security Question 2 -->
+<label for="securityQuestion2" class="input-label">
+  <span *ngIf="currentLanguage === 'en'">Security Question 2</span>
+  <span *ngIf="currentLanguage === 'es'">Pregunta de seguridad 2</span>
+</label>
+<mat-form-field appearance="outline" class="full-width">
+  <mat-label *ngIf="currentLanguage === 'en'">Security Question 2</mat-label>
+  <mat-label *ngIf="currentLanguage === 'es'">Pregunta de seguridad 2</mat-label>
+  <mat-select formControlName="securityQuestion2">
+    <mat-option *ngFor="let question of getSecurityQuestions()" [value]="question">{{ question }}</mat-option>
+  </mat-select>
+  <mat-error *ngIf="registrationForm.get('securityQuestion2')?.touched && registrationForm.get('securityQuestion2')?.invalid">
+    <span *ngIf="currentLanguage === 'en'">Security question is required</span>
+    <span *ngIf="currentLanguage === 'es'">La pregunta de seguridad es obligatoria</span>
+  </mat-error>
+</mat-form-field>
 
-        <label for="securityQuestion3" class="input-label">Security Question 3</label>
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Security Question 3</mat-label>
-          <mat-select formControlName="securityQuestion3">
-            <mat-option *ngFor="let question of securityQuestions" [value]="question">{{ question }}</mat-option>
-          </mat-select>
-          <mat-error *ngIf="registrationForm.get('securityQuestion3')?.touched && registrationForm.get('securityQuestion3')?.invalid">
-            Security question is required
-          </mat-error>
-        </mat-form-field>
+<!-- Security Answer 2 -->
+<label for="securityAnswer2" class="input-label">
+  <span *ngIf="currentLanguage === 'en'">Security Answer 2</span>
+  <span *ngIf="currentLanguage === 'es'">Respuesta de seguridad 2</span>
+</label>
+<mat-form-field appearance="outline" class="full-width">
+  <mat-label *ngIf="currentLanguage === 'en'">Answer 2</mat-label>
+  <mat-label *ngIf="currentLanguage === 'es'">Respuesta 2</mat-label>
+  <input matInput placeholder="Enter your answer" formControlName="securityAnswer2" />
+  <mat-error *ngIf="registrationForm.get('securityAnswer2')?.touched && registrationForm.get('securityAnswer2')?.invalid">
+    <span *ngIf="currentLanguage === 'en'">Answer is required</span>
+    <span *ngIf="currentLanguage === 'es'">La respuesta es obligatoria</span>
+  </mat-error>
+</mat-form-field>
 
-        <label for="SecurityAnswer3" class="input-label">Security Answer 3</label>
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Answer 3</mat-label>
-          <input matInput placeholder="Enter your answer" formControlName="securityAnswer3" />
-          <mat-error *ngIf="registrationForm.get('securityAnswer3')?.touched && registrationForm.get('securityAnswer3')?.invalid">
-            Answer is required
-          </mat-error>
-        </mat-form-field>
+<!-- Security Question 3 -->
+<label for="securityQuestion3" class="input-label">
+  <span *ngIf="currentLanguage === 'en'">Security Question 3</span>
+  <span *ngIf="currentLanguage === 'es'">Pregunta de seguridad 3</span>
+</label>
+<mat-form-field appearance="outline" class="full-width">
+  <mat-label *ngIf="currentLanguage === 'en'">Security Question 3</mat-label>
+  <mat-label *ngIf="currentLanguage === 'es'">Pregunta de seguridad 3</mat-label>
+  <mat-select formControlName="securityQuestion3">
+    <mat-option *ngFor="let question of getSecurityQuestions()" [value]="question">{{ question }}</mat-option>
+  </mat-select>
+  <mat-error *ngIf="registrationForm.get('securityQuestion3')?.touched && registrationForm.get('securityQuestion3')?.invalid">
+    <span *ngIf="currentLanguage === 'en'">Security question is required</span>
+    <span *ngIf="currentLanguage === 'es'">La pregunta de seguridad es obligatoria</span>
+  </mat-error>
+</mat-form-field>
+
+<!-- Security Answer 3 -->
+<label for="securityAnswer3" class="input-label">
+  <span *ngIf="currentLanguage === 'en'">Security Answer 3</span>
+  <span *ngIf="currentLanguage === 'es'">Respuesta de seguridad 3</span>
+</label>
+<mat-form-field appearance="outline" class="full-width">
+  <mat-label *ngIf="currentLanguage === 'en'">Answer 3</mat-label>
+  <mat-label *ngIf="currentLanguage === 'es'">Respuesta 3</mat-label>
+  <input matInput placeholder="Enter your answer" formControlName="securityAnswer3" />
+  <mat-error *ngIf="registrationForm.get('securityAnswer3')?.touched && registrationForm.get('securityAnswer3')?.invalid">
+    <span *ngIf="currentLanguage === 'en'">Answer is required</span>
+    <span *ngIf="currentLanguage === 'es'">La respuesta es obligatoria</span>
+  </mat-error>
+</mat-form-field>
+
 
         <!-- Register Button -->
-        <button mat-raised-button color="primary" class="signup-btn" type="submit" [disabled]="registrationForm.invalid">Register</button>
+        <button mat-raised-button color="primary" class="signup-btn" type="submit" [disabled]="registrationForm.invalid">
+          <span *ngIf="currentLanguage === 'en'">Register</span>
+          <span *ngIf="currentLanguage === 'es'">Registrarse</span>
+        </button>
       </form>
     </mat-card-content>
   </mat-card>

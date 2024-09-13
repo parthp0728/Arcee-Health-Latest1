@@ -6,6 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
+import { LanguageService } from '../../language.service';  // Import Language Service
 
 @Component({
   selector: 'app-care-for-older-adults',
@@ -27,13 +28,19 @@ export class CareForOlderAdultsComponent implements OnInit {
   displayRecommendation = false;
   title = 'Your Personalized Recommendation';
   showOldAge = false;
+  currentLanguage: string = 'en';  // Default to English
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private languageService: LanguageService) {}
 
   ngOnInit(): void {
     this.oldAgeForm = this.fb.group({
       gender: ['', Validators.required],
       age: [50, [Validators.required, Validators.min(50), Validators.max(100)]],
+    });
+
+    // Subscribe to language changes
+    this.languageService.currentLanguage$.subscribe(language => {
+      this.currentLanguage = language;
     });
   }
 

@@ -14,6 +14,7 @@ import { Observable } from 'rxjs';
 import { startWith, switchMap } from 'rxjs/operators';
 import { AddressService } from '../services/address.service';
 import { RouterModule } from '@angular/router';
+import { LanguageService } from '../language.service';  // Import LanguageService
 
 @Component({
   selector: 'app-registration',
@@ -39,21 +40,27 @@ export class RegistrationComponent implements OnInit {
   registrationForm: FormGroup;
   hidePassword = true;
   hideConfirmPassword = true;
+  addressOptions: Observable<string[]> | null = null;
+  currentLanguage: string = 'en';  // Default language
 
-  addressOptions: Observable<string[]> | null = null; // Initialize as null
+  getSecurityQuestions(): string[] {
+    const securityQuestions: { en: string[], es: string[] } = {
+      en: [
+        'What was the name of your first pet?',
+        'What is the name of the street you grew up on?',
+        'What was the name of your elementary school?'
+      ],
+      es: [
+        '¿Cuál era el nombre de tu primera mascota?',
+        '¿Cuál es el nombre de la calle donde creciste?',
+        '¿Cuál fue el nombre de tu escuela primaria?'
+      ]
+    };
+  
+    return securityQuestions[this.currentLanguage as 'en' | 'es'];  // Explicitly define the keys as 'en' or 'es'
+  }  
 
-  securityQuestions = [
-    'What was the name of your first pet?',
-    'What is the name of the street you grew up on?',
-    'What was the name of your elementary school?',
-    'What is your mother’s maiden name?',
-    'What was the make and model of your first car?',
-    'What is the name of your favorite childhood friend?',
-    'What was the first concert you attended?',
-    'What is your father’s middle name?'
-  ];
-
-  constructor(private fb: FormBuilder, private addressService: AddressService) {
+  constructor(private fb: FormBuilder, private addressService: AddressService, private languageService: LanguageService) {
     this.registrationForm = this.fb.group({
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
@@ -78,10 +85,15 @@ export class RegistrationComponent implements OnInit {
       startWith(''),
       switchMap(value => this._filterAddress(value))
     );
+
+    // Subscribe to language changes
+    this.languageService.currentLanguage$.subscribe((language: string) => {
+      this.currentLanguage = language;
+    });
   }
 
   private _filterAddress(value: string): Observable<string[]> {
-    if (value.length > 2) { // Start searching when the user has entered at least 3 characters
+    if (value.length > 2) {
       return this.addressService.searchAddress(value);
     } else {
       return new Observable<string[]>(observer => observer.next([]));

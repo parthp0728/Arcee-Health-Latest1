@@ -1,20 +1,35 @@
 <mat-card class="breast-cancer-card">
   <mat-card-content>
     <p>
-      You will be asked to respond to questions which will ask you for personal information and information related to your health history. The responses on the questionnaire will be used to provide general recommendations on breast cancer preventive measures you should consider getting in consultation with your primary care physician.
+      <span *ngIf="currentLanguage === 'en'">
+        You will be asked to respond to questions which will ask you for personal information and information related to your health history. The responses on the questionnaire will be used to provide general recommendations on breast cancer preventive measures you should consider getting in consultation with your primary care physician.
+      </span>
+      <span *ngIf="currentLanguage === 'es'">
+        Se le pedirá que responda a preguntas que le solicitarán información personal y relacionada con su historial médico. Las respuestas al cuestionario se utilizarán para proporcionar recomendaciones generales sobre las medidas preventivas para el cáncer de mama que debe considerar en consulta con su médico de atención primaria.
+      </span>
     </p>
+
     <p>
-      The questionnaire is NOT a substitute for professional medical care.
+      <span *ngIf="currentLanguage === 'en'">The questionnaire is NOT a substitute for professional medical care.</span>
+      <span *ngIf="currentLanguage === 'es'">El cuestionario NO es un sustituto de la atención médica profesional.</span>
     </p>
+
     <p>
-      This questionnaire primarily targets healthy individuals with no known underlying health conditions. Start by answering the following questions:
+      <span *ngIf="currentLanguage === 'en'">
+        This questionnaire primarily targets healthy individuals with no known underlying health conditions. Start by answering the following questions:
+      </span>
+      <span *ngIf="currentLanguage === 'es'">
+        Este cuestionario está dirigido principalmente a individuos sanos sin condiciones de salud subyacentes conocidas. Comience respondiendo las siguientes preguntas:
+      </span>
     </p>
-    
+
     <form [formGroup]="breastCancerForm" (ngSubmit)="onSubmit()">
-      
       <!-- Gender Field -->
       <mat-form-field appearance="fill" class="full-width">
-        <mat-label>Gender</mat-label>
+        <mat-label>
+          <span *ngIf="currentLanguage === 'en'">Gender</span>
+          <span *ngIf="currentLanguage === 'es'">Género</span>
+        </mat-label>
         <mat-select formControlName="gender" required>
           <mat-option value="female">Female</mat-option>
           <mat-option value="male">Male</mat-option>
@@ -25,24 +40,35 @@
 
       <!-- Age Field -->
       <mat-form-field appearance="fill" class="full-width">
-        <mat-label>Age</mat-label>
+        <mat-label>
+          <span *ngIf="currentLanguage === 'en'">Age</span>
+          <span *ngIf="currentLanguage === 'es'">Edad</span>
+        </mat-label>
         <input matInput type="number" formControlName="age" min="30" max="100" required>
       </mat-form-field>
-  
+
       <!-- Medical History Section -->
-      <mat-card-title>Your Medical History</mat-card-title>
+      <mat-card-title *ngIf="currentLanguage === 'en'">Your Medical History</mat-card-title>
+      <mat-card-title *ngIf="currentLanguage === 'es'">Tu historial médico</mat-card-title>
+      
       <div formArrayName="medicalHistory">
-        <div *ngFor="let condition of medicalConditions; let i = index">
+        <!-- Loop over medical conditions based on selected language -->
+        <div *ngFor="let condition of medicalConditions[currentLanguage]; let i = index">
           <mat-checkbox [formControlName]="i">{{ condition }}</mat-checkbox>
         </div>
       </div>
 
       <!-- Actions -->
       <div class="actions">
-        <button mat-raised-button color="primary" type="submit" [disabled]="breastCancerForm.invalid">Submit</button>
-        <button mat-stroked-button color="warn" type="button" (click)="onClear()">Clear</button>
+        <button mat-raised-button color="primary" type="submit" [disabled]="breastCancerForm.invalid">
+          <span *ngIf="currentLanguage === 'en'">Submit</span>
+          <span *ngIf="currentLanguage === 'es'">Enviar</span>
+        </button>
+        <button mat-stroked-button color="warn" type="button" (click)="onClear()">
+          <span *ngIf="currentLanguage === 'en'">Clear</span>
+          <span *ngIf="currentLanguage === 'es'">Borrar</span>
+        </button>
       </div>
-
     </form>
   </mat-card-content>
 </mat-card>

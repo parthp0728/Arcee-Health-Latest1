@@ -1,55 +1,83 @@
 <mat-card class="care-for-older-adults-card">
-    <mat-card-content>
-      <p>
-        You will be asked to respond to questions which will ask you for personal information and information related to your health history. The responses on the questionnaire will be used to provide general recommendations on care for older age adults measures you should consider getting in consultation with your primary care physician.
-      </p>
-      <p>
-        The questionnaire is NOT a substitute for professional medical care.
-      </p>
-      <p>
-        This questionnaire primarily targets healthy individuals with no known underlying health conditions. Start by answering the following questions:
-      </p>
-  
-      <form [formGroup]="oldAgeForm" (ngSubmit)="onSubmit()">
-        <!-- Your Details Section -->
-        <mat-card-title>Your Details</mat-card-title>
-  
-        <!-- Gender Field -->
-        <mat-form-field appearance="fill" class="full-width">
-          <mat-label>Gender</mat-label>
-          <mat-select formControlName="gender" required>
-            <mat-option value="female">Female</mat-option>
-            <mat-option value="male">Male</mat-option>
-            <mat-option value="other">Other</mat-option>
-            <mat-option value="prefer_not_to_say">Prefer not to say</mat-option>
-          </mat-select>
-        </mat-form-field>
-  
-        <!-- Age Field -->
-        <mat-form-field appearance="fill" class="full-width">
-          <mat-label>Age</mat-label>
-          <input matInput type="number" formControlName="age" min="50" max="100" required>
-        </mat-form-field>
-  
-        <!-- Actions -->
-        <div class="actions">
-          <button mat-raised-button color="primary" type="submit" [disabled]="oldAgeForm.invalid">Submit</button>
-          <button mat-stroked-button color="warn" type="button" (click)="resetForm()">Clear</button>
-        </div>
-      </form>
-    </mat-card-content>
-  </mat-card>
-  
-  <mat-dialog-content *ngIf="displayRecommendation">
-    <h2 mat-dialog-title>{{ title }}</h2>
-    <div *ngIf="showOldAge">
-      <p>1. <b>Advance Care Planning:</b> Discussion on goals of care, advanced directives, POA with PCP. State specific POLST forms. Referral to hospice/palliative care agencies.</p>
-      <p>2. <b>Medication Review:</b> Medication reconciliation with PCP, specialists, pharmacist, and other stakeholders.</p>
-      <p>3. <b>Functional Status Assessment:</b> Targeting individualized rehabilitation needs or planning for specific services such as meal preparation, nursing care, home-maker services, personal care, or continuous supervision. Review of activities of daily living (ADLs) with PCP. Referral to physical and occupational therapy, care management, and social services.</p>
-      <p>4. <b>Pain Assessment:</b> Holistic approach and review with PCP. Referral to pain management or palliative care specialists. May include bone and nutrition assessment.</p>
-    </div>
-    <mat-dialog-actions>
-      <button mat-button mat-dialog-close>Close</button>
-    </mat-dialog-actions>
-  </mat-dialog-content>
-  
+  <mat-card-content>
+    <p *ngIf="currentLanguage === 'en'">
+      You will be asked to respond to questions which will ask you for personal information and information related to your health history. The responses on the questionnaire will be used to provide general recommendations on care for older age adults measures you should consider getting in consultation with your primary care physician.
+    </p>
+    <p *ngIf="currentLanguage === 'es'">
+      Se le pedirá que responda preguntas que le solicitarán información personal y relacionada con su historial de salud. Las respuestas en el cuestionario se utilizarán para proporcionar recomendaciones generales sobre el cuidado de los adultos mayores que debe considerar en consulta con su médico de atención primaria.
+    </p>
+
+    <p *ngIf="currentLanguage === 'en'">
+      The questionnaire is NOT a substitute for professional medical care.
+    </p>
+    <p *ngIf="currentLanguage === 'es'">
+      El cuestionario NO es un sustituto de la atención médica profesional.
+    </p>
+
+    <p *ngIf="currentLanguage === 'en'">
+      This questionnaire primarily targets healthy individuals with no known underlying health conditions. Start by answering the following questions:
+    </p>
+    <p *ngIf="currentLanguage === 'es'">
+      Este cuestionario está dirigido principalmente a personas sanas sin condiciones de salud subyacentes conocidas. Comience respondiendo las siguientes preguntas:
+    </p>
+
+    <form [formGroup]="oldAgeForm" (ngSubmit)="onSubmit()">
+      <!-- Your Details Section -->
+      <mat-card-title *ngIf="currentLanguage === 'en'">Your Details</mat-card-title>
+      <mat-card-title *ngIf="currentLanguage === 'es'">Tus Detalles</mat-card-title>
+
+      <!-- Gender Field -->
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label *ngIf="currentLanguage === 'en'">Gender</mat-label>
+        <mat-label *ngIf="currentLanguage === 'es'">Género</mat-label>
+        <mat-select formControlName="gender" required>
+          <mat-option value="female" *ngIf="currentLanguage === 'en'">Female</mat-option>
+          <mat-option value="female" *ngIf="currentLanguage === 'es'">Femenino</mat-option>
+          <mat-option value="male" *ngIf="currentLanguage === 'en'">Male</mat-option>
+          <mat-option value="male" *ngIf="currentLanguage === 'es'">Masculino</mat-option>
+          <mat-option value="other" *ngIf="currentLanguage === 'en'">Other</mat-option>
+          <mat-option value="other" *ngIf="currentLanguage === 'es'">Otro</mat-option>
+          <mat-option value="prefer_not_to_say" *ngIf="currentLanguage === 'en'">Prefer not to say</mat-option>
+          <mat-option value="prefer_not_to_say" *ngIf="currentLanguage === 'es'">Prefiero no decir</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- Age Field -->
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label *ngIf="currentLanguage === 'en'">Age</mat-label>
+        <mat-label *ngIf="currentLanguage === 'es'">Edad</mat-label>
+        <input matInput type="number" formControlName="age" min="50" max="100" required>
+      </mat-form-field>
+
+      <!-- Actions -->
+      <div class="actions">
+        <button mat-raised-button color="primary" type="submit" [disabled]="oldAgeForm.invalid">
+          {{ currentLanguage === 'en' ? 'Submit' : 'Enviar' }}
+        </button>
+        <button mat-stroked-button color="warn" type="button" (click)="resetForm()">
+          {{ currentLanguage === 'en' ? 'Clear' : 'Limpiar' }}
+        </button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
+
+<mat-dialog-content *ngIf="displayRecommendation">
+  <h2 mat-dialog-title>{{ title }}</h2>
+  <div *ngIf="showOldAge">
+    <p *ngIf="currentLanguage === 'en'">1. <b>Advance Care Planning:</b> Discussion on goals of care, advanced directives, POA with PCP. State specific POLST forms. Referral to hospice/palliative care agencies.</p>
+    <p *ngIf="currentLanguage === 'es'">1. <b>Planificación de Cuidados Avanzados:</b> Discusión sobre los objetivos de cuidado, directivas anticipadas, POA con el PCP. Formularios específicos POLST del estado. Referencia a agencias de hospicio/cuidado paliativo.</p>
+
+    <p *ngIf="currentLanguage === 'en'">2. <b>Medication Review:</b> Medication reconciliation with PCP, specialists, pharmacist, and other stakeholders.</p>
+    <p *ngIf="currentLanguage === 'es'">2. <b>Revisión de Medicamentos:</b> Conciliación de medicamentos con PCP, especialistas, farmacéuticos y otras partes interesadas.</p>
+
+    <p *ngIf="currentLanguage === 'en'">3. <b>Functional Status Assessment:</b> Review of activities of daily living (ADLs) with PCP. Referral to physical and occupational therapy, care management, and social services.</p>
+    <p *ngIf="currentLanguage === 'es'">3. <b>Evaluación del Estado Funcional:</b> Revisión de las actividades de la vida diaria (ADL) con PCP. Referencia a terapia física y ocupacional, manejo del cuidado y servicios sociales.</p>
+
+    <p *ngIf="currentLanguage === 'en'">4. <b>Pain Assessment:</b> Holistic approach and review with PCP. Referral to pain management or palliative care specialists.</p>
+    <p *ngIf="currentLanguage === 'es'">4. <b>Evaluación del Dolor:</b> Enfoque holístico y revisión con PCP. Referencia a especialistas en manejo del dolor o cuidado paliativo.</p>
+  </div>
+  <mat-dialog-actions>
+    <button mat-button mat-dialog-close>{{ currentLanguage === 'en' ? 'Close' : 'Cerrar' }}</button>
+  </mat-dialog-actions>
+</mat-dialog-content>

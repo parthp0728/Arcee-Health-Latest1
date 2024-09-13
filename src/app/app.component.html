@@ -1,11 +1,19 @@
 <div class="theme-toggle-container">
-    <mat-icon>{{ currentIcon }}</mat-icon> <!-- Dynamically display the icon based on theme -->
-    <mat-slide-toggle
-      [checked]="themeService.currentTheme === 'dark'"
-      (change)="toggleTheme()"
-    >
-    </mat-slide-toggle>
+  <mat-icon (click)="toggleTheme()">{{ currentIcon }}</mat-icon>
+  <mat-slide-toggle
+    [checked]="themeService.currentTheme === 'dark'"
+    (change)="toggleTheme()"
+  >
+  </mat-slide-toggle>
+
+  <!-- Language Dropdown -->
+  <div class="language-switcher">
+    <label for="language-select">Language:</label>
+    <select id="language-select" (change)="onLanguageChange($event)">
+      <option value="en" [selected]="currentLanguage === 'en'">English</option>
+      <option value="es" [selected]="currentLanguage === 'es'">Español</option>
+    </select>
   </div>
-  
-  <router-outlet></router-outlet>
-  
+</div>
+
+<router-outlet></router-outlet>

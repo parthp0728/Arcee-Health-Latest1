@@ -7,6 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CommonModule } from '@angular/common';
+import { LanguageService } from '../../language.service';  // Import LanguageService
 
 @Component({
   selector: 'app-chlamydia-screening',
@@ -30,8 +31,9 @@ export class ChlamydiaComponent implements OnInit {
   title = 'Your Personalized Recommendation';
   recommendation = '';
   age = 0;
+  currentLanguage: string = 'en';  // Default language is English
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private languageService: LanguageService) {}
 
   ngOnInit(): void {
     this.chlamydiaForm = this.fb.group({
@@ -48,6 +50,11 @@ export class ChlamydiaComponent implements OnInit {
     });
 
     this.updateQuestions();
+
+    // Subscribe to language changes
+    this.languageService.currentLanguage$.subscribe((language) => {
+      this.currentLanguage = language;
+    });
   }
 
   updateQuestions(): void {
@@ -82,19 +89,31 @@ export class ChlamydiaComponent implements OnInit {
 
     if (age < 25) {
       if (isPregnant) {
-        return 'You need to screen during the first prenatal visit and third trimester.';
+        return this.currentLanguage === 'en' 
+          ? 'You need to screen during the first prenatal visit and third trimester.' 
+          : 'Debe hacerse un cribado en la primera visita prenatal y en el tercer trimestre.';
       } else if (isSexuallyActive) {
-        return 'Annual chlamydia screening is recommended.';
+        return this.currentLanguage === 'en' 
+          ? 'Annual chlamydia screening is recommended.' 
+          : 'Se recomienda un cribado anual de clamidia.';
       } else {
-        return 'No testing needed at the moment.';
+        return this.currentLanguage === 'en' 
+          ? 'No testing needed at the moment.' 
+          : 'No se necesita prueba en este momento.';
       }
     } else {
       if (isPregnant) {
-        return 'You need to screen during the first prenatal visit and third trimester.';
+        return this.currentLanguage === 'en' 
+          ? 'You need to screen during the first prenatal visit and third trimester.' 
+          : 'Debe hacerse un cribado en la primera visita prenatal y en el tercer trimestre.';
       } else if (isRiskFactor) {
-        return 'Annual chlamydia screening is recommended.';
+        return this.currentLanguage === 'en' 
+          ? 'Annual chlamydia screening is recommended.' 
+          : 'Se recomienda un cribado anual de clamidia.';
       } else {
-        return 'No testing needed at the moment.';
+        return this.currentLanguage === 'en' 
+          ? 'No testing needed at the moment.' 
+          : 'No se necesita prueba en este momento.';
       }
     }
   }

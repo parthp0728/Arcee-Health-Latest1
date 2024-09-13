@@ -7,6 +7,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatCheckbox } from '@angular/material/checkbox';
 import { Router, RouterModule } from '@angular/router';  // Import Router
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { LanguageService } from '../language.service';
 
 @Component({
   selector: 'app-login',
@@ -21,14 +23,16 @@ import { CommonModule } from '@angular/common';
     MatIconModule,
     MatCheckbox,
     RouterModule,
-    CommonModule
+    CommonModule,
+    FormsModule
   ]
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   hide = true;
+  currentLanguage: string = 'en';
 
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(private fb: FormBuilder, private router: Router, private languageService: LanguageService) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]], // Ensures password is valid with a minimum length
@@ -37,6 +41,11 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     console.log('LoginComponent Initialized');
+
+    // Subscribe to the language changes from LanguageService
+    this.languageService.currentLanguage$.subscribe((language: string) => {
+      this.currentLanguage = language;
+    });
   }
 
   onSubmit(): void {
@@ -48,5 +57,10 @@ export class LoginComponent implements OnInit {
 
   goToRegister(): void {
     this.router.navigate(['/register']);  // Navigate to the registration page
+  }
+
+  onLanguageChange(event: Event): void {
+    const selectElement = event.target as HTMLSelectElement;
+    this.currentLanguage = selectElement.value;
   }
 }

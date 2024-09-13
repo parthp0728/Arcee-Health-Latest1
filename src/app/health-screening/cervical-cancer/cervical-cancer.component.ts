@@ -6,6 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
+import { LanguageService } from '../../language.service';  // Import Language Service
 
 @Component({
   selector: 'app-cervical-cancer',
@@ -29,13 +30,19 @@ export class CervicalCancerComponent implements OnInit {
   test = false;
   no_test = false;
   unknown = false;
+  currentLanguage: string = 'en';  // Default language
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private languageService: LanguageService) {}
 
   ngOnInit(): void {
     this.cervicalCancerForm = this.fb.group({
       gender: ['', Validators.required],
       age: [18, [Validators.required, Validators.min(0), Validators.max(100)]],
+    });
+
+    // Subscribe to language changes
+    this.languageService.currentLanguage$.subscribe(language => {
+      this.currentLanguage = language;
     });
   }
 
@@ -44,7 +51,6 @@ export class CervicalCancerComponent implements OnInit {
       const formData = this.cervicalCancerForm.value;
       console.log('Form Submitted', formData);
 
-      // Determine the appropriate recommendation
       const age = formData.age;
       const gender = formData.gender;
 
