@@ -1,49 +1,42 @@
 <mat-card class="screening-section">
   <mat-card-title class="home-title">
-    <span *ngIf="currentLanguage === 'en'">Screenings We Offer</span>
-    <span *ngIf="currentLanguage === 'es'">Exámenes que Ofrecemos</span>
+    {{ translations.SCREENINGS_TITLE }}
   </mat-card-title>
   <mat-card-content class="screening-container">
     <a class="screening-box" routerLink="/breastcancer" (click)="goToBreastCancer()">
       <img class="screening-icon" alt="Breast Cancer Screening" src="assets/img/breast-cancer.png"/>
       <div class="screening-text">
-        <span *ngIf="currentLanguage === 'en'">Breast Cancer</span>
-        <span *ngIf="currentLanguage === 'es'">Cáncer de Mama</span>
+        {{ translations.BREAST_CANCER }}
       </div>
     </a>
     <a class="screening-box" routerLink="/colon-cancer" (click)="goToColonCancer()">
       <img class="screening-icon" alt="Colon Cancer Screening" src="assets/img/colon-cancer.png"/>
       <div class="screening-text">
-        <span *ngIf="currentLanguage === 'en'">Colon Cancer</span>
-        <span *ngIf="currentLanguage === 'es'">Cáncer de Colon</span>
+        {{ translations.COLON_CANCER }}
       </div>
     </a>
     <a class="screening-box" routerLink="/cervical-cancer" (click)="goToCervicalCancer()">
       <img class="screening-icon" alt="Cervical Cancer Screening" src="assets/img/cervical-cancer.png"/>
       <div class="screening-text">
-        <span *ngIf="currentLanguage === 'en'">Cervical Cancer</span>
-        <span *ngIf="currentLanguage === 'es'">Cáncer Cervical</span>
+        {{ translations.CERVICAL_CANCER }}
       </div>
     </a>
     <a class="screening-box" routerLink="/chlamydia" (click)="goToChlamydia()">
       <img class="screening-icon" alt="Chlamydia Screening" src="assets/img/chlamydia.png"/>
       <div class="screening-text">
-        <span *ngIf="currentLanguage === 'en'">Chlamydia</span>
-        <span *ngIf="currentLanguage === 'es'">Clamidia</span>
+        {{ translations.CHLAMYDIA }}
       </div>
     </a>
     <a class="screening-box" routerLink="/vaccination" (click)="goToVaccination()">
       <img class="screening-icon" alt="Vaccination Screening" src="assets/img/vaccination.png"/>
       <div class="screening-text">
-        <span *ngIf="currentLanguage === 'en'">Vaccination</span>
-        <span *ngIf="currentLanguage === 'es'">Vacunación</span>
+        {{ translations.VACCINATION }}
       </div>
     </a>
     <a class="screening-box" routerLink="/care-for-older-adults" (click)="goToOldCare()">
       <img class="screening-icon" alt="Care for Older Adults" src="assets/img/Elderly_Care.png"/>
       <div class="screening-text">
-        <span *ngIf="currentLanguage === 'en'">Care for Older Adults</span>
-        <span *ngIf="currentLanguage === 'es'">Cuidado para Adultos Mayores</span>
+        {{ translations.OLD_CARE }}
       </div>
     </a>
   </mat-card-content>
@@ -52,30 +45,20 @@
 <mat-card class="wellness">
   <mat-card-header>
     <mat-card-title>
-      <span *ngIf="currentLanguage === 'en'">Your Health in Your Hands!</span>
-      <span *ngIf="currentLanguage === 'es'">¡Tu salud en tus manos!</span>
+      {{ translations.WELLNESS_TITLE }}
     </mat-card-title>
   </mat-card-header>
   <mat-card-content class="wellness-body">
-    <p *ngIf="currentLanguage === 'en'">You may improve it by getting enough sleep, maintaining healthy relationships, and doing some exercise.</p>
-    <p *ngIf="currentLanguage === 'es'">Puedes mejorarlo durmiendo lo suficiente, manteniendo relaciones saludables y haciendo algo de ejercicio.</p>
-
-    <p *ngIf="currentLanguage === 'en'">What people often forget is being proactive in their preventive care.</p>
-    <p *ngIf="currentLanguage === 'es'">Lo que la gente a menudo olvida es ser proactivo en su cuidado preventivo.</p>
-
-    <p *ngIf="currentLanguage === 'en'">We built Arcee to celebrate and emphasize the importance of prevention, so you could further optimize your wellbeing.</p>
-    <p *ngIf="currentLanguage === 'es'">Creamos Arcee para celebrar y enfatizar la importancia de la prevención, para que puedas optimizar tu bienestar.</p>
-
-    <p *ngIf="currentLanguage === 'en'">Our basic screenings and recommendations are completely free.</p>
-    <p *ngIf="currentLanguage === 'es'">Nuestras pruebas básicas y recomendaciones son completamente gratuitas.</p>
+    <p>{{ translations.WELLNESS_PARAGRAPH1 }}</p>
+    <p>{{ translations.WELLNESS_PARAGRAPH2 }}</p>
+    <p>{{ translations.WELLNESS_PARAGRAPH3 }}</p>
+    <p>{{ translations.WELLNESS_PARAGRAPH4 }}</p>
   </mat-card-content>
   <mat-card-footer class="wellness-footer">
-    <span *ngIf="currentLanguage === 'en'">Remember, an ounce of prevention is worth a pound of cure.</span>
-    <span *ngIf="currentLanguage === 'es'">Recuerda, una onza de prevención vale una libra de cura.</span>
+    {{ translations.WELLNESS_FOOTER }}
   </mat-card-footer>
 </mat-card>
 
 <mat-toolbar class="home-footer" color="primary">
-  &copy; <span *ngIf="currentLanguage === 'en'">All rights reserved 2020</span>
-  <span *ngIf="currentLanguage === 'es'">Todos los derechos reservados 2020</span>
+  &copy; {{ translations.FOOTER_COPYRIGHT }}
 </mat-toolbar>

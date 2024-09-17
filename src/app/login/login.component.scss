@@ -4,15 +4,26 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: var(--background-color); /* Dynamic background color */
+  background-color: var(--main-background-color); /* Dynamic background color */
 }
 
 .sign-in-form-container {
-  width: 600px;
-  padding: 40px;
+  width: 450px; /* Reduce the width for better spacing */
+  padding: 30px; /* More compact padding */
+  background-color: var(--container-background-color);
+  border-radius: 8px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1); /* Improved shadow */
+}
+
+/* Align the language switcher */
+.language-switcher {
+  display: flex;
+  justify-content: flex-end; /* Align to the right */
+  margin-bottom: 10px;
 }
 
 mat-card {
+  width: 500px;
   padding: 40px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
@@ -30,15 +41,21 @@ mat-card {
 .title {
   text-align: center;
   margin-bottom: 20px;
+  letter-spacing: normal;
+  font: unset; /* Resets inherited font properties */
+  font-weight: 400; /* Standard weight */
+  font-size: var(--fontSize); /* Dynamic font size with fallback */
+  font-family: var(--fontFamily); /* Dynamic font family with fallback */
 
   h3 {
     font-size: 24px;
-    color: var(--text-color); /* Dynamic text color */
+    color: var(--blackColor); /* Dynamic color with fallback */
     margin-bottom: 8px;
+    font-family: var(--fontFamily); /* Dynamic font family with fallback */
   }
 
   p {
-    color: var(--text-color);
+    color: var(--blackColor); /* Dynamic color with fallback */
     font-size: 14px;
 
     .sign-up-link {
@@ -53,6 +70,16 @@ mat-card {
   }
 }
 
+.sign-up-link, .forgot-password-link {
+  color: var(--primary-color); /* Ensure both links use the same primary color */
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
 .form-group {
   margin-bottom: 20px;
 
@@ -60,7 +87,7 @@ mat-card {
     display: block;
     font-size: 14px;
     margin-bottom: 5px;
-    color: var(--text-color); /* Dynamic text color */
+    color: var(--blackColor); /* Dynamic text color */
   }
 
   mat-form-field {
@@ -73,7 +100,8 @@ mat-card {
 
     mat-label {
       background-color: var(--input-background-color);
-      color: var(--input-text-color); /* Dynamic label color */
+      font-size: 11pt;
+      color: var(--body-color); /* Dynamic label color */
     }
 
     mat-icon {
@@ -107,13 +135,14 @@ mat-card {
   font-weight: normal;
   background-color: var(--button-background-color); /* Dynamic button background */
   color: var(--button-text-color); /* Dynamic button text color */
+  border-radius: 4px;
 
   &:hover {
     background-color: var(--button-background-hover-color);
   }
 
   &:disabled {
-    background-color: #6d6e6e;
+    background-color: var(--button-disabled-color);
     color: #ffffff;
   }
 }
@@ -125,5 +154,17 @@ mat-card {
   .mat-mdc-raised-button:not(:disabled) {
     color: var(--mdc-protected-button-label-text-color);
     background-color: var(--mdc-protected-button-container-color);
+  }
+}
+
+@media (max-width: 768px) {
+  .sign-in-form-container {
+    width: 90%; /* Form takes up more width on smaller screens */
+    padding: 20px;
+  }
+
+  .language-switcher {
+    position: static;
+    margin-bottom: 15px;
   }
 }

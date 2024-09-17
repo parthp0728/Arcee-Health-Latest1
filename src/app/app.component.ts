@@ -65,6 +65,6 @@ export class AppComponent implements OnInit{
   // Handle language change event
   onLanguageChange(event: Event): void {
     const selectElement = event.target as HTMLSelectElement;
-    this.languageService.switchLanguage(selectElement.value);
+    this.languageService.changeLanguage(selectElement.value);
   }
 }

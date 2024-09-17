@@ -30,6 +30,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 export class ColonCancerComponent implements OnInit {
   colonCancerForm!: FormGroup;
   currentLanguage: 'en' | 'es' = 'en';  // Set a stricter type for currentLanguage
+  translations: any = {};  // To store translation strings
 
   selfConditionOptions = [
     { key: "1", name: { en: "Crohn's disease or ulcerative colitis", es: "Enfermedad de Crohn o colitis ulcerosa" } },
@@ -57,10 +58,17 @@ export class ColonCancerComponent implements OnInit {
     });
 
     // Subscribe to language changes
-    this.languageService.currentLanguage$.subscribe((language: String) => {
+    this.languageService.currentLanguage$.subscribe((language: string) => {
       if (language === 'en' || language === 'es') {
         this.currentLanguage = language as 'en' | 'es';
+        this.loadTranslations(language);
       }
+    });
+  }
+
+  loadTranslations(language: string): void {
+    this.languageService.loadTranslations(language).subscribe((translations: any) => {
+      this.translations = translations;
     });
   }
 

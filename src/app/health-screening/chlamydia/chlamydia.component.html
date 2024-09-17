@@ -1,102 +1,81 @@
 <mat-card class="chlamydia-card">
   <mat-card-content>
     <!-- General Info -->
-    <p *ngIf="currentLanguage === 'en'">
-      You will be asked to respond to questions which will ask you for personal information and information related to your health history. The responses on the questionnaire will be used to provide general recommendations on chlamydia preventive measures you should consider getting in consultation with your primary care physician.
-    </p>
-    <p *ngIf="currentLanguage === 'es'">
-      Se le pedirá que responda a preguntas sobre su información personal y su historial médico. Las respuestas del cuestionario se utilizarán para proporcionar recomendaciones generales sobre medidas preventivas contra la clamidia que debería considerar en consulta con su médico de atención primaria.
-    </p>
-    
-    <p *ngIf="currentLanguage === 'en'"><strong>The questionnaire is NOT a substitute for professional medical care.</strong></p>
-    <p *ngIf="currentLanguage === 'es'"><strong>El cuestionario NO es un sustituto de la atención médica profesional.</strong></p>
-    
-    <p *ngIf="currentLanguage === 'en'">This questionnaire primarily targets healthy individuals with no known underlying health conditions. Start by answering the following questions:</p>
-    <p *ngIf="currentLanguage === 'es'">Este cuestionario está dirigido principalmente a personas sanas sin condiciones de salud subyacentes conocidas. Comience respondiendo las siguientes preguntas:</p>
+    <p>{{ translations.CHLAMYDIA_INFO1 }}</p>
+    <p>{{ translations.CHLAMYDIA_INFO2 }}</p>
+    <p><strong>{{ translations.CHLAMYDIA_INFO3 }}</strong></p>
+    <p>{{ translations.CHLAMYDIA_INFO4 }}</p>
 
     <form [formGroup]="chlamydiaForm" (ngSubmit)="onSubmit()">
       <!-- Your Details Section -->
-      <mat-card-title *ngIf="currentLanguage === 'en'">Your Details</mat-card-title>
-      <mat-card-title *ngIf="currentLanguage === 'es'">Tus Detalles</mat-card-title>
+      <mat-card-title>{{ translations.YOUR_DETAILS }}</mat-card-title>
 
       <!-- Gender Field -->
       <mat-form-field appearance="fill" class="full-width">
-        <mat-label *ngIf="currentLanguage === 'en'">Gender</mat-label>
-        <mat-label *ngIf="currentLanguage === 'es'">Género</mat-label>
+        <mat-label>{{ translations.GENDER }}</mat-label>
         <mat-select formControlName="gender" required>
-          <mat-option value="female" *ngIf="currentLanguage === 'en'">Female</mat-option>
-          <mat-option value="female" *ngIf="currentLanguage === 'es'">Femenino</mat-option>
-          <mat-option value="male" *ngIf="currentLanguage === 'en'">Male</mat-option>
-          <mat-option value="male" *ngIf="currentLanguage === 'es'">Masculino</mat-option>
-          <mat-option value="other" *ngIf="currentLanguage === 'en'">Other</mat-option>
-          <mat-option value="other" *ngIf="currentLanguage === 'es'">Otro</mat-option>
-          <mat-option value="prefer_not_to_say" *ngIf="currentLanguage === 'en'">Prefer not to say</mat-option>
-          <mat-option value="prefer_not_to_say" *ngIf="currentLanguage === 'es'">Prefiero no decir</mat-option>
+          <mat-option value="female">{{ translations.GENDER_FEMALE }}</mat-option>
+          <mat-option value="male">{{ translations.GENDER_MALE }}</mat-option>
+          <mat-option value="other">{{ translations.GENDER_OTHER }}</mat-option>
+          <mat-option value="prefer_not_to_say">{{ translations.GENDER_PREFER_NOT_SAY }}</mat-option>
         </mat-select>
       </mat-form-field>
 
       <!-- Age Field -->
       <mat-form-field appearance="fill" class="full-width">
-        <mat-label *ngIf="currentLanguage === 'en'">Age</mat-label>
-        <mat-label *ngIf="currentLanguage === 'es'">Edad</mat-label>
+        <mat-label>{{ translations.AGE }}</mat-label>
         <input matInput type="number" formControlName="age" min="0" max="100" required>
       </mat-form-field>
 
       <!-- Conditional Questions based on Age -->
       <mat-card *ngIf="age < 25">
-        <mat-card-title *ngIf="currentLanguage === 'en'">Questions for Age below 25</mat-card-title>
-        <mat-card-title *ngIf="currentLanguage === 'es'">Preguntas para menores de 25 años</mat-card-title>
+        <mat-card-title>{{ translations.AGE_BELOW_25_TITLE }}</mat-card-title>
 
         <!-- Sexually Active Field -->
         <div class="full-width">
-          <p *ngIf="currentLanguage === 'en'">Are you currently sexually active?</p>
-          <p *ngIf="currentLanguage === 'es'">¿Estás actualmente sexualmente activo?</p>
+          <p>{{ translations.SEXUALLY_ACTIVE }}</p>
           <mat-radio-group formControlName="isSexuallyActive">
-            <mat-radio-button value="true">{{ currentLanguage === 'en' ? 'Yes' : 'Sí' }}</mat-radio-button>
-            <mat-radio-button value="false">{{ currentLanguage === 'en' ? 'No' : 'No' }}</mat-radio-button>
+            <mat-radio-button value="true">{{ translations.YES }}</mat-radio-button>
+            <mat-radio-button value="false">{{ translations.NO }}</mat-radio-button>
           </mat-radio-group>
         </div>
 
         <!-- Pregnancy Field -->
         <div class="full-width">
-          <p *ngIf="currentLanguage === 'en'">Are you pregnant?</p>
-          <p *ngIf="currentLanguage === 'es'">¿Estás embarazada?</p>
+          <p>{{ translations.PREGNANT }}</p>
           <mat-radio-group formControlName="isPregnant">
-            <mat-radio-button value="true">{{ currentLanguage === 'en' ? 'Yes' : 'Sí' }}</mat-radio-button>
-            <mat-radio-button value="false">{{ currentLanguage === 'en' ? 'No' : 'No' }}</mat-radio-button>
+            <mat-radio-button value="true">{{ translations.YES }}</mat-radio-button>
+            <mat-radio-button value="false">{{ translations.NO }}</mat-radio-button>
           </mat-radio-group>
         </div>
       </mat-card>
 
       <mat-card *ngIf="age >= 25">
-        <mat-card-title *ngIf="currentLanguage === 'en'">Questions for Age 25 and Above</mat-card-title>
-        <mat-card-title *ngIf="currentLanguage === 'es'">Preguntas para mayores de 25 años</mat-card-title>
+        <mat-card-title>{{ translations.AGE_ABOVE_25_TITLE }}</mat-card-title>
 
         <!-- Risk Factor Field -->
         <div class="full-width">
-          <p *ngIf="currentLanguage === 'en'">Do you have any new or multiple partners or a sex partner who has a sexually transmitted infection?</p>
-          <p *ngIf="currentLanguage === 'es'">¿Tienes alguna pareja nueva o múltiples parejas o una pareja sexual con una infección de transmisión sexual?</p>
+          <p>{{ translations.RISK_FACTOR }}</p>
           <mat-radio-group formControlName="isRiskFactor">
-            <mat-radio-button value="true">{{ currentLanguage === 'en' ? 'Yes' : 'Sí' }}</mat-radio-button>
-            <mat-radio-button value="false">{{ currentLanguage === 'en' ? 'No' : 'No' }}</mat-radio-button>
+            <mat-radio-button value="true">{{ translations.YES }}</mat-radio-button>
+            <mat-radio-button value="false">{{ translations.NO }}</mat-radio-button>
           </mat-radio-group>
         </div>
 
         <!-- Pregnancy Field -->
         <div class="full-width">
-          <p *ngIf="currentLanguage === 'en'">Are you pregnant?</p>
-          <p *ngIf="currentLanguage === 'es'">¿Estás embarazada?</p>
+          <p>{{ translations.PREGNANT }}</p>
           <mat-radio-group formControlName="isPregnant">
-            <mat-radio-button value="true">{{ currentLanguage === 'en' ? 'Yes' : 'Sí' }}</mat-radio-button>
-            <mat-radio-button value="false">{{ currentLanguage === 'en' ? 'No' : 'No' }}</mat-radio-button>
+            <mat-radio-button value="true">{{ translations.YES }}</mat-radio-button>
+            <mat-radio-button value="false">{{ translations.NO }}</mat-radio-button>
           </mat-radio-group>
         </div>
       </mat-card>
 
       <!-- Actions -->
       <div class="actions">
-        <button mat-raised-button color="primary" type="submit" [disabled]="chlamydiaForm.invalid">{{ currentLanguage === 'en' ? 'Submit' : 'Enviar' }}</button>
-        <button mat-stroked-button color="warn" type="button" (click)="resetForm()">{{ currentLanguage === 'en' ? 'Clear' : 'Limpiar' }}</button>
+        <button mat-raised-button color="primary" type="submit" [disabled]="chlamydiaForm.invalid">{{ translations.SUBMIT }}</button>
+        <button mat-stroked-button color="warn" type="button" (click)="resetForm()">{{ translations.CLEAR }}</button>
       </div>
     </form>
 

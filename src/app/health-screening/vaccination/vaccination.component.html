@@ -1,87 +1,74 @@
 <mat-card class="vaccination-card">
   <mat-card-content>
-    <p *ngIf="currentLanguage === 'en'">
-      You will be asked to respond to questions which will ask you for personal information and information related to your health history. The responses on the questionnaire will be used to provide general recommendations on vaccinations you should consider getting in consultation with your primary care physician.
-    </p>
-    <p *ngIf="currentLanguage === 'es'">
-      Se le pedirá que responda preguntas sobre su información personal y su historial médico. Las respuestas del cuestionario se utilizarán para proporcionar recomendaciones generales sobre las vacunas que debería considerar consultar con su médico de atención primaria.
-    </p>
-
-    <p *ngIf="currentLanguage === 'en'"><strong>The questionnaire is NOT a substitute for professional medical care.</strong></p>
-    <p *ngIf="currentLanguage === 'es'"><strong>El cuestionario NO es un sustituto de la atención médica profesional.</strong></p>
-
-    <p *ngIf="currentLanguage === 'en'">
-      This questionnaire primarily targets healthy individuals with no known underlying health conditions. Start by answering the following questions:
-    </p>
-    <p *ngIf="currentLanguage === 'es'">
-      Este cuestionario está dirigido principalmente a personas sanas sin condiciones de salud subyacentes conocidas. Comience respondiendo las siguientes preguntas:
-    </p>
+    <p>{{ translations.GENERAL_INFO }}</p>
+    <p><strong>{{ translations.NOT_SUBSTITUTE }}</strong></p>
+    <p>{{ translations.TARGET_INFO }}</p>
 
     <form [formGroup]="vaccinationForm" (ngSubmit)="onSubmit()">
       <!-- Your Details Section -->
-      <mat-card-title>{{ currentLanguage === 'en' ? 'Your Details' : 'Tus Detalles' }}</mat-card-title>
+      <mat-card-title>{{ translations.YOUR_DETAILS }}</mat-card-title>
 
       <!-- Gender Field -->
       <mat-form-field appearance="fill" class="full-width">
-        <mat-label>{{ currentLanguage === 'en' ? 'Gender' : 'Género' }}</mat-label>
+        <mat-label>{{ translations.GENDER }}</mat-label>
         <mat-select formControlName="gender" required>
-          <mat-option value="female">{{ currentLanguage === 'en' ? 'Female' : 'Femenino' }}</mat-option>
-          <mat-option value="male">{{ currentLanguage === 'en' ? 'Male' : 'Masculino' }}</mat-option>
-          <mat-option value="other">{{ currentLanguage === 'en' ? 'Other' : 'Otro' }}</mat-option>
-          <mat-option value="prefer_not_to_say">{{ currentLanguage === 'en' ? 'Prefer not to say' : 'Prefiero no decir' }}</mat-option>
+          <mat-option value="female">{{ translations.GENDER_FEMALE }}</mat-option>
+          <mat-option value="male">{{ translations.GENDER_MALE }}</mat-option>
+          <mat-option value="other">{{ translations.GENDER_OTHER }}</mat-option>
+          <mat-option value="prefer_not_to_say">{{ translations.GENDER_PREFER_NOT_TO_SAY }}</mat-option>
         </mat-select>
       </mat-form-field>
 
       <!-- Age Field -->
       <mat-form-field appearance="fill" class="full-width">
-        <mat-label>{{ currentLanguage === 'en' ? 'Age' : 'Edad' }}</mat-label>
+        <mat-label>{{ translations.AGE }}</mat-label>
         <input matInput formControlName="age" type="number" min="0" max="100" required>
       </mat-form-field>
 
       <!-- Medical History Section -->
-      <mat-card-title>{{ currentLanguage === 'en' ? 'Your Medical History' : 'Tu Historial Médico' }}</mat-card-title>
+      <mat-card-title>{{ translations.MEDICAL_HISTORY }}</mat-card-title>
 
       <!-- First Question -->
       <div class="full-width">
-        <mat-label>{{ currentLanguage === 'en' ? 'Are you pregnant, or have HIV or have any severe immunocompromised condition?' : '¿Está embarazada, tiene VIH o alguna condición grave de inmunocompromiso?' }}</mat-label>
+        <mat-label>{{ translations.SEVERE_CONDITION }}</mat-label>
         <mat-radio-group formControlName="severeCondition">
-          <mat-radio-button value="yes">{{ currentLanguage === 'en' ? 'Yes' : 'Sí' }}</mat-radio-button>
-          <mat-radio-button value="no">{{ currentLanguage === 'en' ? 'No' : 'No' }}</mat-radio-button>
-          <mat-radio-button value="not_sure">{{ currentLanguage === 'en' ? 'I am not sure' : 'No estoy seguro' }}</mat-radio-button>
+          <mat-radio-button value="yes">{{ translations.YES }}</mat-radio-button>
+          <mat-radio-button value="no">{{ translations.NO }}</mat-radio-button>
+          <mat-radio-button value="not_sure">{{ translations.NOT_SURE }}</mat-radio-button>
         </mat-radio-group>
       </div>
 
       <!-- Second Question -->
       <div class="full-width">
-        <mat-label>{{ currentLanguage === 'en' ? 'Did you get in close contact or are you a caregiver of a severely immunocompromised person?' : '¿Estuvo en contacto cercano o es cuidador de una persona gravemente inmunocomprometida?' }}</mat-label>
+        <mat-label>{{ translations.CLOSE_CONTACT }}</mat-label>
         <mat-radio-group formControlName="closeContact">
-          <mat-radio-button value="yes">{{ currentLanguage === 'en' ? 'Yes' : 'Sí' }}</mat-radio-button>
-          <mat-radio-button value="no">{{ currentLanguage === 'en' ? 'No' : 'No' }}</mat-radio-button>
-          <mat-radio-button value="not_sure">{{ currentLanguage === 'en' ? 'I am not sure' : 'No estoy seguro' }}</mat-radio-button>
+          <mat-radio-button value="yes">{{ translations.YES }}</mat-radio-button>
+          <mat-radio-button value="no">{{ translations.NO }}</mat-radio-button>
+          <mat-radio-button value="not_sure">{{ translations.NOT_SURE }}</mat-radio-button>
         </mat-radio-group>
       </div>
 
       <!-- Third Question -->
       <div class="full-width">
-        <mat-label>{{ currentLanguage === 'en' ? 'Did you get a flu vaccine in the last 48 hrs or have a cochlear implant, sickle cell anemia, or history of spleen removal?' : '¿Se vacunó contra la gripe en las últimas 48 horas o tiene un implante coclear, anemia de células falciformes o antecedentes de extirpación del bazo?' }}</mat-label>
+        <mat-label>{{ translations.FLU_VACCINE }}</mat-label>
         <mat-radio-group formControlName="fluVaccine">
-          <mat-radio-button value="yes">{{ currentLanguage === 'en' ? 'Yes' : 'Sí' }}</mat-radio-button>
-          <mat-radio-button value="no">{{ currentLanguage === 'en' ? 'No' : 'No' }}</mat-radio-button>
+          <mat-radio-button value="yes">{{ translations.YES }}</mat-radio-button>
+          <mat-radio-button value="no">{{ translations.NO }}</mat-radio-button>
         </mat-radio-group>
       </div>
 
       <!-- Fourth Question -->
       <div class="full-width">
-        <mat-label>{{ currentLanguage === 'en' ? 'Do you have any of the following allergies?' : '¿Tiene alguna de las siguientes alergias?' }}</mat-label>
+        <mat-label>{{ translations.ALLERGIES }}</mat-label>
         <mat-radio-group formControlName="allergies">
-          <mat-radio-button value="egg_allergy">{{ currentLanguage === 'en' ? 'Egg allergy' : 'Alergia al huevo' }}</mat-radio-button>
-          <mat-radio-button value="shellfish_allergy">{{ currentLanguage === 'en' ? 'Shellfish allergy' : 'Alergia a los mariscos' }}</mat-radio-button>
-          <mat-radio-button value="none">{{ currentLanguage === 'en' ? 'None' : 'Ninguna' }}</mat-radio-button>
+          <mat-radio-button value="egg_allergy">{{ translations.ALLERGY_EGG }}</mat-radio-button>
+          <mat-radio-button value="shellfish_allergy">{{ translations.ALLERGY_SHELLFISH }}</mat-radio-button>
+          <mat-radio-button value="none">{{ translations.ALLERGY_NONE }}</mat-radio-button>
         </mat-radio-group>
       </div>
 
       <!-- Multiple Check Questions -->
-      <mat-card-title>{{ currentLanguage === 'en' ? 'Check all that apply' : 'Seleccione todas las que correspondan' }}</mat-card-title>
+      <mat-card-title>{{ translations.CHECK_ALL }}</mat-card-title>
       <div formArrayName="checkAllThatApply">
         <div *ngFor="let option of checkOptions; let i = index">
           <mat-checkbox [formControlName]="i">{{ currentLanguage === 'en' ? option.label : option.labelEs }}</mat-checkbox>
@@ -90,10 +77,9 @@
 
       <!-- Actions -->
       <div class="actions">
-        <button mat-raised-button color="primary" type="submit" [disabled]="vaccinationForm.invalid">{{ currentLanguage === 'en' ? 'Submit' : 'Enviar' }}</button>
-        <button mat-stroked-button color="warn" type="button" (click)="onClear()">{{ currentLanguage === 'en' ? 'Clear' : 'Limpiar' }}</button>
+        <button mat-raised-button color="primary" type="submit" [disabled]="vaccinationForm.invalid">{{ translations.SUBMIT }}</button>
+        <button mat-stroked-button color="warn" type="button" (click)="onClear()">{{ translations.CLEAR }}</button>
       </div>
-
     </form>
   </mat-card-content>
 </mat-card>

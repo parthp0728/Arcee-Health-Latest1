@@ -28,6 +28,7 @@ import { LanguageService } from '../../language.service';
 export class BreastCancerComponent implements OnInit {
   breastCancerForm!: FormGroup;
   currentLanguage: keyof typeof this.medicalConditions = 'en'; // Default language is English
+  translations: any = {}; // Store the translations
 
   // Medical conditions in English and Spanish
   medicalConditions: { en: string[], es: string[] } = {
@@ -62,6 +63,14 @@ export class BreastCancerComponent implements OnInit {
     this.languageService.currentLanguage$.subscribe((language: string) => {
       this.currentLanguage = language as keyof typeof this.medicalConditions; // Cast to keyof
       this.updateMedicalConditions(); // Update the form with the new language conditions
+      this.loadTranslations(language);
+    });
+  }
+
+  // Load translations dynamically
+  loadTranslations(language: string): void {
+    this.languageService.loadTranslations(language).subscribe((translations: any) => {
+      this.translations = translations;
     });
   }
 

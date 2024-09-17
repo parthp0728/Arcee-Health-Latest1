@@ -5,7 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCheckbox } from '@angular/material/checkbox';
-import { Router, RouterModule } from '@angular/router';  // Import Router
+import { RouterModule } from '@angular/router';  // Import Router
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { LanguageService } from '../language.service';
@@ -30,37 +30,38 @@ import { LanguageService } from '../language.service';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   hide = true;
-  currentLanguage: string = 'en';
+  currentLanguage: string = 'en'; // Default language
+  translations: any = {}; // Add translations property
 
-  constructor(private fb: FormBuilder, private router: Router, private languageService: LanguageService) {
+  constructor(private fb: FormBuilder, private languageService: LanguageService) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]], // Ensures password is valid with a minimum length
+      password: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
 
   ngOnInit(): void {
-    console.log('LoginComponent Initialized');
-
     // Subscribe to the language changes from LanguageService
     this.languageService.currentLanguage$.subscribe((language: string) => {
       this.currentLanguage = language;
+      this.loadTranslations(language); // Load the translations when language changes
     });
+  }
+
+  loadTranslations(language: string): void {
+    this.languageService.loadTranslations(language).subscribe((translations: any) => {
+      this.translations = translations; // Populate translations
+    });
+  }
+
+  onLanguageChange(event: Event): void {
+    const selectedLanguage = (event.target as HTMLSelectElement).value;
+    this.languageService.changeLanguage(selectedLanguage); // Update the language globally
   }
 
   onSubmit(): void {
     if (this.loginForm.valid) {
       console.log('Form Submitted', this.loginForm.value);
-      // Implement login logic here
     }
-  }
-
-  goToRegister(): void {
-    this.router.navigate(['/register']);  // Navigate to the registration page
-  }
-
-  onLanguageChange(event: Event): void {
-    const selectElement = event.target as HTMLSelectElement;
-    this.currentLanguage = selectElement.value;
   }
 }

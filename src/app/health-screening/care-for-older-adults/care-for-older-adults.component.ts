@@ -29,6 +29,7 @@ export class CareForOlderAdultsComponent implements OnInit {
   title = 'Your Personalized Recommendation';
   showOldAge = false;
   currentLanguage: string = 'en';  // Default to English
+  translations: any = {};  // For storing the translation keys
 
   constructor(private fb: FormBuilder, private languageService: LanguageService) {}
 
@@ -41,6 +42,14 @@ export class CareForOlderAdultsComponent implements OnInit {
     // Subscribe to language changes
     this.languageService.currentLanguage$.subscribe(language => {
       this.currentLanguage = language;
+      this.loadTranslations(language);
+    });
+  }
+
+  // Load translations dynamically
+  loadTranslations(language: string): void {
+    this.languageService.loadTranslations(language).subscribe((translations: any) => {
+      this.translations = translations;
     });
   }
 

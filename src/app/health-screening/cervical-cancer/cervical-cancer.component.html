@@ -1,61 +1,37 @@
 <mat-card class="cervical-cancer-card">
   <mat-card-content>
-    <p *ngIf="currentLanguage === 'en'">
-      You will be asked to respond to questions which will ask you for personal information and information related to your health history. The responses on the questionnaire will be used to provide general recommendations on cervical cancer preventive measures you should consider getting in consultation with your primary care physician.
-    </p>
-    <p *ngIf="currentLanguage === 'es'">
-      Se le pedirá que responda preguntas sobre su información personal y su historial médico. Las respuestas del cuestionario se utilizarán para proporcionar recomendaciones generales sobre las medidas preventivas contra el cáncer de cuello uterino que debería considerar consultar con su médico de atención primaria.
-    </p>
-
-    <p *ngIf="currentLanguage === 'en'">
-      The questionnaire is NOT a substitute for professional medical care.
-    </p>
-    <p *ngIf="currentLanguage === 'es'">
-      El cuestionario NO es un sustituto de la atención médica profesional.
-    </p>
-
-    <p *ngIf="currentLanguage === 'en'">
-      This questionnaire primarily targets healthy individuals with no known underlying health conditions. Start by answering the following questions:
-    </p>
-    <p *ngIf="currentLanguage === 'es'">
-      Este cuestionario está dirigido principalmente a personas sanas sin condiciones de salud subyacentes conocidas. Comience respondiendo las siguientes preguntas:
-    </p>
+    <p>{{ translations.CERVICAL_CANCER_INFO1 }}</p>
+    <p><b>{{ translations.CERVICAL_CANCER_INFO2 }}</b></p>
+    <p>{{ translations.CERVICAL_CANCER_INFO3 }}</p>
 
     <form [formGroup]="cervicalCancerForm" (ngSubmit)="onSubmit()">
       <!-- Your Details Section -->
-      <mat-card-title *ngIf="currentLanguage === 'en'">Your Details</mat-card-title>
-      <mat-card-title *ngIf="currentLanguage === 'es'">Tus Detalles</mat-card-title>
+      <mat-card-title>{{ translations.YOUR_DETAILS }}</mat-card-title>
 
       <!-- Gender Field -->
       <mat-form-field appearance="fill" class="full-width">
-        <mat-label *ngIf="currentLanguage === 'en'">Gender</mat-label>
-        <mat-label *ngIf="currentLanguage === 'es'">Género</mat-label>
+        <mat-label>{{ translations.GENDER }}</mat-label>
         <mat-select formControlName="gender" required>
-          <mat-option value="female" *ngIf="currentLanguage === 'en'">Female</mat-option>
-          <mat-option value="female" *ngIf="currentLanguage === 'es'">Femenino</mat-option>
-          <mat-option value="male" *ngIf="currentLanguage === 'en'">Male</mat-option>
-          <mat-option value="male" *ngIf="currentLanguage === 'es'">Masculino</mat-option>
-          <mat-option value="other" *ngIf="currentLanguage === 'en'">Other</mat-option>
-          <mat-option value="other" *ngIf="currentLanguage === 'es'">Otro</mat-option>
-          <mat-option value="prefer_not_to_say" *ngIf="currentLanguage === 'en'">Prefer not to say</mat-option>
-          <mat-option value="prefer_not_to_say" *ngIf="currentLanguage === 'es'">Prefiero no decir</mat-option>
+          <mat-option value="female">{{ translations.GENDER_FEMALE }}</mat-option>
+          <mat-option value="male">{{ translations.GENDER_MALE }}</mat-option>
+          <mat-option value="other">{{ translations.GENDER_OTHER }}</mat-option>
+          <mat-option value="prefer_not_to_say">{{ translations.GENDER_PREFER_NOT_SAY }}</mat-option>
         </mat-select>
       </mat-form-field>
 
       <!-- Age Field -->
       <mat-form-field appearance="fill" class="full-width">
-        <mat-label *ngIf="currentLanguage === 'en'">Age</mat-label>
-        <mat-label *ngIf="currentLanguage === 'es'">Edad</mat-label>
+        <mat-label>{{ translations.AGE }}</mat-label>
         <input matInput type="number" formControlName="age" min="0" max="100" required>
       </mat-form-field>
 
       <!-- Actions -->
       <div class="actions">
         <button mat-raised-button color="primary" type="submit" [disabled]="cervicalCancerForm.invalid">
-          {{ currentLanguage === 'en' ? 'Submit' : 'Enviar' }}
+          {{ translations.SUBMIT }}
         </button>
         <button mat-stroked-button color="warn" type="button" (click)="resetForm()">
-          {{ currentLanguage === 'en' ? 'Clear' : 'Limpiar' }}
+          {{ translations.CLEAR }}
         </button>
       </div>
     </form>
@@ -65,36 +41,17 @@
 <mat-dialog-content *ngIf="displayRecommendation">
   <h2 mat-dialog-title>{{ title }}</h2>
   <div *ngIf="test">
-    <p *ngIf="currentLanguage === 'en'">
-      Primary HPV test<sup>1</sup> every 5 years or cotest HPV + Pap every 5 years or Pap alone every 3 years.
-    </p>
-    <p *ngIf="currentLanguage === 'es'">
-      Prueba primaria de HPV<sup>1</sup> cada 5 años o cotest de HPV + Pap cada 5 años o solo Pap cada 3 años.
-    </p>
-
-    <p *ngIf="currentLanguage === 'en'">
-      1. A primary HPV test is an HPV test that is done by itself for screening. The US Food and Drug Administration has approved certain tests to be primary HPV tests. <a href="https://www.fda.gov/media/122799/download" target="_blank">More Info</a>
-    </p>
-    <p *ngIf="currentLanguage === 'es'">
-      1. Una prueba primaria de HPV es una prueba que se realiza por sí sola para la detección. La FDA ha aprobado ciertas pruebas para ser pruebas primarias de HPV. <a href="https://www.fda.gov/media/122799/download" target="_blank">Más Información</a>
-    </p>
-
-    <p *ngIf="currentLanguage === 'en'">
-      2. If regular screening last 10 years that are normal and no history of CIN2 or more serious diagnosis within the past 25 years should stop cervical cancer screening.
-    </p>
-    <p *ngIf="currentLanguage === 'es'">
-      2. Si los exámenes regulares de los últimos 10 años son normales y no hay antecedentes de CIN2 o diagnósticos más graves en los últimos 25 años, debe detenerse la detección del cáncer de cuello uterino.
-    </p>
+    <p>{{ translations.CERVICAL_TEST }}</p>
+    <p>{{ translations.CERVICAL_TEST_INFO1 }}</p>
+    <p>{{ translations.CERVICAL_TEST_INFO2 }}</p>
   </div>
   <div *ngIf="no_test">
-    <p *ngIf="currentLanguage === 'en'">Hooray, no testing needed at the moment. Always reach out to your primary care provider for any further questions. Check back with us in the future!</p>
-    <p *ngIf="currentLanguage === 'es'">¡Genial, no se necesitan pruebas en este momento! Siempre consulte a su proveedor de atención primaria para cualquier pregunta adicional. ¡Vuelva a consultar con nosotros en el futuro!</p>
+    <p>{{ translations.CERVICAL_NO_TEST }}</p>
   </div>
   <div *ngIf="unknown">
-    <p *ngIf="currentLanguage === 'en'">At this time, there is no recommendation. Please read <a href="https://www.cancer.org/health-care-professionals/american-cancer-society-prevention-early-detection-guidelines/cervical-cancer-screening-guidelines.html" target="_blank">here</a> for more information.</p>
-    <p *ngIf="currentLanguage === 'es'">En este momento, no hay una recomendación. Por favor, lea <a href="https://www.cancer.org/health-care-professionals/american-cancer-society-prevention-early-detection-guidelines/cervical-cancer-screening-guidelines.html" target="_blank">aquí</a> para obtener más información.</p>
+    <p>{{ translations.CERVICAL_UNKNOWN }}</p>
   </div>
   <mat-dialog-actions>
-    <button mat-button mat-dialog-close>{{ currentLanguage === 'en' ? 'Close' : 'Cerrar' }}</button>
+    <button mat-button mat-dialog-close>{{ translations.CLOSE }}</button>
   </mat-dialog-actions>
 </mat-dialog-content>

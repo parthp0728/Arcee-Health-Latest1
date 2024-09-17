@@ -30,6 +30,7 @@ import { LanguageService } from '../../language.service';  // Import LanguageSer
 export class VaccinationComponent implements OnInit {
   vaccinationForm!: FormGroup;
   currentLanguage: string = 'en';  // Default language is English
+  translations: any = {};  // Holds the translations
 
   checkOptions = [
     { key: "no_tdap_after_11", label: "I did NOT receive Tdap at or after age 11", labelEs: "No recibí Tdap a los 11 años o después" },
@@ -57,6 +58,13 @@ export class VaccinationComponent implements OnInit {
     // Subscribe to language changes
     this.languageService.currentLanguage$.subscribe(language => {
       this.currentLanguage = language;
+      this.loadTranslations(language);
+    });
+  }
+
+  loadTranslations(language: string): void {
+    this.languageService.loadTranslations(language).subscribe((translations: any) => {
+      this.translations = translations;
     });
   }
 

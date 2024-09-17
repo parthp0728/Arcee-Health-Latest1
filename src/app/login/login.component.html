@@ -1,73 +1,50 @@
 <div class="sign-in-area">
-  <div class="sign-in-form-container">
-    <mat-card>
-      <div class="title">
-        <h3 *ngIf="currentLanguage === 'en'">Sign In</h3>
-        <h3 *ngIf="currentLanguage === 'es'">Iniciar sesión</h3>
+  <mat-card>
+    <div class="title">
+      <h3>{{ translations.SIGN_IN }}</h3>
 
-        <p>
-          <span *ngIf="currentLanguage === 'en'">
-            Don’t have an account yet? <a routerLink="/register" class="sign-up-link">Sign Up</a>
-          </span>
-          <span *ngIf="currentLanguage === 'es'">
-            ¿No tienes una cuenta? <a routerLink="/register" class="sign-up-link">Regístrate</a>
-          </span>
-        </p>
-      </div>
-      <mat-card-content>
-        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-          <div class="form-group">
-            <label for="email" class="input-label">
-              <span *ngIf="currentLanguage === 'en'">Email Address</span>
-              <span *ngIf="currentLanguage === 'es'">Dirección de correo electrónico</span>
-            </label>
-            <mat-form-field appearance="outline" class="full-width">
-              <mat-label *ngIf="currentLanguage === 'en'">Email Address</mat-label>
-              <mat-label *ngIf="currentLanguage === 'es'">Dirección de correo electrónico</mat-label>
-              <input id="email" matInput placeholder="Enter email address" formControlName="email" />
-              <mat-error *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.invalid">
-                <span *ngIf="currentLanguage === 'en'">Please enter a valid email address</span>
-                <span *ngIf="currentLanguage === 'es'">Por favor ingrese una dirección de correo válida</span>
-              </mat-error>
-            </mat-form-field>
-          </div>
+      <p>
+        Don’t have an account yet? <a routerLink="/register" class="sign-up-link">Sign Up</a>
+      </p>
+      
+    </div>
 
-          <div class="form-group">
-            <label for="password" class="input-label">
-              <span *ngIf="currentLanguage === 'en'">Your Password</span>
-              <span *ngIf="currentLanguage === 'es'">Tu contraseña</span>
-            </label>
-            <mat-form-field appearance="outline" class="full-width">
-              <mat-label *ngIf="currentLanguage === 'en'">Password</mat-label>
-              <mat-label *ngIf="currentLanguage === 'es'">Contraseña</mat-label>
-              <input id="password" matInput [type]="hide ? 'password' : 'text'" placeholder="Enter your password" formControlName="password" />
-              <button mat-icon-button matSuffix (click)="hide = !hide" type="button">
-                <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
-              </button>
-              <mat-error *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid">
-                <span *ngIf="currentLanguage === 'en'">Password is required</span>
-                <span *ngIf="currentLanguage === 'es'">Se requiere contraseña</span>
-              </mat-error>
-            </mat-form-field>
-          </div>
+    <mat-card-content>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="email" class="input-label">{{ translations.EMAIL_ADDRESS }}</label>
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>{{ translations.EMAIL_ADDRESS }}</mat-label>
+            <input id="email" matInput placeholder="{{ translations.EMAIL_ADDRESS }}" formControlName="email" />
+            <mat-error *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.invalid">
+              {{ translations.VALID_EMAIL }}
+            </mat-error>
+          </mat-form-field>
+        </div>
 
-          <div class="login-info">
-            <mat-checkbox>
-              <span *ngIf="currentLanguage === 'en'">Remember me</span>
-              <span *ngIf="currentLanguage === 'es'">Recuérdame</span>
-            </mat-checkbox>
-            <a routerLink="/forgot-password" class="forgot-password-link">
-              <span *ngIf="currentLanguage === 'en'">Forgot Password?</span>
-              <span *ngIf="currentLanguage === 'es'">¿Olvidaste tu contraseña?</span>
-            </a>
-          </div>
+        <div class="form-group">
+          <label for="password" class="input-label">{{ translations.PASSWORD }}</label>
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>{{ translations.PASSWORD }}</mat-label>
+            <input id="password" matInput [type]="hide ? 'password' : 'text'" placeholder="{{ translations.PASSWORD }}" formControlName="password" />
+            <button mat-icon-button matSuffix (click)="hide = !hide" type="button">
+              <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+            </button>
+            <mat-error *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid">
+              {{ translations.PASSWORD_REQUIRED }}
+            </mat-error>
+          </mat-form-field>
+        </div>
 
-          <button mat-raised-button class="submit-btn" type="submit" [disabled]="loginForm.invalid">
-            <span *ngIf="currentLanguage === 'en'">Sign In</span>
-            <span *ngIf="currentLanguage === 'es'">Iniciar sesión</span>
-          </button>
-        </form>
-      </mat-card-content>
-    </mat-card>
-  </div>
+        <div class="login-info">
+          <mat-checkbox>{{ translations.REMEMBER_ME }}</mat-checkbox>
+          <a routerLink="/forgot-password" class="forgot-password-link">{{ translations.FORGOT_PASSWORD }}</a>
+        </div>
+
+        <button mat-raised-button class="submit-btn" type="submit" [disabled]="loginForm.invalid">
+          {{ translations.SIGN_IN_BUTTON }}
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
 </div>

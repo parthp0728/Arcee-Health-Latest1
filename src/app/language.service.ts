@@ -1,18 +1,23 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class LanguageService {
-  private languageSubject = new BehaviorSubject<string>('en');  // Default language is English
-  currentLanguage$ = this.languageSubject.asObservable();  // Observable for language changes
+  private currentLanguageSubject = new BehaviorSubject<string>('en'); // Default language is 'en'
+  currentLanguage$ = this.currentLanguageSubject.asObservable();
 
-  switchLanguage(language: string) {
-    this.languageSubject.next(language);  // Change the language
+  constructor(private http: HttpClient) {}
+
+  // Method to change the language
+  changeLanguage(lang: string): void {
+    this.currentLanguageSubject.next(lang);
   }
 
-  get currentLanguage(): string {
-    return this.languageSubject.value;
+  // Load the translations dynamically
+  loadTranslations(lang: string) {
+    return this.http.get(`/assets/i18n/${lang}.json`);
   }
 }

@@ -32,6 +32,7 @@ export class ChlamydiaComponent implements OnInit {
   recommendation = '';
   age = 0;
   currentLanguage: string = 'en';  // Default language is English
+  translations: any = {};  // To store the translation strings
 
   constructor(private fb: FormBuilder, private languageService: LanguageService) {}
 
@@ -54,6 +55,13 @@ export class ChlamydiaComponent implements OnInit {
     // Subscribe to language changes
     this.languageService.currentLanguage$.subscribe((language) => {
       this.currentLanguage = language;
+      this.loadTranslations(language);
+    });
+  }
+
+  loadTranslations(language: string): void {
+    this.languageService.loadTranslations(language).subscribe((translations: any) => {
+      this.translations = translations;
     });
   }
 

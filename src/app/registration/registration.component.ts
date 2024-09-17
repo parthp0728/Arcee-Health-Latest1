@@ -41,6 +41,7 @@ export class RegistrationComponent implements OnInit {
   hidePassword = true;
   hideConfirmPassword = true;
   addressOptions: Observable<string[]> | null = null;
+  translations: any = {};
   currentLanguage: string = 'en';  // Default language
 
   getSecurityQuestions(): string[] {
@@ -89,6 +90,13 @@ export class RegistrationComponent implements OnInit {
     // Subscribe to language changes
     this.languageService.currentLanguage$.subscribe((language: string) => {
       this.currentLanguage = language;
+      this.loadTranslations(language);
+    });
+  }
+
+  loadTranslations(language: string): void {
+    this.languageService.loadTranslations(language).subscribe((translations: any) => {
+      this.translations = translations;
     });
   }
 

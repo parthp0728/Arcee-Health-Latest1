@@ -19,6 +19,7 @@ import { Subscription } from 'rxjs';
 })
 export class HomeComponent implements OnInit, OnDestroy {
   currentLanguage: string = 'en';  // Default language is English
+  translations: any = {}; // Store the translations
   private languageSubscription!: Subscription;
 
   constructor(private languageService: LanguageService, private router: Router) {}
@@ -27,7 +28,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     // Subscribe to language changes
     this.languageSubscription = this.languageService.currentLanguage$.subscribe(language => {
       this.currentLanguage = language;  // Update the language dynamically
-      this.translatePageContent();
+      this.loadTranslations(language);
     });
   }
 
@@ -38,17 +39,11 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
   }
 
-  // Logic to translate page content based on the current language
-  translatePageContent() {
-    if (this.currentLanguage === 'es') {
-      // Spanish translations
-      console.log('Translated to Spanish');
-      // Here you can apply logic to update the HTML content based on Spanish language
-    } else {
-      // English translations (default)
-      console.log('Translated to English');
-      // Here you can apply logic to update the HTML content based on English language
-    }
+  // Load translations for the current language
+  loadTranslations(language: string): void {
+    this.languageService.loadTranslations(language).subscribe((translations: any) => {
+      this.translations = translations;
+    });
   }
 
   goToBreastCancer(): void{

@@ -31,6 +31,7 @@ export class CervicalCancerComponent implements OnInit {
   no_test = false;
   unknown = false;
   currentLanguage: string = 'en';  // Default language
+  translations: any = {};  // For storing translations
 
   constructor(private fb: FormBuilder, private languageService: LanguageService) {}
 
@@ -43,6 +44,14 @@ export class CervicalCancerComponent implements OnInit {
     // Subscribe to language changes
     this.languageService.currentLanguage$.subscribe(language => {
       this.currentLanguage = language;
+      this.loadTranslations(language);
+    });
+  }
+
+  // Load translations dynamically
+  loadTranslations(language: string): void {
+    this.languageService.loadTranslations(language).subscribe((translations: any) => {
+      this.translations = translations;
     });
   }
 
