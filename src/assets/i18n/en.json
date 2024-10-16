@@ -1,7 +1,10 @@
 {
   "SIGN_UP": "Sign Up",
   "ALREADY_HAVE_ACCOUNT": "Already have an account?",
+  "DONT_HAVE_ACCOUNT": "Don’t have an account yet?",
   "SIGN_IN": "Sign In",
+  "REMEMBER_ME": "Remember me",
+  "FORGOT_PASSWORD": "Forgot Password?",
   "FIRST_NAME": "First Name",
   "ENTER_FIRST_NAME": "Enter your first name",
   "FIRST_NAME_REQUIRED": "First name is required",
@@ -110,5 +113,6 @@
   "HEALTHCARE_PERSONNEL": "I am a healthcare personnel",
   "GENERAL_INFO": "You will be asked to respond to questions which will ask you for personal information and information related to your health history. The responses on the questionnaire will be used to provide general recommendations on vaccinations you should consider getting in consultation with your primary care physician.",
   "NOT_SUBSTITUTE": "The questionnaire is NOT a substitute for professional medical care.",
-  "TARGET_INFO": "This questionnaire primarily targets healthy individuals with no known underlying health conditions. Start by answering the following questions:"  
+  "TARGET_INFO": "This questionnaire primarily targets healthy individuals with no known underlying health conditions. Start by answering the following questions:",
+  "VIEW": "View"
 }

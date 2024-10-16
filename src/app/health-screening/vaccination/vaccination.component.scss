@@ -31,7 +31,7 @@ body.dark-theme {
   background-color: var(--container-background-color);
   color: var(--text-color);
   max-width: 600px;
-  margin: 0 auto;
+  margin: 15px auto;
   padding: 20px;
 }
 
@@ -57,6 +57,11 @@ body.dark-theme {
 
 ::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-floating-label{
   color: inherit !important;
+}
+
+::ng-deep .mat-mdc-card-content:last-child{
+  font-size: 16px;
+  font-family: var(--fontFamily);
 }
 
 /* Full-width form fields */

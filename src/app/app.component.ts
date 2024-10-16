@@ -39,6 +39,7 @@ import { FormsModule } from '@angular/forms';
 export class AppComponent implements OnInit{
   title = 'Arcee-Health-Latest';
   currentLanguage: string = 'en'; // Default language
+  isSidebarOpen = true;
 
   constructor(
     public themeService: AppThemeService,
@@ -66,5 +67,11 @@ export class AppComponent implements OnInit{
   onLanguageChange(event: Event): void {
     const selectElement = event.target as HTMLSelectElement;
     this.languageService.changeLanguage(selectElement.value);
+  }
+
+  // side bar nav
+
+  toggleSidebar() {
+    this.isSidebarOpen = !this.isSidebarOpen;
   }
 }

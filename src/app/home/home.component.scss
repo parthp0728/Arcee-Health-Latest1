@@ -1,85 +1,146 @@
-/* Light Theme (default) */
+/* General theme variables */
 :root {
   --primary-color: #1a73e8;
   --background-color: #ffffff;
-  --card-background-color: #ffffff; /* Default card background */
+  --card-background-color: #ffffff;
   --text-color: #000000;
-  --box-background-color: #f0f0f0;
+  --box-background-color: #ffffff;
   --footer-background-color: #1a73e8;
+  --menu-text-color: #000000;
 }
 
 /* Dark Theme */
 body.dark-theme {
   --primary-color: #bb86fc;
   --background-color: #121212;
-  --card-background-color: #1b1b1b; /* Dark card background */
+  --card-background-color: #1b1b1b;
   --text-color: #ffffff;
   --box-background-color: #333333;
   --footer-background-color: #6200ee;
+  --menu-text-color: #ffffff;
 }
 
-/* Apply the theme variables to the component */
+/* Main Content */
+.main-content {
+  padding: 20px;
+  background-color: var(--main-background-color);
+}
+
+/* Apply theme variables */
 .screening-section {
-  margin-bottom: 20px;
-  background-color: var(--container-background-color); /* Use theme variable */
+  margin: 80px 20px 20px 20px;
+  background-color: var(--main-background-color);
 }
 
+.app-title {
+  font-family: var(--fontFamily);
+  font-weight: 600;
+}
+
+/* Aligning the title with the boxes */
+.home-title {
+  font-size: 24px;
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 40px;
+  color: var(--blackColor);
+  font-family: var(--fontFamily);
+}
+
+/* Flexbox container for the screenings */
 .screening-container {
   display: flex;
-  justify-content: space-around;
-  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  max-width: 900px;
+  margin: 0 auto;
   flex-wrap: wrap;
 }
 
+/* Styling for each screening box */
 .screening-box {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 150px;
-  height: 150px;
-  margin: 10px;
+  width: 30%;
+  height: 300px;
+  margin-bottom: 20px;
   text-decoration: none;
-  background-color: var(--box-background-color); /* Use theme variable */
+  background-color: var(--box-background-color);
   border: 1px solid #ddd;
-  border-radius: 8px;
+  border-radius: 12px;
   transition: background-color 0.3s, transform 0.3s;
 }
 
-.screening-box:hover {
-  background-color: #c5e1a5; /* Adjust this as needed */
-  transform: scale(1.05);
+.menu-icon-container {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1;
+}
+
+/* Circular container for the image */
+.screening-icon-container {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+  overflow: hidden;
 }
 
 .screening-icon {
-  width: 60px;
-  height: 60px;
-  margin-bottom: 10px;
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
 }
 
+/* Text below the image */
 .screening-text {
-  color: var(--text-color); /* Use theme variable */
+  color: var(--blackColor);
   font-weight: 500;
+  font-size: 20px;
   text-align: center;
+  font-family: var(--fontFamily);
 }
 
+/* Wellness section */
 .wellness {
   text-align: center;
-  margin-top: 20px;
-  background-color: var(--container-background-color); /* Use theme variable */
+  margin: 20px;
+  height: 290px;
+  font-family: var(--fontFamily);
+  background-color: var(--container-background-color);
 }
 
 .wellness-body {
   margin: 0 auto;
   max-width: 600px;
-  color: var(--text-color); /* Use theme variable */
+  color: var(--body-color);
+  margin-bottom: 10px;
 }
 
 .home-footer {
-  position: fixed;
+  position: relative;
   bottom: 0;
   width: 100%;
   text-align: center;
-  background-color: var(--footer-background-color); /* Use theme variable */
-  color: var(--text-color); /* Use theme variable */
+  background-color: var(--footer-background-color);
+  color: var(--text-color);
+  font-size: 15px;
+  padding-bottom: 25px;
+  font-family: var(--fontFamily);
+  justify-content: center;
+}
+
+::ng-deep .mat-mdc-card-title, .mat-mdc-card-subtitle {
+  color: var(--blackColor);
+}
+
+::ng-deep .mat-mdc-card {
+  margin-top: 20px;
 }

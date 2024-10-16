@@ -4,7 +4,8 @@
       <h3>{{ translations.SIGN_IN }}</h3>
 
       <p>
-        Don’t have an account yet? <a routerLink="/register" class="sign-up-link">Sign Up</a>
+        {{ translations.DONT_HAVE_ACCOUNT }}
+        <a routerLink="/register" class="sign-up-link">{{ translations.SIGN_UP }}</a>
       </p>
       
     </div>
@@ -42,7 +43,7 @@
         </div>
 
         <button mat-raised-button class="submit-btn" type="submit" [disabled]="loginForm.invalid">
-          {{ translations.SIGN_IN_BUTTON }}
+          {{ translations.SIGN_IN }}
         </button>
       </form>
     </mat-card-content>

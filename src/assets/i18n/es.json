@@ -1,7 +1,10 @@
 {
   "SIGN_UP": "Registrarse",
   "ALREADY_HAVE_ACCOUNT": "¿Ya tienes una cuenta?",
+  "DONT_HAVE_ACCOUNT": "¿Aún no tienes una cuenta?",  
   "SIGN_IN": "Iniciar sesión",
+  "REMEMBER_ME": "Recuérdame",
+  "FORGOT_PASSWORD": "¿Olvidaste tu contraseña?",
   "FIRST_NAME": "Nombre",
   "ENTER_FIRST_NAME": "Introduce tu nombre",
   "FIRST_NAME_REQUIRED": "El nombre es obligatorio",
@@ -110,5 +113,6 @@
   "HEALTHCARE_PERSONNEL": "Soy personal sanitario",
   "GENERAL_INFO": "Se le pedirá que responda preguntas sobre su información personal y su historial médico. Las respuestas del cuestionario se utilizarán para proporcionar recomendaciones generales sobre las vacunas que debería considerar consultar con su médico de atención primaria.",
   "NOT_SUBSTITUTE": "El cuestionario NO es un sustituto de la atención médica profesional.",
-  "TARGET_INFO": "Este cuestionario está dirigido principalmente a personas sanas sin condiciones de salud subyacentes conocidas. Comience respondiendo las siguientes preguntas:"  
+  "TARGET_INFO": "Este cuestionario está dirigido principalmente a personas sanas sin condiciones de salud subyacentes conocidas. Comience respondiendo las siguientes preguntas:",
+  "VIEW": "ver"
 }

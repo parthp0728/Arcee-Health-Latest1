@@ -1,52 +1,115 @@
-<mat-card class="screening-section">
-  <mat-card-title class="home-title">
-    {{ translations.SCREENINGS_TITLE }}
-  </mat-card-title>
-  <mat-card-content class="screening-container">
-    <a class="screening-box" routerLink="/breastcancer" (click)="goToBreastCancer()">
-      <img class="screening-icon" alt="Breast Cancer Screening" src="assets/img/breast-cancer.png"/>
-      <div class="screening-text">
-        {{ translations.BREAST_CANCER }}
+<!-- <mat-toolbar color="primary">
+  <span>{{ translations.APP_TITLE }}</span>
+</mat-toolbar> -->
+
+<!-- Screenings Section -->
+ <mat-card>
+<div class="screening-section">
+  <h2 class="home-title">{{ translations.SCREENINGS_TITLE }}</h2>
+  <div class="screening-container">
+    <!-- Breast Cancer Screening -->
+    <a class="screening-box">
+      <div class="menu-icon-container">
+        <button mat-icon-button [matMenuTriggerFor]="menu1">
+          <mat-icon>more_horiz</mat-icon>
+        </button>
       </div>
-    </a>
-    <a class="screening-box" routerLink="/colon-cancer" (click)="goToColonCancer()">
-      <img class="screening-icon" alt="Colon Cancer Screening" src="assets/img/colon-cancer.png"/>
-      <div class="screening-text">
-        {{ translations.COLON_CANCER }}
+      <div class="screening-icon-container">
+        <img class="screening-icon" alt="Breast Cancer Screening" src="assets/img/breast-cancer.png" />
       </div>
+      <div class="screening-text">{{ translations.BREAST_CANCER }}</div>
     </a>
-    <a class="screening-box" routerLink="/cervical-cancer" (click)="goToCervicalCancer()">
-      <img class="screening-icon" alt="Cervical Cancer Screening" src="assets/img/cervical-cancer.png"/>
-      <div class="screening-text">
-        {{ translations.CERVICAL_CANCER }}
+    <mat-menu #menu1="matMenu">
+      <button mat-menu-item (click)="goToBreastCancer()">{{ translations.VIEW }}</button>
+    </mat-menu>
+
+    <!-- Colon Cancer Screening -->
+    <a class="screening-box">
+      <div class="menu-icon-container">
+        <button mat-icon-button [matMenuTriggerFor]="menu4">
+          <mat-icon>more_horiz</mat-icon>
+        </button>
       </div>
-    </a>
-    <a class="screening-box" routerLink="/chlamydia" (click)="goToChlamydia()">
-      <img class="screening-icon" alt="Chlamydia Screening" src="assets/img/chlamydia.png"/>
-      <div class="screening-text">
-        {{ translations.CHLAMYDIA }}
+      <div class="screening-icon-container">
+        <img class="screening-icon" alt="Colon Cancer Screening" src="assets/img/colon-cancer.png" />
       </div>
+      <div class="screening-text">{{ translations.COLON_CANCER }}</div>
     </a>
-    <a class="screening-box" routerLink="/vaccination" (click)="goToVaccination()">
-      <img class="screening-icon" alt="Vaccination Screening" src="assets/img/vaccination.png"/>
-      <div class="screening-text">
-        {{ translations.VACCINATION }}
+    <mat-menu #menu4="matMenu">
+      <button mat-menu-item (click)="goToColonCancer()">{{ translations.VIEW }}</button>
+    </mat-menu>
+
+    <!-- Cervical Cancer Screening -->
+    <a class="screening-box">
+      <div class="menu-icon-container">
+        <button mat-icon-button [matMenuTriggerFor]="menu5">
+          <mat-icon>more_horiz</mat-icon>
+        </button>
       </div>
-    </a>
-    <a class="screening-box" routerLink="/care-for-older-adults" (click)="goToOldCare()">
-      <img class="screening-icon" alt="Care for Older Adults" src="assets/img/Elderly_Care.png"/>
-      <div class="screening-text">
-        {{ translations.OLD_CARE }}
+      <div class="screening-icon-container">
+        <img class="screening-icon" alt="Cervical Cancer Screening" src="assets/img/cervical-cancer.png" />
       </div>
+      <div class="screening-text">{{ translations.CERVICAL_CANCER }}</div>
     </a>
-  </mat-card-content>
+    <mat-menu #menu5="matMenu">
+      <button mat-menu-item (click)="goToCervicalCancer()">{{ translations.VIEW }}</button>
+    </mat-menu>
+
+    <!-- Chlamydia Screening -->
+    <a class="screening-box">
+      <div class="menu-icon-container">
+        <button mat-icon-button [matMenuTriggerFor]="menu3">
+          <mat-icon>more_horiz</mat-icon>
+        </button>
+      </div>
+      <div class="screening-icon-container">
+        <img class="screening-icon" alt="Chlamydia Screening" src="assets/img/chlamydia.png" />
+      </div>
+      <div class="screening-text">{{ translations.CHLAMYDIA }}</div>
+    </a>
+    <mat-menu #menu3="matMenu">
+      <button mat-menu-item (click)="goToChlamydia()">{{ translations.VIEW }}</button>
+    </mat-menu>
+
+    <!-- Vaccination Screening -->
+    <a class="screening-box">
+      <div class="menu-icon-container">
+        <button mat-icon-button [matMenuTriggerFor]="menu6">
+          <mat-icon>more_horiz</mat-icon>
+        </button>
+      </div>
+      <div class="screening-icon-container">
+        <img class="screening-icon" alt="Vaccination Screening" src="assets/img/vaccination.png" />
+      </div>
+      <div class="screening-text">{{ translations.VACCINATION }}</div>
+    </a>
+    <mat-menu #menu6="matMenu">
+      <button mat-menu-item (click)="goToVaccination()">{{ translations.VIEW }}</button>
+    </mat-menu>
+
+    <!-- Care for Older Adults Screening -->
+    <a class="screening-box">
+      <div class="menu-icon-container">
+        <button mat-icon-button [matMenuTriggerFor]="menu7">
+          <mat-icon>more_horiz</mat-icon>
+        </button>
+      </div>
+      <div class="screening-icon-container">
+        <img class="screening-icon" alt="Care for Older Adults" src="assets/img/Elderly_Care.png" />
+      </div>
+      <div class="screening-text">{{ translations.OLD_CARE }}</div>
+    </a>
+    <mat-menu #menu7="matMenu">
+      <button mat-menu-item (click)="goToOldCare()">{{ translations.VIEW }}</button>
+    </mat-menu>
+  </div>
+</div>
 </mat-card>
 
+<!-- Wellness Section -->
 <mat-card class="wellness">
   <mat-card-header>
-    <mat-card-title>
-      {{ translations.WELLNESS_TITLE }}
-    </mat-card-title>
+    <mat-card-title>{{ translations.WELLNESS_TITLE }}</mat-card-title>
   </mat-card-header>
   <mat-card-content class="wellness-body">
     <p>{{ translations.WELLNESS_PARAGRAPH1 }}</p>
@@ -54,11 +117,10 @@
     <p>{{ translations.WELLNESS_PARAGRAPH3 }}</p>
     <p>{{ translations.WELLNESS_PARAGRAPH4 }}</p>
   </mat-card-content>
-  <mat-card-footer class="wellness-footer">
-    {{ translations.WELLNESS_FOOTER }}
-  </mat-card-footer>
+  <mat-card-footer class="wellness-footer">{{ translations.WELLNESS_FOOTER }}</mat-card-footer>
 </mat-card>
 
+<!-- Footer Section -->
 <mat-toolbar class="home-footer" color="primary">
   &copy; {{ translations.FOOTER_COPYRIGHT }}
 </mat-toolbar>

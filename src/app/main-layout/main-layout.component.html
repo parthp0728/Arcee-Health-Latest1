@@ -1,0 +1,53 @@
+<mat-sidenav-container class="sidenav-container">
+    <!-- Side Navigation Bar -->
+    <mat-sidenav #sidenav mode="side" [ngClass]="{ 'collapsed': !isSidebarOpened }" opened class="sidenav">
+      <mat-toolbar class="sidebar-toolbar">
+        <!-- Logo and Title in the same row as close button -->
+        <div class="toolbar-content">
+          <img src="assets/img/logo.png" alt="Logo" class="logo" *ngIf="isSidebarOpened" />
+          <div><b>Arcee Health</b></div>
+        </div>
+        <!-- Close Button aligned to the right -->
+        <button mat-icon-button (click)="toggleSidebar()">
+          <mat-icon>{{ isSidebarOpened ? 'close' : 'menu' }}</mat-icon>
+        </button>
+      </mat-toolbar>
+  
+      <!-- Navigation List -->
+      <mat-list>
+        <!-- Custom Icons and Navigation Items -->
+        <mat-list-item [routerLink]="['/home']" routerLinkActive="active-link">
+          <mat-icon>assignment</mat-icon> <!-- Icon for Screenings -->
+          <span *ngIf="isSidebarOpened">Screenings</span> <!-- Hide text when collapsed -->
+        </mat-list-item>
+  
+        <mat-list-item [routerLink]="['/help-desk']" routerLinkActive="active-link">
+          <mat-icon>help_outline</mat-icon> <!-- Icon for Help Desk -->
+          <span *ngIf="isSidebarOpened">Help Desk</span> <!-- Hide text when collapsed -->
+        </mat-list-item>
+  
+        <mat-list-item [routerLink]="['/profile']" routerLinkActive="active-link">
+          <mat-icon>account_circle</mat-icon> <!-- Icon for Profile -->
+          <span *ngIf="isSidebarOpened">Profile</span> <!-- Hide text when collapsed -->
+        </mat-list-item>
+  
+        <mat-list-item [routerLink]="['/settings']" routerLinkActive="active-link">
+          <mat-icon>settings</mat-icon> <!-- Icon for Settings -->
+          <span *ngIf="isSidebarOpened">Settings</span> <!-- Hide text when collapsed -->
+        </mat-list-item>
+  
+        <mat-list-item [routerLink]="['/logout']" routerLinkActive="active-link">
+          <mat-icon>logout</mat-icon> <!-- Icon for Logout -->
+          <span *ngIf="isSidebarOpened">Logout</span> <!-- Hide text when collapsed -->
+        </mat-list-item>
+      </mat-list>
+    </mat-sidenav>
+  
+    <!-- Main Content Area -->
+    <mat-sidenav-content>
+  
+      <!-- Dynamic Content -->
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+  

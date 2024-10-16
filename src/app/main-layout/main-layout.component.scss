@@ -1,0 +1,134 @@
+.sidenav-container {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+  }
+  
+  .sidenav {
+    width: 250px;
+    background-color: var(--background-color);
+    transition: width 0.3s ease;
+    border-radius: 0;
+    display: flex;
+  }
+
+  /* Align items in the toolbar horizontally */
+.sidebar-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Vertically center logo, title, and button */
+  padding: 10px;
+}
+
+.toolbar-content {
+  display: flex;
+  align-items: center; /* Vertically center logo and title */
+  margin-right: 20px;
+}
+
+  
+  .sidenav.collapsed {
+    width: 80px; /* Width for the collapsed sidebar (just icons) */
+  }
+  
+  .logo {
+    height: 40px;
+    margin-right: 10px;
+    transition: transform 0.3s ease;
+  }
+  
+  /* When the sidebar is collapsed, hide the logo */
+  .sidenav.collapsed .logo {
+    display: none;
+  }
+
+  /* Sidebar toggle button styles */
+.sidebar-toggle-container {
+  width: 100%;
+  display: flex;
+  justify-content: center; /* Center the toggle button */
+  padding: 10px 0; /* Add some padding to the top */
+}
+  
+  /* Toolbar styles */
+  .mat-toolbar {
+    justify-content: start;
+    padding: 0;
+    margin: 0;
+  }
+
+  ::ng-deep .mat-toolbar-row, .mat-toolbar-single-row{
+    background-color: var(--container-background-color);
+    color: var(--blackColor);
+  }
+  
+  /* List item styles */
+  mat-list-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 16px;
+    margin-left: 0;
+    justify-content: center;
+  
+    mat-icon {
+      margin-right: 16px;
+      color: #5a5a5a;
+      font-size: 24px;
+      transition: color 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 40px;
+    }
+  
+    /* When collapsed, center the icon and hide the text */
+    .sidenav.collapsed mat-icon {
+      margin-right: 0;
+    }
+  
+    span {
+      color: var(--text);
+      font-size: 16px;
+      transition: opacity 0.3s ease, color 0.3s ease;
+      display: table-caption;
+      opacity: 1;
+      flex-grow: 1;
+    }
+  
+    /* Hide the text when the sidebar is collapsed */
+    .sidenav.collapsed span {
+      display: none;
+    }
+  
+    &:hover {
+      mat-icon,
+      span {
+        color: #1a73e8;
+      }
+    }
+  
+    &.active-link {
+      mat-icon,
+      span {
+        color: #1a73e8;
+      }
+    }
+  }
+  
+  /* Main content area */
+  .mat-sidenav-content {
+    padding: 20px;
+    background-color: var(--main-background-color);
+  }
+  
+  .sidebar-toggle-button {
+    color: var(--blackColor);
+    transition: color 0.3s;
+    mat-icon {
+      font-size: 24px;
+    }
+  }
+
+  .mat-icon-button {
+    margin-left: auto; /* Push the close button to the right */
+  }

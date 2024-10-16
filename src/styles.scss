@@ -43,11 +43,13 @@ $Arcee-Health-Latest-theme: mat.define-theme((
   --button-background-disabled-color: #6d6e6e;
   --button-text-color: #ffffff;
   --blackColor: #475569;
+  --text: #5a5a5a;
   --fontFamily: "Outfit", sans-serif;
   --fontSize: 16px;
   --body-color: #919aa3;
   --main-background-color: #eff3f9;
   --button-disabled-color: #efedf1;
+  --box-background-color: #ffffff;
   }
 }
 
@@ -81,10 +83,12 @@ body.dark-theme {
   --blackColor: #ffffff;
   --fontFamily: "Outfit", sans-serif;
   --fontSize: 16px;
+  --text: #ffffff;
   --body-color: #919aa3;
   --main-background-color: #000000;
   --button-disabled-color: #475569;
+  --box-background-color: #2e3b4c
 }
 
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-color: var(--background-color);
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-color: var(--main-background-color);
   color: #919aa3;}

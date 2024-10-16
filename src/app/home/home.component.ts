@@ -1,8 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button'; // For the button used in the menu
+import { MatListModule } from '@angular/material/list';
 import { CommonModule } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { LanguageService } from '../language.service';
 import { Subscription } from 'rxjs';
 
@@ -14,13 +18,25 @@ import { Subscription } from 'rxjs';
   imports: [
     MatCardModule,
     CommonModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatMenuModule, // Import MatMenuModule for the menu functionality
+    MatIconModule, // Import MatIconModule for the three-dot icon
+    MatButtonModule, // Import MatButtonModule for the menu button
+    MatListModule,
+    RouterModule
   ]
 })
 export class HomeComponent implements OnInit, OnDestroy {
   currentLanguage: string = 'en';  // Default language is English
   translations: any = {}; // Store the translations
   private languageSubscription!: Subscription;
+  navItems = [
+    { name: 'Screenings', icon: 'menu_book' },
+    { name: 'Help Desk', icon: 'help_outline' },
+    { name: 'My Profile', icon: 'person' },
+    { name: 'Settings', icon: 'star' },
+    { name: 'Logout', icon: 'people' }
+  ];
 
   constructor(private languageService: LanguageService, private router: Router) {}
 
@@ -44,6 +60,10 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.languageService.loadTranslations(language).subscribe((translations: any) => {
       this.translations = translations;
     });
+  }
+
+  isActive(route: string): boolean {
+    return this.router.url === route;
   }
 
   goToBreastCancer(): void{
