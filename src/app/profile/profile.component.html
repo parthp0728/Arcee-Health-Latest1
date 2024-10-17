@@ -1,9 +1,9 @@
 <!-- Main Content Section -->
 <div class="profile-container">
   <!-- Cover Photo Section -->
-  <div class="cover-photo-section">
-    <img src="assets/cover-photo-placeholder.png" alt="Cover Photo" class="cover-photo">
-    <button class="edit-cover-photo-btn mat-flat-button" [matMenuTriggerFor]="coverPhotoMenu">
+  <mat-card class="cover-photo-section">
+    <img mat-card-image src="assets/cover-photo-placeholder.png" alt="Cover Photo" class="cover-photo">
+    <button mat-flat-button class="edit-cover-photo-btn" [matMenuTriggerFor]="coverPhotoMenu">
       Edit Cover Photo
     </button>
 
@@ -13,23 +13,32 @@
       <button mat-menu-item>Reposition</button>
       <button mat-menu-item>Remove</button>
     </mat-menu>
-  </div>
+  </mat-card>
 
   <!-- Profile Info Section -->
-  <div class="profile-info-section">
+  <mat-card class="profile-info-section">
     <div class="profile-image-container">
-      <img src="assets/profile-placeholder.png" alt="Profile Photo" class="profile-image">
+      <img mat-card-image src="assets/profile-placeholder.png" alt="Profile Photo" class="profile-image">
 
       <!-- Profile Image Edit Button -->
-      <button class="edit-profile-photo-btn mat-icon-button" [matMenuTriggerFor]="profilePhotoMenu">
+      <button mat-icon-button class="edit-profile-photo-btn" [matMenuTriggerFor]="profilePhotoMenu" aria-label="Edit Profile Photo">
         <mat-icon>camera_alt</mat-icon>
       </button>
 
-      <!-- Menu for Profile Picture -->
-      <mat-menu #profilePhotoMenu="matMenu">
-        <button mat-menu-item>Upload Photo</button>
-        <button mat-menu-item>Reposition</button>
-        <button mat-menu-item>Remove</button>
+      <!-- Menu for Profile Photo -->
+      <mat-menu #profilePhotoMenu="matMenu" class="floating-menu">
+        <button mat-menu-item>
+          <mat-icon>photo_camera</mat-icon>
+          <span>See Photo</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>file_upload</mat-icon>
+          <span>Upload Photo</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>delete</mat-icon>
+          <span>Remove</span>
+        </button>
       </mat-menu>
     </div>
 
@@ -38,25 +47,29 @@
       <p class="profile-email">michealexample.com</p>
     </div>
 
-    <button class="share-profile-btn mat-stroked-button">Share Profile</button>
-  </div>
+    <button mat-stroked-button class="share-profile-btn">Share Profile</button>
+  </mat-card>
 
   <!-- Profile Intro Section -->
-  <div class="profile-intro-container">
+  <mat-card class="profile-intro-container">
     <h3 class="section-title">Profile Intro</h3>
 
-    <div class="profile-intro-content">
+    <mat-grid-list cols="2" rowHeight="2:1" class="profile-intro-content">
       <!-- Profile Picture -->
-      <div class="profile-intro-image-container">
-        <img src="assets/profile-placeholder.png" alt="Profile Photo" class="profile-intro-image">
-      </div>
+      <mat-grid-tile>
+        <div class="profile-intro-image-container">
+          <img mat-card-image src="assets/profile-placeholder.png" alt="Profile Photo" class="profile-intro-image">
+        </div>
+      </mat-grid-tile>
 
       <!-- Profile Details -->
-      <div class="profile-intro-details">
-        <h4 class="profile-intro-name">Micheal Collins</h4>
-        <p class="profile-intro-email">michealexample.com</p>
-      </div>
-    </div>
+      <mat-grid-tile>
+        <div class="profile-intro-details">
+          <h4 class="profile-intro-name">Micheal Collins</h4>
+          <p class="profile-intro-email">michealexample.com</p>
+        </div>
+      </mat-grid-tile>
+    </mat-grid-list>
 
     <!-- About Me Section -->
     <div class="about-me-section">
@@ -67,32 +80,32 @@
         donec adipiscing.
       </p>
     </div>
-  </div>
+  </mat-card>
 
   <!-- Profile Information Section -->
-  <div class="profile-info-container">
+  <mat-card class="profile-info-container">
     <h3 class="section-title">Profile Information</h3>
 
-    <div class="profile-info-content">
-      <p><strong>User ID:</strong> 7001</p>
-      <p><strong>Full Name:</strong> Micheal Collins</p>
-      <p><strong>Email:</strong> michealexample.com</p>
-      <p><strong>Role:</strong> Administrator</p>
-      <p><strong>Location:</strong> New York, USA</p>
-      <p><strong>Join Date:</strong> May 10, 2022</p>
-    </div>
-  </div>
+    <mat-list>
+      <mat-list-item><strong>User ID:</strong> 7001</mat-list-item>
+      <mat-list-item><strong>Full Name:</strong> Micheal Collins</mat-list-item>
+      <mat-list-item><strong>Email:</strong> michealexample.com</mat-list-item>
+      <mat-list-item><strong>Role:</strong> Administrator</mat-list-item>
+      <mat-list-item><strong>Location:</strong> New York, USA</mat-list-item>
+      <mat-list-item><strong>Join Date:</strong> May 10, 2022</mat-list-item>
+    </mat-list>
+  </mat-card>
 
   <!-- Additional Information Section -->
-  <div class="additional-info-container">
+  <mat-card class="additional-info-container">
     <h3 class="section-title">Additional Information</h3>
 
-    <div class="additional-info-content">
-      <p><strong>Phone:</strong> +1 444 266 5599</p>
-      <p><strong>Address:</strong> 84 S. Arrowhead Court Branford</p>
-      <p><strong>Orders:</strong> 696</p>
-      <p><strong>Products:</strong> 9240</p>
-      <p><strong>Events:</strong> 5</p>
-    </div>
-  </div>
+    <mat-list>
+      <mat-list-item><strong>Phone:</strong> +1 444 266 5599</mat-list-item>
+      <mat-list-item><strong>Address:</strong> 84 S. Arrowhead Court Branford</mat-list-item>
+      <mat-list-item><strong>Orders:</strong> 696</mat-list-item>
+      <mat-list-item><strong>Products:</strong> 9240</mat-list-item>
+      <mat-list-item><strong>Events:</strong> 5</mat-list-item>
+    </mat-list>
+  </mat-card>
 </div>

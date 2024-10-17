@@ -7,6 +7,7 @@ import { MatListItem } from '@angular/material/list';
 import { MatIcon } from '@angular/material/icon';
 import { MatSidenavContent } from '@angular/material/sidenav';
 import { MatSidenav } from '@angular/material/sidenav';
+import { MatNavList } from '@angular/material/list';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -22,6 +23,7 @@ import { CommonModule } from '@angular/common';
     MatIcon,
     MatSidenavContent,
     MatSidenav,
+    MatNavList,
     RouterModule,
     CommonModule
   ]
@@ -29,7 +31,7 @@ import { CommonModule } from '@angular/common';
 export class MainLayoutComponent {
   translations: any = {}; // Store the translations
   @ViewChild('sidenav') sidenav!: MatSidenav;
-  isSidebarOpened = true;
+  isSidebarOpened: boolean = true;
 
   constructor(private router: Router) {}
 
