@@ -78,10 +78,13 @@
         <button mat-stroked-button color="warn" type="button" (click)="resetForm()">{{ translations.CLEAR }}</button>
       </div>
     </form>
-
-    <div *ngIf="displayRecommendation" class="recommendation">
-      <h3>{{ title }}</h3>
-      <p>{{ recommendation }}</p>
-    </div>
   </mat-card-content>
 </mat-card>
+
+    <!-- Recommendation Display -->
+    <mat-card class="recommendation-box" *ngIf="displayRecommendation">
+      <mat-card-title>{{ title }}</mat-card-title>
+      <mat-card-content>
+        <p>{{ recommendation }}</p>
+      </mat-card-content>
+    </mat-card>

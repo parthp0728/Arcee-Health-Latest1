@@ -114,5 +114,6 @@
   "GENERAL_INFO": "You will be asked to respond to questions which will ask you for personal information and information related to your health history. The responses on the questionnaire will be used to provide general recommendations on vaccinations you should consider getting in consultation with your primary care physician.",
   "NOT_SUBSTITUTE": "The questionnaire is NOT a substitute for professional medical care.",
   "TARGET_INFO": "This questionnaire primarily targets healthy individuals with no known underlying health conditions. Start by answering the following questions:",
-  "VIEW": "View"
+  "VIEW": "View",
+  "NOT_SURE": "Not sure"
 }

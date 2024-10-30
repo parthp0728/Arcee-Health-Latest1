@@ -8,7 +8,7 @@
       <!-- Gender Field -->
       <mat-form-field appearance="fill" class="full-width">
         <mat-label>{{ translations.GENDER }}</mat-label>
-        <mat-select formControlName="gender" required>
+        <mat-select formControlName="gender" (selectionChange)="onGenderChange($event)" required>
           <mat-option value="female">{{ translations.GENDER_FEMALE }}</mat-option>
           <mat-option value="male">{{ translations.GENDER_MALE }}</mat-option>
           <mat-option value="other">{{ translations.GENDER_OTHER }}</mat-option>
@@ -41,5 +41,13 @@
         </button>
       </div>
     </form>
+  </mat-card-content>
+</mat-card>
+
+<!-- Recommendation Block -->
+<mat-card *ngIf="displayRecommendation">
+  <mat-card-title>{{ title }}</mat-card-title>
+  <mat-card-content>
+    <p>{{ recommendation }}</p>
   </mat-card-content>
 </mat-card>

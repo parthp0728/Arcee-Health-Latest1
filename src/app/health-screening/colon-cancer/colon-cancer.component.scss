@@ -127,3 +127,23 @@
     }
   }
   
+  .recommendations-card {
+    background-color: var(--background-color);  // Use your existing variable for card background
+    color: var(--text-color);  // Text color to ensure visibility
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 10px;
+  }
+  
+  .recommendations-card ul {
+    list-style-type: disc;
+    padding-left: 20px;
+  }
+  
+  .recommendations-card li {
+    margin-bottom: 10px;
+  }
+  
+  ::ng-deep .mat-mdc-card {
+    margin: 30px;
+  }

@@ -1,5 +1,4 @@
 <mat-sidenav-container class="sidenav-container">
-  <!-- Side Navigation Bar -->
   <mat-sidenav
     #sidenav
     mode="side"
@@ -8,7 +7,6 @@
     class="sidenav"
   >
     <mat-toolbar class="sidebar-toolbar">
-      <!-- Logo and Title in the same row as close button -->
       <div class="toolbar-content">
         <img
           src="assets/img/logo.png"
@@ -18,7 +16,6 @@
         />
         <div *ngIf="isSidebarOpened"><b>Arcee Health</b></div>
       </div>
-      <!-- Toggle Sidebar Button -->
       <button mat-icon-button (click)="toggleSidebar()">
         <mat-icon>{{ isSidebarOpened ? 'close' : 'menu' }}</mat-icon>
       </button>
@@ -26,15 +23,12 @@
 
     <!-- Navigation List -->
     <mat-nav-list>
-      <!-- Custom Icons and Navigation Items -->
       <mat-list-item
         [routerLink]="['/home']"
         routerLinkActive="active-link"
         class="nav-item"
       >
-        <mat-icon>dashboard
-
-        </mat-icon>
+        <mat-icon>dashboard</mat-icon>
         <span *ngIf="isSidebarOpened">Screenings</span>
       </mat-list-item>
 
@@ -76,7 +70,6 @@
     </mat-nav-list>
   </mat-sidenav>
 
-  <!-- Main Content Area -->
   <mat-sidenav-content>
     <div class="content-header">
       <button mat-icon-button class="toggle-sidebar-btn" *ngIf="!isSidebarOpened" (click)="toggleSidebar()">

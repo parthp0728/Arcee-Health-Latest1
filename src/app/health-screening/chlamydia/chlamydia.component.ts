@@ -34,6 +34,33 @@ export class ChlamydiaComponent implements OnInit {
   currentLanguage: string = 'en';  // Default language is English
   translations: any = {};  // To store the translation strings
 
+  disclaimer1: string = `You will be asked to respond to questions which will ask you for personal information and information
+  related to your health history. The responses on the questionnaire will be used to provide general recommendations
+  on chlamydia preventive measures you should consider getting in consultation with your primary care physician.`;
+  disclaimer2: string = `The questionnaire is NOT a substitute for professional medical care.`;
+  disclaimer3: string = `This questionnaire primarily targets healthy individuals with no known underlying health conditions.
+  Start by answering the following questions`;
+  genderOptions: any[] = [
+    {label: "Female", value: "Female"},
+    {label: "Male", value: "Male"}
+];
+  isCollapsed: boolean = false;
+  pregnant: string = `Are you pregnant?`;
+  riskFactor: string = `Do you have any additional risk factors? `;
+  riskFactorTooltip: string = `Risk factors such as a new or multiple partners, or a sex partner who has sexually 
+  transmitted infection`;
+  yesNoOptions: any[] = [
+    {name: 'Yes', key: 'Yes'},
+    {name: 'No', key: 'No'},
+];
+  riskFlag: boolean = false;
+  sexualActivity: string = `Are you currently sexually active?`;
+  selectedAge: number = 18;
+  selectedGender: any;
+  selectedPregnant: any;
+  selectedRiskFactor: any;
+  selectedSexualActivity: any;
+
   constructor(private fb: FormBuilder, private languageService: LanguageService) {}
 
   ngOnInit(): void {
@@ -69,17 +96,6 @@ export class ChlamydiaComponent implements OnInit {
     this.age = this.chlamydiaForm.get('age')?.value;
   }
 
-  onSubmit(): void {
-    if (this.chlamydiaForm.valid) {
-      const formData = this.chlamydiaForm.value;
-      console.log('Form Submitted', formData);
-
-      // Determine recommendation logic based on form data
-      this.recommendation = this.getRecommendation(formData);
-      this.displayRecommendation = true;
-    }
-  }
-
   resetForm(): void {
     this.chlamydiaForm.reset({
       gender: '',
@@ -92,37 +108,69 @@ export class ChlamydiaComponent implements OnInit {
     this.updateQuestions();
   }
 
-  getRecommendation(formData: any): string {
-    const { age, gender, isSexuallyActive, isRiskFactor, isPregnant } = formData;
+  onSubmit(): void {
+    if (this.chlamydiaForm.valid) {
+      const formData = this.chlamydiaForm.value;
+      console.log('Form Submitted', formData);
 
-    if (age < 25) {
-      if (isPregnant) {
-        return this.currentLanguage === 'en' 
-          ? 'You need to screen during the first prenatal visit and third trimester.' 
-          : 'Debe hacerse un cribado en la primera visita prenatal y en el tercer trimestre.';
-      } else if (isSexuallyActive) {
-        return this.currentLanguage === 'en' 
-          ? 'Annual chlamydia screening is recommended.' 
-          : 'Se recomienda un cribado anual de clamidia.';
-      } else {
-        return this.currentLanguage === 'en' 
-          ? 'No testing needed at the moment.' 
-          : 'No se necesita prueba en este momento.';
-      }
-    } else {
-      if (isPregnant) {
-        return this.currentLanguage === 'en' 
-          ? 'You need to screen during the first prenatal visit and third trimester.' 
-          : 'Debe hacerse un cribado en la primera visita prenatal y en el tercer trimestre.';
-      } else if (isRiskFactor) {
-        return this.currentLanguage === 'en' 
-          ? 'Annual chlamydia screening is recommended.' 
-          : 'Se recomienda un cribado anual de clamidia.';
-      } else {
-        return this.currentLanguage === 'en' 
-          ? 'No testing needed at the moment.' 
-          : 'No se necesita prueba en este momento.';
-      }
+      // Get the recommendation and title based on the form data
+      const { title, recommendation } = this.getRecommendation(formData);
+
+      // Show the modal with the recommendation and title
+      this.openModal(title, recommendation);
     }
-  }
+}
+
+getRecommendation(formData: any): { title: string, recommendation: string } {
+    const { age, gender, isSexuallyActive, isRiskFactor, isPregnant } = formData;
+    let recommendation = '';
+    let title = 'No Screening Required!';
+
+    const recommendation1 = `You need to screen during the first prenatal visit and third trimester. If you want to learn more about either tests, 
+        you can read more about them.`;
+    const recommendation2 = `You need to have annual chlamydia screening. If you want to learn more about either tests, 
+        you can read more about them.`;
+    const recommendation3 = `Hooray, no testing needed at the moment. Always reach out to your primary care provider for 
+        any further questions. Check back with us in the future!`;
+    const recommendation4 = `Primary HPV test every 5 years OR HPV test and Pap every 5 years OR
+        Pap every 3 years. If you want to learn more about either tests, you can read more about them.`;
+
+    // Gender-specific logic
+    if (gender == 'Male') {
+        recommendation = recommendation3;
+    } else {
+        // Female or other genders
+        if (age < 25) {
+            if (isPregnant == 'Yes') {
+                recommendation = recommendation1;
+                title = 'High Risk Screening';
+            } else {
+                if (isRiskFactor == 'Yes') {
+                    recommendation = recommendation2;
+                    title = 'High Risk Screening';
+                } else {
+                    recommendation = recommendation3;
+                }
+            }
+        } else {
+            if (isPregnant == 'Yes') {
+                recommendation = recommendation1;
+                title = 'High Risk Screening';
+            } else if (isRiskFactor == 'Yes') {
+                recommendation = recommendation2;
+                title = 'High Risk Screening';
+            } else {
+                recommendation = recommendation3;
+            }
+        }
+    }
+
+    return { title, recommendation };
+}
+
+openModal(title: string, recommendation: string): void {
+    this.displayRecommendation = true;
+    this.recommendation = recommendation;
+    this.title = title;
+}
 }

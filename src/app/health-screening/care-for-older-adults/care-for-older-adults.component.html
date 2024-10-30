@@ -38,15 +38,10 @@
   </mat-card-content>
 </mat-card>
 
-<mat-dialog-content *ngIf="displayRecommendation">
-  <h2 mat-dialog-title>{{ translations.TITLE }}</h2>
-  <div *ngIf="showOldAge">
-    <p>{{ translations.CARE_RECOMMENDATION_1 }}</p>
-    <p>{{ translations.CARE_RECOMMENDATION_2 }}</p>
-    <p>{{ translations.CARE_RECOMMENDATION_3 }}</p>
-    <p>{{ translations.CARE_RECOMMENDATION_4 }}</p>
-  </div>
-  <mat-dialog-actions>
-    <button mat-button mat-dialog-close>{{ translations.CLOSE }}</button>
-  </mat-dialog-actions>
-</mat-dialog-content>
+<!-- Dialog for recommendations -->
+<mat-card *ngIf="displayRecommendation" class="recommendation-dialog">
+  <mat-card-title>{{ translations.TITLE }}</mat-card-title>
+  <mat-card-content>
+    {{ showOldAge ? translations.CARE_RECOMMENDATION_1 : recommendation }}
+  </mat-card-content>
+</mat-card>

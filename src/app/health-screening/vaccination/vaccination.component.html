@@ -15,7 +15,7 @@
           <mat-option value="female">{{ translations.GENDER_FEMALE }}</mat-option>
           <mat-option value="male">{{ translations.GENDER_MALE }}</mat-option>
           <mat-option value="other">{{ translations.GENDER_OTHER }}</mat-option>
-          <mat-option value="prefer_not_to_say">{{ translations.GENDER_PREFER_NOT_TO_SAY }}</mat-option>
+          <mat-option value="prefer_not_to_say">{{ translations.GENDER_PREFER_NOT_SAY }}</mat-option>
         </mat-select>
       </mat-form-field>
 
@@ -77,9 +77,21 @@
 
       <!-- Actions -->
       <div class="actions">
-        <button mat-raised-button color="primary" type="submit" [disabled]="vaccinationForm.invalid">{{ translations.SUBMIT }}</button>
+        <button mat-raised-button color="primary" type="submit" [disabled]="vaccinationForm.valid">{{ translations.SUBMIT }}</button>
         <button mat-stroked-button color="warn" type="button" (click)="onClear()">{{ translations.CLEAR }}</button>
       </div>
     </form>
   </mat-card-content>
 </mat-card>
+
+  <!-- Displaying Recommendations based on the input -->
+  <mat-card-content *ngIf="displayRecommendation && recommendations.length > 0" class="recommendations">
+    <h2>{{ title }}</h2>
+    <ul>
+      <li *ngFor="let recommendation of recommendations">{{ recommendation }}</li>
+    </ul>
+    <mat-error *ngIf="vaccinationForm.invalid && isSubmitting">
+      {{ translations.FORM_INCOMPLETE }}
+  </mat-error>  
+</mat-card-content>
+

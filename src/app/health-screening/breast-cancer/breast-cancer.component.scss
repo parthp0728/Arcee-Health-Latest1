@@ -47,6 +47,11 @@ body.dark-theme {
 ::ng-deep .mat-mdc-card-content:last-child{
   font-size: 16px;
   font-family: var(--fontFamily);
+  padding-bottom: 9px;
+}
+
+::ng-deep .mat-mdc-card {
+  margin: 30px;
 }
 
 .full-width {
@@ -68,6 +73,7 @@ mat-form-field {
 
 mat-card-title {
   color: var(--text-color);
+  margin: 18px;
 }
 
 mat-checkbox {

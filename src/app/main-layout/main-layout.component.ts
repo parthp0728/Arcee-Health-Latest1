@@ -42,5 +42,6 @@ export class MainLayoutComponent {
   toggleSidebar() {
     this.sidenav.toggle();
     this.isSidebarOpened = !this.isSidebarOpened;
+    setTimeout(() => this.sidenav.toggle(), 0);
   }
 }

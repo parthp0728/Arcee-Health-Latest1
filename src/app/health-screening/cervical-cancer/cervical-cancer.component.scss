@@ -104,3 +104,14 @@ mat-form-field {
 .red {
   color: var(--red-color);  /* Adapt the red color for light/dark mode */
 }
+
+.recommendation-box {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #f5f5f5;  // Light background for contrast
+  border-radius: 8px;  // Rounded corners for better appearance
+}
+
+::ng-deep .mat-mdc-card {
+  margin: 30px;
+}

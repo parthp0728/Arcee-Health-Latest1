@@ -64,8 +64,40 @@ body.dark-theme {
 mat-form-field {
   display: block;
   margin-bottom: 15px;
-  background-color: var(--card-background-color);
+  background-color: var(--background-color);
   color: var(--text-color);
+}
+
+/* Recommendation dialog styling */
+.recommendation-dialog {
+  margin: 20px 0;
+  padding: 10px 20px;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  border-radius: 5px;
+  font-size: 18px;  /* Make sure text is large enough */
+  margin: 22px;
+}
+
+/* Recommendation Message */
+.recommendation-message {
+  font-size: 18px;
+  margin-top: 20px;  /* Space above the message */
+  line-height: 1.6;  /* Better line spacing */
+  padding: 15px;
+  background-color: var(--background-color); /* Ensure clear background */
+  border: 1px solid var(--text-color); /* Add a border to stand out */
+  border-radius: 8px;
+}
+
+/* Override styles for checkboxes */
+::ng-deep mat-checkbox .mat-mdc-checkbox-background,
+::ng-deep mat-checkbox .mat-mdc-checkbox-frame {
+  border-color: var(--checkbox-color);
+}
+
+::ng-deep mat-checkbox .mat-mdc-checkbox-label {
+  color: var(--checkbox-color); /* Ensure label is white in dark mode */
 }
 
 /* Override styles for checkboxes */

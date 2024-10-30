@@ -3,9 +3,7 @@
     <!-- General Info -->
     <p>{{ translations.COLON_CANCER_INFO1 }}</p>
     <p>{{ translations.COLON_CANCER_INFO2 }}</p>
-
     <p><strong>{{ translations.COLON_CANCER_INFO3 }}</strong></p>
-
     <p>{{ translations.COLON_CANCER_INFO4 }}</p>
 
     <form [formGroup]="colonCancerForm" (ngSubmit)="onSubmit()">
@@ -45,18 +43,37 @@
       <!-- Family Condition Section -->
       <div class="full-width">
         <p>{{ translations.FAMILY_CONDITION_QUESTION }}</p>
-        <div *ngFor="let condition of familyConditionOptions">
-          <mat-checkbox [value]="condition.key" formControlName="familyCondition">
-            {{ condition.name[currentLanguage] }}
-          </mat-checkbox>
+        <div formArrayName="familyCondition">
+          <div *ngFor="let condition of familyConditionOptions; let i = index">
+            <mat-checkbox [formControlName]="i">
+              {{ condition.name[currentLanguage] }}
+            </mat-checkbox>
+          </div>
         </div>
       </div>
 
       <!-- Actions -->
       <div class="actions">
-        <button mat-raised-button color="primary" type="submit" [disabled]="colonCancerForm.invalid">{{ translations.SUBMIT }}</button>
-        <button mat-stroked-button color="warn" type="button" (click)="onClear()">{{ translations.CLEAR }}</button>
+        <button mat-raised-button color="primary" type="submit" [disabled]="colonCancerForm.invalid">
+          {{ translations.SUBMIT }}
+        </button>
+        <button mat-stroked-button color="warn" type="button" (click)="onClear()">
+          {{ translations.CLEAR }}
+        </button>
       </div>
     </form>
+  </mat-card-content>
+</mat-card>
+
+<!-- Recommendations Section -->
+<mat-card *ngIf="displayRecommendation" class="recommendations-card">
+  <mat-card-title>{{ title }}</mat-card-title>
+  <mat-card-content>
+    <ul *ngIf="recommendations && recommendations.length > 0">
+      <li *ngFor="let recommendation of recommendations">
+        {{ recommendation }}
+      </li>
+    </ul>
+    <p *ngIf="recommendations.length === 0">{{ translations.NO_RECOMMENDATIONS }}</p>
   </mat-card-content>
 </mat-card>
