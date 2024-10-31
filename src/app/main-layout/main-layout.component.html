@@ -1,4 +1,8 @@
 <mat-sidenav-container class="sidenav-container">
+ <mat-sidenav-container class="sidenav-container">
+    <!-- Sidebar and main content go here -->
+ </mat-sidenav-container> 
+
   <mat-sidenav
     #sidenav
     mode="side"
@@ -12,13 +16,20 @@
           src="assets/img/logo.png"
           alt="Logo"
           class="logo"
-          *ngIf="isSidebarOpened"
         />
         <div *ngIf="isSidebarOpened"><b>Arcee Health</b></div>
       </div>
-      <button mat-icon-button (click)="toggleSidebar()">
+      <button *ngIf="isSidebarOpened" mat-icon-button (click)="toggleSidebar()">
         <mat-icon>{{ isSidebarOpened ? 'close' : 'menu' }}</mat-icon>
-      </button>
+     </button>
+     <!-- Logo Button for Collapsed State -->
+      <img
+      *ngIf="!isSidebarOpened"
+      src="assets/img/logo.png"
+      alt="Logo"
+      class="logo-collapsed"
+      (click)="toggleSidebar()"
+      />
     </mat-toolbar>
 
     <!-- Navigation List -->
@@ -28,7 +39,7 @@
         routerLinkActive="active-link"
         class="nav-item"
       >
-        <mat-icon>dashboard</mat-icon>
+        <mat-icon>view_module</mat-icon>
         <span *ngIf="isSidebarOpened">Screenings</span>
       </mat-list-item>
 
@@ -46,7 +57,7 @@
         routerLinkActive="active-link"
         class="nav-item"
       >
-        <mat-icon>account_circle</mat-icon>
+        <mat-icon>account_box</mat-icon>
         <span *ngIf="isSidebarOpened">Profile</span>
       </mat-list-item>
 
@@ -70,12 +81,12 @@
     </mat-nav-list>
   </mat-sidenav>
 
-  <mat-sidenav-content>
+  <mat-sidenav-content [ngClass]="{ 'content-expanded': isSidebarOpened, 'content-collapsed': !isSidebarOpened }">
     <div class="content-header">
       <button mat-icon-button class="toggle-sidebar-btn" *ngIf="!isSidebarOpened" (click)="toggleSidebar()">
         <mat-icon>menu</mat-icon>
       </button>
       <router-outlet></router-outlet>
     </div>
-  </mat-sidenav-content>
+  </mat-sidenav-content>  
 </mat-sidenav-container>

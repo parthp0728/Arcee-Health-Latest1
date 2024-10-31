@@ -48,6 +48,7 @@ mat-list-item {
 
   .mat-icon {
     margin-right: 16px;
+    margin-left: 14px;
     color: #5a5a5a;
     font-size: 24px;
     vertical-align: -5px;
@@ -96,7 +97,14 @@ mat-list-item {
   padding: 20px;
   background-color: var(--main-background-color);
   transition: margin-left 0.3s ease;
-  margin-left: 70px !important;
+}
+
+.content-expanded {
+  margin-left: 250px !important; // Adjust margin for open sidebar
+}
+
+.content-collapsed {
+  margin-left: 70px !important; // Adjust margin for collapsed sidebar
 }
 
 /* For sidebar toggle button when collapsed */
@@ -146,5 +154,37 @@ mat-list-item {
               margin-top: 5px;
           }
       }
+  }
+}
+
+.logo-collapsed {
+   height: 40px;
+   margin-left: -5px;
+   margin-right: 5px;
+   cursor: pointer;
+}
+
+.top-toolbar {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--main-background-color);
+  padding: 0 20px;
+  height: 64px;
+  .toolbar-left {
+     display: flex;
+     align-items: center;
+  }
+  .toolbar-right {
+     display: flex;
+     align-items: center;
+  }
+  .language-select {
+     width: 150px;
+     margin-right: 20px;
+  }
+  .profile-image {
+     width: 36px;
+     height: 36px;
+     border-radius: 50%;
   }
 }
