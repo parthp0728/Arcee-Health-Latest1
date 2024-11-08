@@ -1,7 +1,8 @@
 .sidenav-container {
-  height: 100%;
+  height: calc(100vh - 64px);;
   width: 100%;
   overflow: hidden;
+  flex: 1;
 }
 
 .sidenav {
@@ -116,6 +117,11 @@ mat-list-item {
   color: var(--blackColor);
 }
 
+.toolbar-left .search-input {
+  width: 300px;
+  max-width: 100%;
+}
+
 .mat-icon-button {
   margin-left: auto; /* Pushes close button to the right */
 }
@@ -167,24 +173,177 @@ mat-list-item {
 .top-toolbar {
   display: flex;
   justify-content: space-between;
-  background-color: var(--main-background-color);
+  align-items: center;
+  background-color: var(--background-color);
   padding: 0 20px;
   height: 64px;
+  z-index: 1000;
+  border-radius: 7px;
+
   .toolbar-left {
-     display: flex;
-     align-items: center;
+    display: flex;
+    align-items: center;
+    flex: 1;
+
+    .search-input {
+      width: 300px;
+      max-width: 100%;
+    }
   }
+
   .toolbar-right {
-     display: flex;
-     align-items: center;
+    display: flex;
+    align-items: center;
+
+    .mat-icon-button {
+      margin: 0 8px;
+      position: relative;
+
+      .notification-badge,
+      .email-badge {
+        position: absolute;
+        top: 0;
+        right: 0;
+        background-color: red;
+        color: white;
+        font-size: 12px;
+        border-radius: 50%;
+        padding: 2px 6px;
+      }
+    }
+
+    .profile-image {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+    }
   }
-  .language-select {
-     width: 150px;
-     margin-right: 20px;
+}
+
+.toolbar-right .mat-icon-button {
+  margin: 0 8px;
+}
+
+.notification-badge, .email-badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: red;
+  color: white;
+  font-size: 12px;
+  border-radius: 50%;
+  padding: 2px 6px;
+}
+
+.profile-image {
+  width: 36px;
+  height: 36px;
+  border-radius: 75%;
+}
+
+.layout-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Full viewport height */
+}
+
+.search-box {
+  position: relative;
+  max-width: 400px; /* Limit the width of the search box */
+  width: 100%;
+  background-color: var(--main-background-color);
+  border-radius: 8px;
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+
+  .search-icon {
+    color: #8b8b8b;
+    font-size: 24px;
+    margin-right: 8px;
   }
-  .profile-image {
-     width: 36px;
-     height: 36px;
-     border-radius: 50%;
+
+  .input-search {
+    border: none;
+    outline: none;
+    flex: 1;
+    font-size: 16px;
+    color: #333;
+    padding: 0;
+    background-color: var(--main-background-color);
   }
+}
+
+.language-switcher {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+  color: var(--main-background-color);
+
+  label {
+    margin-right: 5px;
+    font-size: 14px;
+    color: #333;
+  }
+
+  select {
+    padding: 5px;
+    font-size: 14px;
+    background-color: var(--main-background-color);
+    border: none;
+    border-radius: 5px;
+    color: var(--text-color);
+  }
+}
+
+.profile-container {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.profile-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%; /* Makes the image circular */
+  object-fit: cover;
+  border: 2px solid #f0f0f0; /* Optional: Add a subtle border */
+  margin-right: 8px; /* Space between image and arrow */
+}
+
+.dropdown-arrow {
+  color: #5a5a5a;
+  padding: 0;
+}
+
+.mat-menu-content {
+  padding-top: 0; /* Remove extra padding at the top of the menu */
+  min-width: 200px;
+}
+
+.profile-details {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+
+  strong {
+    font-size: 16px;
+    color: #333;
+  }
+
+  .profile-role {
+    font-size: 14px;
+    color: #888;
+  }
+}
+
+mat-divider {
+  margin: 4px 0;
+}
+
+mat-menu-item mat-icon {
+  color: #5a5a5a;
+  margin-right: 16px;
 }

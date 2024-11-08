@@ -41,28 +41,6 @@ mat-slide-toggle {
   margin-top: 80px; /* Pushes the screening section down */
 }
 
-/* Language switcher styles */
-.language-switcher {
-  position: fixed; /* Fixes the position relative to the viewport */
-  top: 20px; /* Adjust this value as needed to position it correctly */
-  right: 20px; /* Adjust this value as needed to position it correctly */
-  z-index: 1000; /* Ensure it's on top of other elements */
-  background-color: var(--container-background-color); /* Adjust as needed */
-  padding: 10px;
-  border-radius: 5px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Optional: Adds a slight shadow to make it stand out */
-  margin-bottom: 50px; 
-}
-
-select {
-  padding: 5px;
-  font-size: 1rem;
-  background-color: var(--container-background-color);
-  border: none;
-  border-radius: 5px;
-  color: var(--text-color);
-}
-
 /* Body and background colors */
 body {
   background-color: var(--background-color); /* Background based on the theme */

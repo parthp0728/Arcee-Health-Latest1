@@ -1,92 +1,125 @@
-<mat-sidenav-container class="sidenav-container">
- <mat-sidenav-container class="sidenav-container">
-    <!-- Sidebar and main content go here -->
- </mat-sidenav-container> 
-
-  <mat-sidenav
-    #sidenav
-    mode="side"
-    [ngClass]="{ 'collapsed': !isSidebarOpened }"
-    opened
-    class="sidenav"
-  >
-    <mat-toolbar class="sidebar-toolbar">
-      <div class="toolbar-content">
+<div class="layout-container">
+  
+  <!-- Sidebar and Main Content -->
+  <mat-sidenav-container class="sidenav-container">
+    <!-- Sidebar -->
+    <mat-sidenav
+      #sidenav
+      mode="side"
+      [ngClass]="{ 'collapsed': !isSidebarOpened }"
+      opened
+      class="sidenav"
+    >
+      <mat-toolbar class="sidebar-toolbar">
+        <div class="toolbar-content">
+          <img src="assets/img/logo.png" alt="Logo" class="logo" />
+          <div *ngIf="isSidebarOpened"><b>Arcee Health</b></div>
+        </div>
+        <mat-icon *ngIf="isSidebarOpened" (click)="toggleSidebar()">
+          close
+        </mat-icon>        
         <img
+          *ngIf="!isSidebarOpened"
           src="assets/img/logo.png"
           alt="Logo"
-          class="logo"
+          class="logo-collapsed"
+          (click)="toggleSidebar()"
         />
-        <div *ngIf="isSidebarOpened"><b>Arcee Health</b></div>
+      </mat-toolbar>
+
+      <!-- Navigation List -->
+      <mat-nav-list>
+        <mat-list-item [routerLink]="['/home']" routerLinkActive="active-link" class="nav-item">
+          <mat-icon>view_module</mat-icon>
+          <span *ngIf="isSidebarOpened">Screenings</span>
+        </mat-list-item>
+        <mat-list-item [routerLink]="['/help-desk']" routerLinkActive="active-link" class="nav-item">
+          <mat-icon>help_outline</mat-icon>
+          <span *ngIf="isSidebarOpened">Help Desk</span>
+        </mat-list-item>
+        <mat-list-item [routerLink]="['/profile']" routerLinkActive="active-link" class="nav-item">
+          <mat-icon>account_box</mat-icon>
+          <span *ngIf="isSidebarOpened">Profile</span>
+        </mat-list-item>
+        <mat-list-item [routerLink]="['/settings']" routerLinkActive="active-link" class="nav-item">
+          <mat-icon>settings</mat-icon>
+          <span *ngIf="isSidebarOpened">Settings</span>
+        </mat-list-item>
+        <mat-list-item [routerLink]="['/logout']" routerLinkActive="active-link" class="nav-item">
+          <mat-icon>logout</mat-icon>
+          <span *ngIf="isSidebarOpened">Logout</span>
+        </mat-list-item>
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <!-- Main Content -->
+    <mat-sidenav-content [ngClass]="{ 'content-expanded': isSidebarOpened, 'content-collapsed': !isSidebarOpened }">
+
+      <mat-toolbar class="top-toolbar">
+        <!-- Search Bar -->
+        <form class="search-box position-relative">
+          <mat-icon class="search-icon">search</mat-icon>
+          <input type="text" placeholder="Search here..." class="input-search d-block w-100 border-none outline-0" />
+        </form>        
+      
+        <!-- Toolbar Right Section -->
+        <div class="toolbar-right">
+          <!-- Language Switcher -->
+          <div class="language-switcher">
+            <label for="language-select">Language:</label>
+            <select id="language-select" [(ngModel)]="currentLanguage" (change)="onLanguageChange($event)">
+              <option value="en">English</option>
+              <option value="es">Español</option>
+            </select>
+          </div>
+      
+          <!-- Profile Dropdown -->
+          <div class="profile-container" [matMenuTriggerFor]="profileMenu">
+            <!-- Circular Profile Image -->
+            <img src="assets/img/logo2.png" alt="Profile" class="profile-image" />
+          
+            <!-- Dropdown Arrow Icon -->
+            <mat-icon class="dropdown-arrow">arrow_drop_down</mat-icon>
+          </div>
+          
+          <!-- Dropdown Menu -->
+          <mat-menu #profileMenu="matMenu" class="profile-menu">
+            <div class="profile-details">
+              <strong>Mateo Luca</strong>
+              <span class="profile-role">Admin</span>
+            </div>
+            <mat-divider></mat-divider>
+            
+            <!-- Menu List without Button -->
+            <mat-nav-list>
+              <a mat-list-item routerLink="/profile">
+                <mat-icon>person</mat-icon>
+                <span>My Profile</span>
+              </a>
+              <a mat-list-item routerLink="/settings">
+                <mat-icon>settings</mat-icon>
+                <span>Settings</span>
+              </a>
+              <a mat-list-item routerLink="/support">
+                <mat-icon>help</mat-icon>
+                <span>Support</span>
+              </a>
+              <a mat-list-item routerLink="/logout">
+                <mat-icon>logout</mat-icon>
+                <span>Logout</span>
+              </a>
+            </mat-nav-list>
+          </mat-menu>          
+          
+        </div>
+      </mat-toolbar>      
+
+      <div class="content-header">
+        <button mat-icon-button class="toggle-sidebar-btn" *ngIf="!isSidebarOpened" (click)="toggleSidebar()">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <router-outlet></router-outlet>
       </div>
-      <button *ngIf="isSidebarOpened" mat-icon-button (click)="toggleSidebar()">
-        <mat-icon>{{ isSidebarOpened ? 'close' : 'menu' }}</mat-icon>
-     </button>
-     <!-- Logo Button for Collapsed State -->
-      <img
-      *ngIf="!isSidebarOpened"
-      src="assets/img/logo.png"
-      alt="Logo"
-      class="logo-collapsed"
-      (click)="toggleSidebar()"
-      />
-    </mat-toolbar>
-
-    <!-- Navigation List -->
-    <mat-nav-list>
-      <mat-list-item
-        [routerLink]="['/home']"
-        routerLinkActive="active-link"
-        class="nav-item"
-      >
-        <mat-icon>view_module</mat-icon>
-        <span *ngIf="isSidebarOpened">Screenings</span>
-      </mat-list-item>
-
-      <mat-list-item
-        [routerLink]="['/help-desk']"
-        routerLinkActive="active-link"
-        class="nav-item"
-      >
-        <mat-icon>help_outline</mat-icon>
-        <span *ngIf="isSidebarOpened">Help Desk</span>
-      </mat-list-item>
-
-      <mat-list-item
-        [routerLink]="['/profile']"
-        routerLinkActive="active-link"
-        class="nav-item"
-      >
-        <mat-icon>account_box</mat-icon>
-        <span *ngIf="isSidebarOpened">Profile</span>
-      </mat-list-item>
-
-      <mat-list-item
-        [routerLink]="['/settings']"
-        routerLinkActive="active-link"
-        class="nav-item"
-      >
-        <mat-icon>settings</mat-icon>
-        <span *ngIf="isSidebarOpened">Settings</span>
-      </mat-list-item>
-
-      <mat-list-item
-        [routerLink]="['/logout']"
-        routerLinkActive="active-link"
-        class="nav-item"
-      >
-        <mat-icon>logout</mat-icon>
-        <span *ngIf="isSidebarOpened">Logout</span>
-      </mat-list-item>
-    </mat-nav-list>
-  </mat-sidenav>
-
-  <mat-sidenav-content [ngClass]="{ 'content-expanded': isSidebarOpened, 'content-collapsed': !isSidebarOpened }">
-    <div class="content-header">
-      <button mat-icon-button class="toggle-sidebar-btn" *ngIf="!isSidebarOpened" (click)="toggleSidebar()">
-        <mat-icon>menu</mat-icon>
-      </button>
-      <router-outlet></router-outlet>
-    </div>
-  </mat-sidenav-content>  
-</mat-sidenav-container>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
