@@ -29,7 +29,7 @@
 
       <!-- Navigation List -->
       <mat-nav-list>
-        <mat-list-item [routerLink]="['/home']" routerLinkActive="active-link" class="nav-item">
+        <mat-list-item [routerLink]="['/home']" [ngClass]="{ 'active-link': isScreeningActive() }" class="nav-item">
           <mat-icon>view_module</mat-icon>
           <span *ngIf="isSidebarOpened">Screenings</span>
         </mat-list-item>

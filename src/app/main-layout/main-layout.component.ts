@@ -77,4 +77,11 @@ export class MainLayoutComponent {
  navigateTo(path: string) {
     this.router.navigate([path]);
  }
+
+ isScreeningActive(): boolean {
+  const screeningRoutes = ['/home', '/breastcancer', '/colon-cancer', '/cervical-cancer', '/colon-cancer',
+    '/chlamydia', '/vaccination', '/care-for-older-adults'
+  ];
+  return screeningRoutes.some(route => this.router.url.startsWith(route));
+ }
 }
