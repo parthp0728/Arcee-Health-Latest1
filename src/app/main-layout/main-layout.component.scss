@@ -21,11 +21,13 @@
   display: flex;
   align-items: center; /* Vertically center logo and title */
   margin-right: 13px;
+  color: var(--text);
 }
 
 .sidebar-toolbar {
   display: flex;
   justify-content: space-between;
+  background-color: var(--background-color);
   align-items: center;
   padding: 10px;
 }
@@ -250,25 +252,30 @@ mat-list-item {
 .search-box {
   position: relative;
   max-width: 400px; /* Limit the width of the search box */
-  width: 100%;
+  width: 50%;
   background-color: var(--main-background-color);
-  border-radius: 8px;
-  padding: 8px 16px;
+  border-radius: 4px;
+  padding: 3px 8px;
+  margin-left: -10px;
   display: flex;
   align-items: center;
 
   .search-icon {
     color: #8b8b8b;
-    font-size: 24px;
-    margin-right: 8px;
+    font-size: 17px;
+    margin-top: 10px;
+    margin-right: 2px;
+    margin-left: 5px;
   }
 
   .input-search {
     border: none;
     outline: none;
     flex: 1;
-    font-size: 16px;
+    font-size: 14px;
     color: #333;
+    margin-left: -10px;
+    margin-top: 1px;
     padding: 0;
     background-color: var(--main-background-color);
   }
@@ -283,7 +290,7 @@ mat-list-item {
   label {
     margin-right: 5px;
     font-size: 14px;
-    color: #333;
+    color: var(--text-color);
   }
 
   select {
@@ -346,4 +353,38 @@ mat-divider {
 mat-menu-item mat-icon {
   color: #5a5a5a;
   margin-right: 16px;
+}
+
+::ng-deep .mat-mdc-menu-content {
+  padding: 0 !important;
+}
+
+::ng-deep .mdc-list {
+  background-color: var(--background-color);
+}
+
+::ng-deep .mdc-list-item__primary-text {
+  display: flex;
+  background-color: var(--background-color);
+}
+
+::ng-deep .mdc-list-item__primary-text {
+  color: unset !important;
+}
+
+::ng-deep .mdc-list-item.active-link {
+  background-color: var(--background-color) !important;
+}
+
+::ng-deep .mat-mdc-menu-panel {
+  width: 250px;
+}
+
+::ng-deep .mat-icon {
+  width: 30px;
+  color: #1a73e8;
+}
+
+.mat-mdc-nav-list .mat-mdc-list-item {
+  border-radius: 5px;
 }

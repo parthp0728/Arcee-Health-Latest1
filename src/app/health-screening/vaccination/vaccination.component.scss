@@ -29,7 +29,7 @@ body.dark-theme {
 /* Main card styling */
 .vaccination-card {
   background-color: var(--background-color);
-  color: var(--text-color);
+  color: var(--body-color);
   max-width: 600px;
   margin: 15px auto;
   padding: 20px;
@@ -126,6 +126,10 @@ mat-checkbox {
 ::ng-deep .mat-mdc-radio-button .mat-internal-form-field,
 ::ng-deep .mat-mdc-checkbox .mat-internal-form-field {
   color: inherit !important;
+}
+
+::ng-deep .mat-mdc-radio-button {
+  color: var(--body-color) !important;
 }
 
 /* Override text field background for light and dark themes */

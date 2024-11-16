@@ -29,7 +29,7 @@
   /* Main card styling */
   .colon-cancer-card {
     background-color: var(--container-background-color);
-    color: var(--text-color);
+    color: var(--body-color);
     max-width: 600px;
     margin: 15px auto;
     padding: 20px;
@@ -92,7 +92,7 @@
   }
 
   ::ng-deep .mat-mdc-radio-button .mat-internal-form-field{
-    color: inherit !important;
+    color: var(--body-color) !important;
   }
 
   ::ng-deep .mat-mdc-checkbox .mat-internal-form-field {
