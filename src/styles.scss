@@ -30,6 +30,7 @@ $Arcee-Health-Latest-theme: mat.define-theme((
     --primary-color: #1a73e8;
   --background-color: #ffffff;
   --container-background-color: #ffffff;
+  --profile-container-background-color: #ffffff;
   --container-inside-background-color: #ffffff;
   --text-color: #000000;
   --input-background-color: #ffffff;
@@ -50,6 +51,7 @@ $Arcee-Health-Latest-theme: mat.define-theme((
   --main-background-color: #eff3f9;
   --button-disabled-color: #efedf1;
   --box-background-color: #ffffff;
+  --prifile-background-color: #ffffff;
   }
 }
 
@@ -68,6 +70,7 @@ body.dark-theme {
   --primary-color: #1a73e8;
   --background-color: #131920;
   --container-background-color: #1b232d;
+  --profile-container-background-color: #131920;
   --container-inside-background-color: #2e3b4c;
   --text-color: #ffffff;
   --input-background-color: #1b232d;
@@ -88,6 +91,7 @@ body.dark-theme {
   --main-background-color: #000000;
   --button-disabled-color: #475569;
   --box-background-color: #2e3b4c
+  --profile-background-color: #1b232d;
 }
 
 body { margin: 0; font-family: "Outfit" sans-serif; background-color: var(--main-background-color);
