@@ -1,4 +1,4 @@
-<h5 class="profile-text"> Profile </h5>
+<div class="profile-text"> Profile </div>
 <!-- Main Content Section -->
 <div class="profile-container">
   <!-- Cover Photo Section -->
@@ -10,15 +10,17 @@
               Edit Cover Photo
           </button>
           <mat-menu #editCoverPhotoMenu="matMenu" class="card-header-menu" xPosition="after">
-              <button mat-menu-item>
-                  Upload Photo
-              </button>
-              <button mat-menu-item>
-                  Reposition
-              </button>
-              <button mat-menu-item>
-                  Remove
-              </button>
+              <mat-nav-list class="camera-list">
+                <a mat-list-item >
+                  <span>Upload Photo</span>
+                </a>
+                <a mat-list-item>
+                  <span>Reposition</span>
+                </a>
+                <a mat-list-item>
+                  <span>Remove</span>
+                </a>
+              </mat-nav-list>
           </mat-menu>
       </div>
       <div class="profile-content">
@@ -26,21 +28,23 @@
               <div class="d-md-flex align-items-end">
                   <div class="image position-relative">
                       <img src="assets/img/profile.jpg" class="rounded-circle" alt="profile-image">
-                      <button type="button" mat-button class="edit-btn" [matMenuTriggerFor]="editProfilePhotoMenu">
-                          <i class="material-symbols-outlined">
-                              photo_camera
-                          </i>
+                      <button type="button" mat-button class="camera-button" [matMenuTriggerFor]="editProfilePhotoMenu">
+                        <span class="material-icons">
+                          photo_camera
+                        </span>
                       </button>
                       <mat-menu #editProfilePhotoMenu="matMenu" class="card-header-menu" xPosition="after">
-                          <button mat-menu-item>
-                              See Photo
-                          </button>
-                          <button mat-menu-item>
-                              Upload Photo
-                          </button>
-                          <button mat-menu-item>
-                              Remove
-                          </button>
+                          <mat-nav-list class="camera-list">
+                            <a mat-list-item >
+                              <span>See Photo</span>
+                            </a>
+                            <a mat-list-item>
+                              <span>Upload Photo</span>
+                            </a>
+                            <a mat-list-item>
+                              <span>Remove</span>
+                            </a>
+                          </mat-nav-list>
                       </mat-menu>
                   </div>
                   <div class="title">
@@ -67,7 +71,7 @@
     <h3 class="section-title">Profile Intro</h3>
 
     <div class="user d-flex align-items-center">
-      <div class="image">
+      <div class="image-1">
           <img src="assets/img/profile.jpg" class="rounded-circle" alt="profile-image">
       </div>
       <div class="title">

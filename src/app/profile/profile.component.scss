@@ -247,7 +247,7 @@
     }
 
     .text-key {
-      color: rgba(255, 255, 255, 0.5);
+      color: var(--body-color);
     }
 
     .text-value {
@@ -326,7 +326,7 @@
     }
 
     .text-key {
-      color: rgba(255, 255, 255, 0.5);
+      color: var(--body-color);
     }
 
     .text-value {
@@ -381,9 +381,11 @@
 
 .profile-text {
   margin-top: 15px;
-  font-size: 17px;
+  font-size: 18px;
+  margin-bottom: 15px;
   font-family: var(--fontFamily);
-  color: #6c757d;
+  color: var(--blackColor);
+  font-weight: 500;
 }
 
 .cover-photo-menu {
@@ -526,10 +528,20 @@
 
       .text-body {
         font-family: var(--fontFamily);
-        color: var(--text-color);
+        color: var(--body-color);
       }
 
       .image {
+        img {
+            width: 200px;
+            margin-bottom: -4px;
+            margin-top: -100px;
+            margin-left: 35px;
+            border: 10px solid white;
+        }
+      }
+
+      .image-1 {
         img {
             width: 75px;
             margin-bottom: -4px;
@@ -541,6 +553,7 @@
         
         span {
             font-size: 18px;
+            margin-left: 250px;
 
             &:not(:first-child) {
                 margin-top: 5px;
@@ -585,14 +598,14 @@
                   img {
                     border: 10px solid var(--whiteColor);
                   }
-                  .edit-btn {
+                  .profile-btn {
                     &.mat-mdc-button {
                       padding: 0;
                       width: 50px;
                       right: 10px;
                       height: auto;
                       height: 50px;
-                      bottom: 10px;
+                      bottom: 30px;
                       min-width: auto;
                       border-radius: 50%;
                       position: absolute;
@@ -705,6 +718,33 @@
     padding-bottom: 10px;
 }
 
+.camera-button {
+  position: absolute;
+  left: 200px;
+  top: 260px;
+  background-color: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 50%;
+  width: 40px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  padding: 0;
+  transition: background-color 0.3s ease;
+}
+
+.camera-button:hover {
+  background-color: #f0f0f0;
+}
+
+.camera-button .material-icons {
+  font-size: 20px;
+  color: #6c757d; // Icon color
+}
+
 .cover-image {
   img {
     margin-bottom: -4px;
@@ -713,6 +753,7 @@
     &.mat-mdc-button {
       border: 0;
       right: 20px;
+      border-radius: 5px;
       bottom: 20px;
       height: auto;
       min-width: auto;
@@ -720,8 +761,14 @@
       position: absolute;
       padding: 13px 40px;
       font-weight: normal;
+      margin-bottom: 200px;
+      margin-right: 10px;
       color: #ffffff;
       background-color: #0f79f3;
     }
   }
+}
+
+.camera-list a.mat-list-item span{
+  color: #475569;
 }
