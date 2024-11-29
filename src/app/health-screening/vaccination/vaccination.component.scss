@@ -38,6 +38,7 @@ body.dark-theme {
 /* Full-width form fields */
 .full-width {
   width: 100%;
+  color: var(--text-color);
 }
 
 /* Action buttons styling */
@@ -142,9 +143,17 @@ mat-checkbox {
   color: inherit !important;
 }
 
+::ng-deep .mat-mdc-card-title {
+  color: var(--text-color);
+}
+
 /* Style for invalid inputs */
 ::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled).mdc-text-field--invalid .mdc-floating-label {
   color: inherit !important;
+}
+
+::ng-deep .mdc-label {
+  color: var(--text-color);
 }
 
 /* Recommendations section styling */

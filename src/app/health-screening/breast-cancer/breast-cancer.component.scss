@@ -28,6 +28,10 @@ body.dark-theme {
   padding: 20px;
 }
 
+::ng-deep .mat-mdc-checkbox label {
+  color: var(--text-color);
+}
+
 ::ng-deep .mat-mdc-checkbox .mat-internal-form-field {
   color: inherit !important;
 }

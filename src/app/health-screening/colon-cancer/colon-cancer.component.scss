@@ -38,6 +38,7 @@
   /* Full-width form fields */
   .full-width {
     width: 100%;
+    color: var(--text-color);
   }
   
   /* Action buttons styling */
@@ -110,6 +111,14 @@
   ::ng-deep .mat-mdc-card-content:last-child{
     font-size: 16px;
     font-family: var(--fontFamily);
+  }
+
+  ::ng-deep .mat-mdc-card-title {
+    color: var(--text-color);
+  }
+
+  ::ng-deep .mdc-label {
+    color: var(--text-color);
   }
   
   mat-radio-button {
